@@ -1,387 +1,263 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Sai Siddhi — Sports Massage & Cupping Therapy</title>
+# Creating a ready-to-deploy static website zip for the "Sai Siddhi" site.
+# Files created: index.html, services.html, pricing.html, about.html, gallery.html, book.html, contact.html, styles.css, script.js
+# Images referenced should already be uploaded to the repository: muscular.png, clinic1.png, clinic2.png, clinic3.png, logo.png
+# We'll create the files in /mnt/data/sai-siddhi-site and zip them.
 
-<!-- Fonts (system-like, elegant) -->
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+import os, zipfile, textwrap, shutil
+out_dir = "/mnt/data/sai-siddhi-site"
+if os.path.exists(out_dir):
+    shutil.rmtree(out_dir)
+os.makedirs(out_dir)
 
-<style>
-  :root{
-    --bg:#f7f7f8;
-    --card:#ffffff;
-    --muted:#6b7280;
-    --accent:#c62828; /* premium red */
-    --glass: rgba(255,255,255,0.6);
-    --glass-strong: rgba(18,18,18,0.6);
-    --shadow: 0 10px 25px rgba(11,11,13,0.08);
-    --radius:14px;
-    --max:1100px;
-    --gap:20px;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
-    font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background:linear-gradient(180deg,#fff 0%, #fbfbfb 100%);
-    color:#111827;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    line-height:1.45;
-  }
+# Common CSS
+styles = textwrap.dedent("""
+:root{
+  --primary:#c62828;
+  --muted:#6b7280;
+  --bg:#0f0f10;
+  --card:#ffffff;
+}
+*{box-sizing:border-box}
+body{font-family:Inter,Arial,sans-serif;margin:0;color:#222;background:#fff;-webkit-font-smoothing:antialiased}
+.container{max-width:1100px;margin:0 auto;padding:20px}
+.header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:48px;width:48px;object-fit:cover;border-radius:8px}
+.navlinks a{margin-left:18px;text-decoration:none;color:rgba(0,0,0,0.7);font-weight:600}
+.hero{position:relative;color:#fff;overflow:hidden;border-radius:18px;margin:20px;padding:40px;background:linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.35));}
+.hero .bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(0px) brightness(.45);transform:scale(1.05)}
+.hero .content{position:relative;z-index:2;max-width:700px}
+.kicker{display:inline-block;background:rgba(255,255,255,0.12);padding:6px 12px;border-radius:16px;margin-bottom:12px}
+h1{font-size:36px;margin:6px 0;line-height:1.05;letter-spacing:0.2px}
+.lead{color:rgba(255,255,255,0.85);margin-bottom:18px}
+.cta{display:flex;gap:12px;align-items:center}
+.btn{padding:14px 20px;border-radius:12px;border:none;cursor:pointer;font-weight:700}
+.btn.primary{background:var(--primary);color:white;box-shadow:0 6px 20px rgba(198,40,40,0.18)}
+.btn.ghost{background:transparent;border:2px solid rgba(255,255,255,0.18);color:white}
 
-  /* Layout */
-  .container{max-width:var(--max);margin:0 auto;padding:28px;}
-  header.site-header{position:sticky;top:0;z-index:30;background:transparent;padding:18px 0;backdrop-filter:blur(6px)}
-  .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
-  .brand{display:flex;align-items:center;gap:12px}
-  .brand img{height:44px;width:44px;object-fit:cover;border-radius:8px;box-shadow:var(--shadow)}
-  .brand h1{margin:0;font-size:18px;font-weight:700;letter-spacing:-0.2px}
-  nav.navlinks a{margin-left:18px;text-decoration:none;color:var(--muted);font-weight:600}
-  .cta{display:flex;gap:12px;align-items:center}
+.hero-card{background:rgba(255,255,255,0.95);color:#111;padding:16px;border-radius:12px;margin-top:24px;box-shadow:0 10px 30px rgba(2,6,23,0.08)}
+.hero-photo{width:100%;height:360px;object-fit:cover;border-radius:8px}
 
-  /* Hero */
-  .hero{
-    min-height:80vh;
-    display:grid;
-    grid-template-columns:1fr;
-    align-items:center;
-    gap:24px;
-    padding:56px 0;
-    position:relative;
-    overflow:visible;
-  }
-  .hero-inner{display:grid;grid-template-columns:1fr;gap:24px;align-items:center}
-  .lead-badge{display:inline-block;background:rgba(255,255,255,0.7);padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:600}
-  h2.hero-title{font-size:34px;margin:6px 0 8px;color:#111827;line-height:1.05;font-weight:800;letter-spacing:-0.6px}
-  p.lead{color:var(--muted);max-width:60ch;margin:0 0 12px}
+.section{padding:36px 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:#fff;padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.06)}
+.card img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+.gallery img{height:200px}
 
-  .buttons{display:flex;gap:12px}
-  .btn{padding:14px 20px;border-radius:12px;font-weight:700;border:0;cursor:pointer;box-shadow:var(--shadow);transition:transform .22s,box-shadow .22s}
-  .btn-primary{background:var(--accent);color:white}
-  .btn-ghost{background:transparent;border:1.5px solid rgba(0,0,0,0.06);color:#111827}
+.whatsapp{position:fixed;right:18px;bottom:20px;background:#25D366;width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,0.2);z-index:999}
+.whatsapp img{width:30px;height:30px}
 
-  /* Photo card */
-  .photo-card{margin-top:18px;background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));border-radius:18px;padding:12px;box-shadow:var(--shadow);display:flex;justify-content:center}
-  .photo-card img{max-width:100%;height:auto;border-radius:10px;display:block;object-fit:cover}
+.footer{padding:30px 0;text-align:center;color:#666;font-size:14px}
 
-  /* Sections */
-  section{padding:44px 0;border-bottom:1px solid rgba(15,15,15,0.03)}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:var(--shadow);transition:transform .22s}
-  .card h3{margin:0 0 8px}
-  .price{font-weight:800;color:var(--accent)}
+/* responsive */
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.hero-card{margin-top:18px}.hero{padding:28px}.hero-photo{height:260px}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.navlinks{display:none}h1{font-size:28px}.hero-photo{height:220px}}
+/* animations */
+.fade-up{animation:fadeUp .7s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+""")
 
-  /* Gallery */
-  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .gallery img{width:100%;height:220px;object-fit:cover;border-radius:12px}
-
-  /* Booking modal */
-  .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:70}
-  .modal{background:var(--card);padding:22px;border-radius:12px;width:min(520px,94vw);box-shadow:0 30px 60px rgba(2,6,23,0.35)}
-  .form-row{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
-  .form-row input,.form-row textarea{padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);font-size:15px;width:100%}
-  .close-btn{background:transparent;border:0;font-weight:700;color:var(--muted);cursor:pointer}
-
-  /* Footer */
-  footer{padding:28px 0;color:var(--muted);text-align:center}
-
-  /* Floating WhatsApp */
-  .whatsapp{position:fixed;right:18px;bottom:18px;background:#25D366;width:62px;height:62px;border-radius:999px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(10,10,10,0.12);z-index:60}
-  .whatsapp img{width:28px;height:28px;filter:drop-shadow(0 1px 0 rgba(0,0,0,0.2))}
-
-  /* Small screens */
-  @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.gallery{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:600px){
-    .hero{padding:28px 0}
-    h2.hero-title{font-size:28px}
-    .grid{grid-template-columns:1fr}
-    .gallery{grid-template-columns:1fr}
-    nav.navlinks{display:none}
-  }
-
-  /* Animations */
-  .fade-in{opacity:0;transform:translateY(10px);transition:opacity .6s ease,var(--t,transform) .6s ease}
-  .fade-in.show{opacity:1;transform:none}
-  .btn:active{transform:translateY(2px)}
-</style>
-</head>
-<body>
-
-<!-- Header -->
-<header class="site-header">
-  <div class="container nav">
-    <div class="brand">
-      <img src="logo.png" alt="Sai Siddhi logo" id="site-logo" />
-      <div>
-        <h1 style="font-size:16px;margin-bottom:2px">Sai Siddhi</h1>
-        <div style="font-size:12px;color:var(--muted)">Sports Massage & Cupping</div>
-      </div>
-    </div>
-
-    <nav class="navlinks" aria-label="Main navigation">
-      <a href="#home">Home</a>
-      <a href="#services">Services</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <div class="cta">
-      <button class="btn btn-ghost" id="openBook">Book</button>
-    </div>
-  </div>
-</header>
-
-<!-- Hero -->
-<main>
-  <section class="hero" id="home">
-    <div class="container hero-inner">
-      <div>
-        <span class="lead-badge fade-in">Winter Special</span>
-        <h2 class="hero-title fade-in" style="--t:transform .6s">Recover faster. Move stronger.</h2>
-        <p class="lead fade-in">Professional sports massage, deep tissue & cupping therapy — for athletes & active people.</p>
-
-        <div class="buttons fade-in" style="--t:transform .8s">
-          <button class="btn btn-primary" id="bookNow">Book ₹1,200</button>
-          <a class="btn btn-ghost" href="#services">See Services</a>
-        </div>
-
-        <p class="fade-in" style="margin-top:14px;color:var(--muted)">Call / WhatsApp: <a href="tel:+919762949595" style="color:#0b5cff;text-decoration:underline">+91 97629 49595</a></p>
-      </div>
-
-      <div class="photo-card fade-in" style="--t:transform .9s">
-        <img src="muscular.png" alt="Hero photo" />
-      </div>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section id="services">
-    <div class="container">
-      <h3 style="font-size:20px;margin-bottom:12px">Services we offer</h3>
-      <div class="grid">
-        <div class="card fade-in">
-          <h3>Full Sports Massage (60m)</h3>
-          <p class="muted">Performance-focused therapy to speed recovery.</p>
-          <p class="price">₹1,600 → <strong>₹1,200</strong></p>
-        </div>
-
-        <div class="card fade-in">
-          <h3>Deep Tissue (45m)</h3>
-          <p class="muted">Targeted deep-pressure therapy for persistent muscle tension.</p>
-          <p class="price">₹1,200</p>
-        </div>
-
-        <div class="card fade-in">
-          <h3>Cupping Therapy (30m)</h3>
-          <p class="muted">Traditional cupping to improve circulation and mobility.</p>
-          <p class="price">₹900</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing -->
-  <section id="pricing">
-    <div class="container">
-      <h3 style="font-size:20px;margin-bottom:12px">Pricing</h3>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <div class="card fade-in" style="flex:1;min-width:220px">
-          <h4>Single Session</h4>
-          <p class="price">₹1,200</p>
-        </div>
-        <div class="card fade-in" style="flex:1;min-width:220px">
-          <h4>3-Session Pack</h4>
-          <p class="price">₹3,300</p>
-        </div>
-        <div class="card fade-in" style="flex:1;min-width:220px">
-          <h4>6-Session Pack</h4>
-          <p class="price">₹6,000</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Gallery -->
-  <section id="gallery">
-    <div class="container">
-      <h3 style="font-size:20px;margin-bottom:12px">Gallery</h3>
-      <div class="gallery">
-        <img src="clinic1.png" alt="Clinic 1" loading="lazy" class="fade-in">
-        <img src="clinic2.png" alt="Clinic 2" loading="lazy" class="fade-in">
-        <img src="clinic3.png" alt="Clinic 3" loading="lazy" class="fade-in">
-      </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about">
-    <div class="container">
-      <h3 style="font-size:20px;margin-bottom:12px">About</h3>
-      <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap">
-        <div style="flex:1;min-width:280px">
-          <p style="color:var(--muted)">Sai Siddhi provides professional sports massage & cupping therapy for athletes, runners and fitness enthusiasts. Our treatments help reduce pain, speed recovery and improve performance.</p>
-        </div>
-        <div style="flex:1;min-width:220px">
-          <div class="card">
-            <strong>Address</strong>
-            <p style="margin:6px 0 0">Squats Fitness, Talegaon Dabhade, Pune</p>
-            <p style="margin:6px 0 0"><a href="tel:+919762949595">+91 97629 49595</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact / Map -->
-  <section id="contact">
-    <div class="container">
-      <h3 style="font-size:20px;margin-bottom:12px">Contact & Location</h3>
-
-      <div style="display:grid;grid-template-columns:1fr 360px;gap:18px">
-        <div>
-          <div class="card fade-in">
-            <h4>Get in touch</h4>
-            <p style="color:var(--muted)">Call or message on WhatsApp to book or ask a question.</p>
-            <p><a href="tel:+919762949595">+91 97629 49595</a></p>
-            <p style="margin-top:12px">
-              <button class="btn btn-primary" id="bookTop">Book Now</button>
-            </p>
-          </div>
-        </div>
-
-        <div>
-          <div class="card fade-in">
-            <h4>View on map</h4>
-            <!-- Replace iframe src with your exact place / coordinates if you want -->
-            <iframe 
-              src="https://www.google.com/maps?q=Talegaon+Dabhade+Pune&output=embed"
-              width="100%" height="240" style="border:0;border-radius:10px" loading="lazy"></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<!-- Footer -->
-<footer>
-  <div class="container">
-    <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap">
-      <img src="logo.png" alt="logo" style="height:44px;width:44px;border-radius:8px;object-fit:cover">
-      <div style="text-align:center">
-        <div style="font-weight:700">Sai Siddhi</div>
-        <div style="font-size:13px;color:var(--muted)">© <span id="yr"></span> Sai Siddhi • All rights reserved</div>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<!-- Floating WhatsApp -->
-<a class="whatsapp" href="https://wa.me/919762949595" target="_blank" aria-label="WhatsApp">
-  <!-- simple inline svg icon for whatsapp -->
-  <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23ffffff' d='M20.5 3.5C18.9 2 16.9 1 14.6 1 8.5 1 3.4 6.1 3.4 12.2c0 2 0.6 3.8 1.7 5.4L3 23l5.5-1.4c1.5 0.8 3.3 1.3 5.1 1.3 6.1 0 11.2-5.1 11.2-11.2 0-2.3-0.8-4.5-2.5-6.1zM13.3 18.5c-1.5 0.1-2.8-0.5-3.9-1.3l-0.3-0.3-3.3 0.9 0.9-3.2-0.2-0.4C7.9 13 9 12 10 11.8c0.8-0.2 1.3-0.2 1.9 0.1 0.5 0.3 1.2 0.8 1.8 1.4 0.6 0.6 1 1.3 1.2 1.8 0.2 0.6 0.2 1 0 1.4-0.2 0.4-0.6 0.9-1.4 1z'/></svg>" alt="WA">
-</a>
-
-<!-- Booking modal -->
-<div class="modal-backdrop" id="modal">
-  <div class="modal" role="dialog" aria-modal="true">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-      <strong>Book a session</strong>
-      <button class="close-btn" id="closeModal">Close ✕</button>
-    </div>
-
-    <!-- FORM: FormSubmit fallback + mailto fallback -->
-    <!-- Replace your-email@example.com with your email on FormSubmit -->
-    <form id="bookingForm" action="https://formsubmit.co/your-email@example.com" method="POST" target="_blank">
-      <!-- Honeypot & anti-spam provided by FormSubmit (optional) -->
-      <input type="hidden" name="_subject" value="New booking from website">
-      <input type="hidden" name="_captcha" value="false">
-      <div class="form-row">
-        <label>Name</label>
-        <input name="name" required placeholder="Your name">
-      </div>
-      <div class="form-row">
-        <label>Phone / WhatsApp</label>
-        <input name="phone" required placeholder="+91 9xxxxxxxxx">
-      </div>
-      <div class="form-row">
-        <label>Service</label>
-        <select name="service" required>
-          <option>Full Sports Massage (60m)</option>
-          <option>Deep Tissue (45m)</option>
-          <option>Cupping (30m)</option>
-        </select>
-      </div>
-      <div class="form-row">
-        <label>Preferred date & time</label>
-        <input name="datetime" placeholder="e.g. 2025-12-20 10:00" />
-      </div>
-
-      <div style="display:flex;gap:10px;align-items:center;justify-content:flex-end;margin-top:8px">
-        <button type="button" class="btn btn-ghost" id="mailtoBook">Email fallback</button>
-        <button class="btn btn-primary" type="submit">Confirm booking</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<script>
-  // Utilities: show year
-  document.getElementById('yr').textContent = new Date().getFullYear();
-
-  // Modal open/close
-  const modal = document.getElementById('modal');
-  document.getElementById('openBook').onclick = openModal;
-  document.getElementById('bookNow').onclick = openModal;
-  document.getElementById('bookTop').onclick = openModal;
-  function openModal(){ modal.style.display='flex'; window.scrollTo({top:0,behavior:'smooth'}) }
-  document.getElementById('closeModal').onclick = ()=> modal.style.display='none'
-  modal.addEventListener('click', e => { if(e.target === modal) modal.style.display='none' })
-
-  // Email fallback (mailto)
-  document.getElementById('mailtoBook').onclick = function(){
-    // gather form fields
-    const f = document.getElementById('bookingForm');
-    const values = Array.from(new FormData(f)).reduce((acc,[k,v]) => (acc[k]=v,acc),{});
-    const body = encodeURIComponent(`Name: ${values.name || '-'}\nPhone: ${values.phone || '-'}\nService: ${values.service || '-'}\nWhen: ${values.datetime || '-'}`);
-    const mail = `mailto:your-email@example.com?subject=Booking request&body=${body}`;
-    window.location.href = mail;
-  };
-
-  // Nice fade-in when in view
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting) e.target.classList.add('show');
-    });
-  },{threshold:0.12});
-
-  document.querySelectorAll('.fade-in').forEach(el=> io.observe(el));
-
-  // Lazy image fallback (optional, keep to improve performance)
-  document.querySelectorAll('img[loading="lazy"]').forEach(img=>{
-    img.addEventListener('load', ()=> img.style.opacity=1);
-  });
-
-  // Smooth scroll for links
+# Common script
+script = textwrap.dedent("""
+document.addEventListener('DOMContentLoaded', function(){
+  // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
     a.addEventListener('click', e=>{
       e.preventDefault();
-      const target = document.querySelector(a.getAttribute('href'));
-      if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
     });
   });
+});
+""")
 
-  // Small tweak: if FormSubmit returns "activate form" page, user must open their email to activate.
-  // Leave a console note for debugging:
-  console.log("Site loaded — booking uses FormSubmit (replace your-email@example.com in the form action).");
-</script>
+# Function to write HTML pages with same header/footer
+def make_page(filename, title, main_html):
+    content = f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>{title}</title>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<header class="container header">
+  <div class="brand">
+    <img src="logo.png" alt="Sai Siddhi logo"/>
+    <div>
+      <strong>Sai Siddhi</strong><br/><span style="font-size:12px;color:var(--muted)">Sports Massage & Cupping Therapy</span>
+    </div>
+  </div>
+  <nav class="navlinks">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="about.html">About</a>
+    <a href="book.html">Book</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+{main_html}
+
+<footer class="container footer">
+  © {2025} Sai Siddhi — Made with care · Call / WhatsApp: <a href="tel:+919762949595">+91 97629 49595</a>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/919762949595" target="_blank" title="Chat on WhatsApp"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/whatsapp/whatsapp-original.svg" alt="wa" /></a>
+
+<script src="script.js"></script>
 </body>
-  </html>
-  
+</html>
+"""
+    with open(os.path.join(out_dir, filename), "w", encoding="utf-8") as f:
+        f.write(content)
+
+# index.html main content
+index_main = textwrap.dedent("""
+<section class="hero" aria-label="Hero section">
+  <div class="bg" style="background-image:url('muscular.png')"></div>
+  <div class="container content">
+    <div class="kicker">Winter Special</div>
+    <h1 class="fade-up">Recover faster. Move stronger.</h1>
+    <p class="lead fade-up" style="animation-delay:.1s">Professional sports massage, deep tissue & cupping therapy — for athletes & active people.</p>
+    <div class="cta fade-up" style="animation-delay:.15s">
+      <a class="btn primary" href="book.html">Book ₹1,200</a>
+      <a class="btn ghost" href="services.html">See Services</a>
+    </div>
+
+    <div class="hero-card fade-up" style="animation-delay:.25s">
+      <img class="hero-photo" src="clinic1.png" alt="Clinic setup"/>
+    </div>
+  </div>
+</section>
+
+<section class="container section">
+  <h2>Services we offer</h2>
+  <div class="grid" style="margin-top:12px">
+    <div class="card fade-up"><h3>Full Sports Massage (60m)</h3><p>Performance-focused therapy to speed recovery.</p></div>
+    <div class="card fade-up"><h3>Deep Tissue (45m)</h3><p>Targeted therapy for persistent muscle tension.</p></div>
+    <div class="card fade-up"><h3>Cupping Therapy (30m)</h3><p>Traditional cupping to improve circulation and mobility.</p></div>
+  </div>
+</section>
+
+<section class="container section gallery">
+  <h2>Gallery</h2>
+  <div class="grid" style="margin-top:12px">
+    <div class="card"><img src="clinic1.png" alt="clinic1"/></div>
+    <div class="card"><img src="clinic2.png" alt="clinic2"/></div>
+    <div class="card"><img src="clinic3.png" alt="clinic3"/></div>
+  </div>
+</section>
+""")
+
+# Other pages
+services_main = textwrap.dedent("""
+<section class="container section">
+  <h1>Services</h1>
+  <div class="grid" style="margin-top:14px">
+    <div class="card"><h3>Full Sports Massage</h3><p>60 minutes — ₹1,600</p></div>
+    <div class="card"><h3>Deep Tissue</h3><p>45 minutes — ₹1,200</p></div>
+    <div class="card"><h3>Cupping Therapy</h3><p>30 minutes — ₹900</p></div>
+  </div>
+</section>
+""")
+
+pricing_main = textwrap.dedent("""
+<section class="container section">
+  <h1>Pricing</h1>
+  <div style="margin-top:14px">
+    <div class="card"><strong>Full Sports Massage (60m)</strong> — ₹1,600</div>
+    <div class="card" style="margin-top:8px"><strong>Deep Tissue (45m)</strong> — ₹1,200</div>
+    <div class="card" style="margin-top:8px"><strong>Cupping (30m)</strong> — ₹900</div>
+  </div>
+</section>
+""")
+
+about_main = textwrap.dedent("""
+<section class="container section">
+  <h1>About Sai Siddhi</h1>
+  <p>We provide professional sports massage, cupping therapy and recovery services with experienced therapists. Our clinic focuses on safe, effective treatments to get you moving better.</p>
+</section>
+""")
+
+gallery_main = textwrap.dedent("""
+<section class="container section gallery">
+  <h1>Gallery</h1>
+  <div class="grid" style="margin-top:14px">
+    <div class="card"><img src="clinic1.png" alt="clinic1"/></div>
+    <div class="card"><img src="clinic2.png" alt="clinic2"/></div>
+    <div class="card"><img src="clinic3.png" alt="clinic3"/></div>
+  </div>
+</section>
+""")
+
+book_main = textwrap.dedent("""
+<section class="container section">
+  <h1>Book an appointment</h1>
+  <p>Please call or WhatsApp <a href="tel:+919762949595">+91 97629 49595</a> to book. Or use the simple form below.</p>
+  <form action="https://formsubmit.co/your-email@example.com" method="POST" style="max-width:600px;margin-top:12px">
+    <input type="hidden" name="_subject" value="New booking request">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <input name="name" placeholder="Your name" required style="padding:12px;border-radius:8px;border:1px solid #e6e6e6"/>
+      <input name="phone" placeholder="Phone / WhatsApp" required style="padding:12px;border-radius:8px;border:1px solid #e6e6e6"/>
+      <select name="service" style="padding:12px;border-radius:8px;border:1px solid #e6e6e6">
+        <option>Full Sports Massage (60m)</option>
+        <option>Deep Tissue (45m)</option>
+        <option>Cupping Therapy (30m)</option>
+      </select>
+      <textarea name="notes" placeholder="Notes / preferred date" style="padding:12px;border-radius:8px;border:1px solid #e6e6e6"></textarea>
+      <button class="btn primary" type="submit">Send booking request</button>
+    </div>
+  </form>
+</section>
+""")
+
+contact_main = textwrap.dedent("""
+<section class="container section">
+  <h1>Contact</h1>
+  <p>Call / WhatsApp: <a href="tel:+919762949595">+91 97629 49595</a></p>
+  <div style="margin-top:16px">
+    <iframe class="map" src="https://www.google.com/maps?q=Talegaon%20Dabhade%20Pune&output=embed" style="width:100%;height:380px;border:0;border-radius:10px"></iframe>
+  </div>
+</section>
+""")
+
+# Write files
+with open(os.path.join(out_dir, "styles.css"), "w", encoding="utf-8") as f:
+    f.write(styles)
+with open(os.path.join(out_dir, "script.js"), "w", encoding="utf-8") as f:
+    f.write(script)
+
+make_page("index.html","Sai Siddhi — Home", index_main)
+make_page("services.html","Sai Siddhi — Services", services_main)
+make_page("pricing.html","Sai Siddhi — Pricing", pricing_main)
+make_page("about.html","Sai Siddhi — About", about_main)
+make_page("gallery.html","Sai Siddhi — Gallery", gallery_main)
+make_page("book.html","Sai Siddhi — Book", book_main)
+make_page("contact.html","Sai Siddhi — Contact", contact_main)
+
+# Copy available images from /mnt/data if present
+possible_images = ["muscular.png","clinic1.png","clinic2.png","clinic3.png","logo.png"]
+for img in possible_images:
+    src = os.path.join("/mnt/data", img)
+    if os.path.exists(src):
+        shutil.copy(src, os.path.join(out_dir, img))
+
+# create zip
+zip_path = "/mnt/data/sai-siddhi-website.zip"
+if os.path.exists(zip_path):
+    os.remove(zip_path)
+with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
+    for root, dirs, files in os.walk(out_dir):
+        for file in files:
+            full = os.path.join(root, file)
+            arcname = os.path.relpath(full, out_dir)
+            z.write(full, arcname)
+
+# show created files summary
+created = os.listdir(out_dir)
+{"created_files": created, "zip": zip_path}
+
