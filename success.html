@@ -1,2 +1,183 @@
 <!doctype html>
-<html><body><h1>Success!</h1><p>Your form was submitted.</p></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Booking Confirmed — Sai Siddhi</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbfbfc;
+    --card:#ffffff;
+    --accent:#c62828;
+    --muted:#6b7280;
+    --shadow:0 12px 30px rgba(10,10,20,0.06);
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+    background:linear-gradient(180deg,#fff 0%, #fbfbfc 100%);
+    color:#0b1220;
+    -webkit-font-smoothing:antialiased;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:28px;
+  }
+  .card{
+    width:min(820px,96vw);
+    background:var(--card);
+    border-radius:16px;
+    box-shadow:var(--shadow);
+    padding:28px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* header */
+  .logo{height:56px;width:56px;border-radius:10px;object-fit:cover;box-shadow:0 8px 20px rgba(0,0,0,0.06)}
+  h1{font-size:28px;margin:14px 0 6px;font-weight:700}
+  p.lead{color:var(--muted);margin:0 0 18px;font-size:16px}
+
+  /* check mark */
+  .check-wrap{width:118px;height:118px;border-radius:999px;margin:18px auto 8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(198,40,40,0.12), rgba(198,40,40,0.06));box-shadow:0 8px 30px rgba(198,40,40,0.06)}
+  .check{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent);color:white;font-weight:800;font-size:34px;transform:scale(.6);opacity:0;animation:pop .6s cubic-bezier(.2,.9,.2,1) .15s forwards}
+  @keyframes pop { to { transform:scale(1); opacity:1 } }
+
+  /* buttons */
+  .actions{display:flex;gap:12px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+  .btn{padding:12px 16px;border-radius:10px;font-weight:700;border:0;cursor:pointer;box-shadow:0 8px 18px rgba(11,11,13,0.06);transition:transform .14s}
+  .btn-primary{background:var(--accent);color:white}
+  .btn-ghost{background:transparent;border:1px solid rgba(0,0,0,0.06);color:#111827}
+
+  .btn:active{transform:translateY(2px)}
+
+  /* details box */
+  .details{margin-top:20px;background:linear-gradient(180deg,#fff,#fbfbfb);padding:14px;border-radius:10px;border:1px solid rgba(10,10,10,0.03);text-align:left}
+  .details strong{display:block;margin-bottom:6px}
+  .muted{color:var(--muted);font-size:14px}
+
+  /* confetti canvas covers behind */
+  #confetti {position:absolute;inset:0;pointer-events:none;z-index:2}
+
+  /* small footer */
+  footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+
+  @media(max-width:560px){
+    h1{font-size:22px}
+    .card{padding:18px}
+  }
+</style>
+</head>
+<body>
+  <div class="card" role="main" aria-live="polite">
+    <canvas id="confetti"></canvas>
+
+    <div style="display:flex;gap:12px;align-items:center;justify-content:center">
+      <img src="logo.png" alt="Sai Siddhi logo" class="logo">
+    </div>
+
+    <div class="check-wrap" aria-hidden="true">
+      <div class="check">✓</div>
+    </div>
+
+    <h1>Booking confirmed — thank you!</h1>
+    <p class="lead">We’ve received your booking request. We will confirm your slot via WhatsApp or phone within a few hours. Please keep your phone nearby.</p>
+
+    <div class="actions" role="group" aria-label="Next actions">
+      <a class="btn btn-primary" href="https://wa.me/919762949595" target="_blank" rel="noopener">Message on WhatsApp</a>
+      <a class="btn btn-ghost" href="tel:+919762949595">Call +91 97629 49595</a>
+      <a class="btn btn-ghost" href="index.html">Back to site</a>
+    </div>
+
+    <div class="details" aria-hidden="false">
+      <strong>What happens next</strong>
+      <div class="muted">
+        • We will reply on WhatsApp to confirm date & time.<br>
+        • If you don't hear from us in 6 hours, please call or message directly.<br>
+        • For changes or cancellations, use WhatsApp or call the same number.
+      </div>
+    </div>
+
+    <footer>
+      <div>Need to change your booking? Email: <a href="mailto:saisiddhisportsmassageandcuppi@gmail.com">saisiddhisportsmassageandcuppi@gmail.com</a></div>
+      <div style="margin-top:8px">© <span id="yr"></span> Sai Siddhi • See you soon.</div>
+    </footer>
+  </div>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Simple confetti - lightweight
+  (function(){
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let W = canvas.width = canvas.offsetWidth;
+    let H = canvas.height = canvas.offsetHeight;
+    const pieces = [];
+    const colors = ['#f43f3f','#ff9f1c','#ffd166','#6dd3ff','#7ee787','#ff6bcb'];
+
+    function rand(min,max){ return Math.random()*(max-min)+min }
+
+    function resetSize(){
+      W = canvas.width = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    }
+    window.addEventListener('resize', resetSize);
+
+    function Confetti(){
+      this.x = rand(0,W);
+      this.y = rand(-H,0);
+      this.size = rand(6,12);
+      this.color = colors[Math.floor(rand(0,colors.length))];
+      this.tilt = rand(-10,10);
+      this.speed = rand(1.6,3.2);
+      this.rotate = rand(0,2*Math.PI);
+      this.rotateSpeed = rand(-0.06,0.06);
+    }
+    Confetti.prototype.update = function(){
+      this.y += this.speed;
+      this.x += Math.sin(this.y/30) * 0.8;
+      this.rotate += this.rotateSpeed;
+      if(this.y > H+20){ this.y = rand(-50,0); this.x = rand(0,W) }
+    };
+    Confetti.prototype.draw = function(){
+      ctx.save();
+      ctx.translate(this.x,this.y);
+      ctx.rotate(this.rotate);
+      ctx.fillStyle = this.color;
+      ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size*0.6);
+      ctx.restore();
+    };
+
+    // create pieces
+    for(let i=0;i<40;i++) pieces.push(new Confetti());
+
+    let running = true;
+    function loop(){
+      if(!running) return;
+      ctx.clearRect(0,0,W,H);
+      for(let p of pieces){
+        p.update();
+        p.draw();
+      }
+      requestAnimationFrame(loop);
+    }
+    // run for a short celebration then slow down
+    loop();
+    setTimeout(()=> {
+      // gradually stop animation
+      let fade = setInterval(()=>{
+        pieces.pop();
+        if(pieces.length===0){ clearInterval(fade); running=false; ctx.clearRect(0,0,W,H) }
+      }, 180);
+    }, 2600);
+  })();
+</script>
+</body>
+</html>
