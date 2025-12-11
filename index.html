@@ -5,22 +5,21 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Sai Siddhi — Sports Massage & Cupping Therapy</title>
 
-<!-- Fonts (system-like, elegant) -->
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --bg:#f7f7f8;
+    --bg:#fbfbfb;
     --card:#ffffff;
     --muted:#6b7280;
-    --accent:#c62828; /* premium red */
-    --glass: rgba(255,255,255,0.6);
-    --glass-strong: rgba(18,18,18,0.6);
-    --shadow: 0 10px 25px rgba(11,11,13,0.08);
+    --accent:#c62828;
+    --accent-dark:#a61d1d;
+    --glass: rgba(255,255,255,0.65);
+    --shadow: 0 14px 40px rgba(11,11,13,0.08);
     --radius:14px;
-    --max:1100px;
-    --gap:20px;
+    --max:1120px;
   }
   *{box-sizing:border-box}
   html,body{height:100%}
@@ -28,51 +27,56 @@
     margin:0;
     font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     background:linear-gradient(180deg,#fff 0%, #fbfbfb 100%);
-    color:#111827;
+    color:#0f1724;
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale;
     line-height:1.45;
   }
 
-  /* Layout */
   .container{max-width:var(--max);margin:0 auto;padding:28px;}
-  header.site-header{position:sticky;top:0;z-index:30;background:transparent;padding:18px 0;backdrop-filter:blur(6px)}
+  header.site-header{
+    position:sticky;top:0;z-index:60;
+    background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.2));
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(10,10,10,0.03);
+  }
   .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
   .brand{display:flex;align-items:center;gap:12px}
   .brand img{height:44px;width:44px;object-fit:cover;border-radius:8px;box-shadow:var(--shadow)}
-  .brand h1{margin:0;font-size:18px;font-weight:700;letter-spacing:-0.2px}
-  nav.navlinks a{margin-left:18px;text-decoration:none;color:var(--muted);font-weight:600}
+  .brand h1{margin:0;font-size:16px;font-weight:800}
+  nav.navlinks{display:flex;gap:14px;align-items:center}
+  nav.navlinks a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px}
   .cta{display:flex;gap:12px;align-items:center}
 
   /* Hero */
   .hero{
-    min-height:80vh;
+    min-height:84vh;
     display:grid;
     grid-template-columns:1fr;
     align-items:center;
     gap:24px;
-    padding:56px 0;
+    padding:64px 0;
     position:relative;
-    overflow:visible;
   }
-  .hero-inner{display:grid;grid-template-columns:1fr;gap:24px;align-items:center}
-  .lead-badge{display:inline-block;background:rgba(255,255,255,0.7);padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:600}
-  h2.hero-title{font-size:34px;margin:6px 0 8px;color:#111827;line-height:1.05;font-weight:800;letter-spacing:-0.6px}
-  p.lead{color:var(--muted);max-width:60ch;margin:0 0 12px}
+  .hero-inner{display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
+  .lead-badge{display:inline-block;background:rgba(255,255,255,0.8);padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:700;font-size:14px}
+  h2.hero-title{font-size:36px;margin:6px 0 10px;color:#0f1724;line-height:1.03;font-weight:800}
+  p.lead{color:var(--muted);max-width:62ch;margin:0 0 16px}
 
-  .buttons{display:flex;gap:12px}
-  .btn{padding:14px 20px;border-radius:12px;font-weight:700;border:0;cursor:pointer;box-shadow:var(--shadow);transition:transform .22s,box-shadow .22s}
-  .btn-primary{background:var(--accent);color:white}
-  .btn-ghost{background:transparent;border:1.5px solid rgba(0,0,0,0.06);color:#111827}
+  .buttons{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{padding:12px 18px;border-radius:12px;font-weight:800;border:0;cursor:pointer;box-shadow:var(--shadow);transition:transform .18s ease,box-shadow .18s ease}
+  .btn-primary{background:linear-gradient(180deg,var(--accent),var(--accent-dark));color:white}
+  .btn-ghost{background:transparent;border:1.5px solid rgba(15,15,15,0.06);color:#111827}
 
   /* Photo card */
-  .photo-card{margin-top:18px;background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));border-radius:18px;padding:12px;box-shadow:var(--shadow);display:flex;justify-content:center}
-  .photo-card img{max-width:100%;height:auto;border-radius:10px;display:block;object-fit:cover}
+  .photo-card{margin-top:18px;background:linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.9));border-radius:18px;padding:10px;box-shadow:var(--shadow);display:flex;justify-content:center}
+  .photo-card img{max-width:100%;height:auto;border-radius:12px;display:block;object-fit:cover;box-shadow:inset 0 0 0 1px rgba(0,0,0,0.03)}
 
   /* Sections */
-  section{padding:44px 0;border-bottom:1px solid rgba(15,15,15,0.03)}
+  section{padding:44px 0;border-bottom:1px solid rgba(10,10,10,0.03)}
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
   .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:var(--shadow);transition:transform .22s}
+  .card:hover{transform:translateY(-6px)}
   .card h3{margin:0 0 8px}
   .price{font-weight:800;color:var(--accent)}
 
@@ -80,39 +84,41 @@
   .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
   .gallery img{width:100%;height:220px;object-fit:cover;border-radius:12px}
 
-  /* Booking modal */
-  .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:70}
-  .modal{background:var(--card);padding:22px;border-radius:12px;width:min(520px,94vw);box-shadow:0 30px 60px rgba(2,6,23,0.35)}
+  /* Map area */
+  .map-wrap{border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+
+  /* Modal */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.45);display:none;align-items:center;justify-content:center;z-index:120}
+  .modal{background:var(--card);padding:22px;border-radius:12px;width:min(560px,94vw);box-shadow:0 30px 60px rgba(2,6,23,0.35)}
   .form-row{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
-  .form-row input,.form-row textarea{padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);font-size:15px;width:100%}
+  .form-row input,.form-row textarea,.form-row select{padding:12px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);font-size:15px;width:100%}
   .close-btn{background:transparent;border:0;font-weight:700;color:var(--muted);cursor:pointer}
 
-  /* Footer */
-  footer{padding:28px 0;color:var(--muted);text-align:center}
-
   /* Floating WhatsApp */
-  .whatsapp{position:fixed;right:18px;bottom:18px;background:#25D366;width:62px;height:62px;border-radius:999px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(10,10,10,0.12);z-index:60}
-  .whatsapp img{width:28px;height:28px;filter:drop-shadow(0 1px 0 rgba(0,0,0,0.2))}
+  .whatsapp{position:fixed;right:18px;bottom:18px;background:#25D366;width:64px;height:64px;border-radius:999px;display:flex;align-items:center;justify-content:center;box-shadow:0 18px 40px rgba(37,211,102,0.18);z-index:140;transition:transform .18s}
+  .whatsapp:active{transform:translateY(3px)}
+  .whatsapp svg{width:30px;height:30px;fill:white;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.12))}
 
-  /* Small screens */
-  @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.gallery{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:600px){
+  /* Footer */
+  footer{padding:32px 0;color:var(--muted);text-align:center}
+
+  /* Responsive */
+  @media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}.gallery{grid-template-columns:repeat(2,1fr)}nav.navlinks{display:none}}
+  @media(max-width:640px){
     .hero{padding:28px 0}
     h2.hero-title{font-size:28px}
     .grid{grid-template-columns:1fr}
     .gallery{grid-template-columns:1fr}
-    nav.navlinks{display:none}
   }
 
   /* Animations */
-  .fade-in{opacity:0;transform:translateY(10px);transition:opacity .6s ease,var(--t,transform) .6s ease}
+  .fade-in{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease}
   .fade-in.show{opacity:1;transform:none}
   .btn:active{transform:translateY(2px)}
 </style>
 </head>
 <body>
 
-<!-- Header -->
 <header class="site-header">
   <div class="container nav">
     <div class="brand">
@@ -138,16 +144,15 @@
   </div>
 </header>
 
-<!-- Hero -->
 <main>
   <section class="hero" id="home">
     <div class="container hero-inner">
       <div>
         <span class="lead-badge fade-in">Winter Special</span>
-        <h2 class="hero-title fade-in" style="--t:transform .6s">Recover faster. Move stronger.</h2>
+        <h2 class="hero-title fade-in">Recover faster. Move stronger.</h2>
         <p class="lead fade-in">Professional sports massage, deep tissue & cupping therapy — for athletes & active people.</p>
 
-        <div class="buttons fade-in" style="--t:transform .8s">
+        <div class="buttons fade-in" style="transition-delay:.12s">
           <button class="btn btn-primary" id="bookNow">Book ₹1,200</button>
           <a class="btn btn-ghost" href="#services">See Services</a>
         </div>
@@ -155,7 +160,7 @@
         <p class="fade-in" style="margin-top:14px;color:var(--muted)">Call / WhatsApp: <a href="tel:+919762949595" style="color:#0b5cff;text-decoration:underline">+91 97629 49595</a></p>
       </div>
 
-      <div class="photo-card fade-in" style="--t:transform .9s">
+      <div class="photo-card fade-in" style="transition-delay:.2s">
         <img src="muscular.png" alt="Hero photo" />
       </div>
     </div>
@@ -191,7 +196,7 @@
   <section id="pricing">
     <div class="container">
       <h3 style="font-size:20px;margin-bottom:12px">Pricing</h3>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
         <div class="card fade-in" style="flex:1;min-width:220px">
           <h4>Single Session</h4>
           <p class="price">₹1,200</p>
@@ -226,13 +231,14 @@
       <h3 style="font-size:20px;margin-bottom:12px">About</h3>
       <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap">
         <div style="flex:1;min-width:280px">
-          <p style="color:var(--muted)">Sai Siddhi provides professional sports massage & cupping therapy for athletes, runners and fitness enthusiasts. Our treatments help reduce pain, speed recovery and improve performance.</p>
+          <p style="color:var(--muted)">Sai Siddhi provides professional sports massage & cupping therapy for athletes, runners and fitness enthusiasts. Our treatments reduce pain, speed recovery and improve performance.</p>
         </div>
         <div style="flex:1;min-width:220px">
           <div class="card">
             <strong>Address</strong>
             <p style="margin:6px 0 0">Squats Fitness, Talegaon Dabhade, Pune</p>
             <p style="margin:6px 0 0"><a href="tel:+919762949595">+91 97629 49595</a></p>
+            <p style="margin-top:8px"><a href="https://maps.app.goo.gl/6y6Asj6kG2fXHHXr8?g_st=ac" target="_blank" rel="noreferrer">Open directions →</a></p>
           </div>
         </div>
       </div>
@@ -257,12 +263,13 @@
         </div>
 
         <div>
-          <div class="card fade-in">
-            <h4>View on map</h4>
-            <!-- Replace iframe src with your exact place / coordinates if you want -->
-            <iframe 
-              src="https://www.google.com/maps?q=Talegaon+Dabhade+Pune&output=embed"
-              width="100%" height="240" style="border:0;border-radius:10px" loading="lazy"></iframe>
+          <div class="card map-wrap fade-in">
+            <h4 style="margin:12px">Map</h4>
+            <!-- Embed: best-effort map for Talegaon Dabhade; click Directions opens your short Google link -->
+            <iframe
+              src="https://www.google.com/maps?q=Squats+Fitness+Talegaon+Dabhade+Pune&output=embed"
+              width="100%" height="260" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div style="padding:12px"><a href="https://maps.app.goo.gl/6y6Asj6kG2fXHHXr8?g_st=ac" target="_blank" rel="noreferrer">Open in Google Maps</a></div>
           </div>
         </div>
       </div>
@@ -270,23 +277,23 @@
   </section>
 </main>
 
-<!-- Footer -->
 <footer>
   <div class="container">
     <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap">
-      <img src="logo.png" alt="logo" style="height:44px;width:44px;border-radius:8px;object-fit:cover">
+      <img src="logo.png" alt="logo" style="height:46px;width:46px;border-radius:8px;object-fit:cover">
       <div style="text-align:center">
-        <div style="font-weight:700">Sai Siddhi</div>
+        <div style="font-weight:800">Sai Siddhi</div>
         <div style="font-size:13px;color:var(--muted)">© <span id="yr"></span> Sai Siddhi • All rights reserved</div>
       </div>
     </div>
   </div>
 </footer>
 
-<!-- Floating WhatsApp -->
+<!-- WhatsApp floating -->
 <a class="whatsapp" href="https://wa.me/919762949595" target="_blank" aria-label="WhatsApp">
-  <!-- simple inline svg icon for whatsapp -->
-  <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23ffffff' d='M20.5 3.5C18.9 2 16.9 1 14.6 1 8.5 1 3.4 6.1 3.4 12.2c0 2 0.6 3.8 1.7 5.4L3 23l5.5-1.4c1.5 0.8 3.3 1.3 5.1 1.3 6.1 0 11.2-5.1 11.2-11.2 0-2.3-0.8-4.5-2.5-6.1zM13.3 18.5c-1.5 0.1-2.8-0.5-3.9-1.3l-0.3-0.3-3.3 0.9 0.9-3.2-0.2-0.4C7.9 13 9 12 10 11.8c0.8-0.2 1.3-0.2 1.9 0.1 0.5 0.3 1.2 0.8 1.8 1.4 0.6 0.6 1 1.3 1.2 1.8 0.2 0.6 0.2 1 0 1.4-0.2 0.4-0.6 0.9-1.4 1z'/></svg>" alt="WA">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M20.52 3.48A11.86 11.86 0 0 0 12 .5 11.89 11.89 0 0 0 1.5 11.99c0 2.1.55 4.1 1.6 5.88L.5 23.5l6.9-2.1A11.88 11.88 0 0 0 12 23.5c6.6 0 11.99-5.4 11.99-11.99 0-3.2-1.25-6.14-3.47-8.03zM13.3 18.5c-1.5.1-2.84-.5-3.95-1.3L8 17l-3.3.9.9-3.2L6 13c.9-.6 2.1-1.6 3.8-1.8.8-.2 1.4-.1 2 .2.6.3 1.2.8 1.8 1.4.6.6 1 1.3 1.2 1.8.2.6.1 1.1-.1 1.5-.2.4-.6.8-1.4 1z"/>
+  </svg>
 </a>
 
 <!-- Booking modal -->
@@ -297,10 +304,8 @@
       <button class="close-btn" id="closeModal">Close ✕</button>
     </div>
 
-    <!-- FORM: FormSubmit fallback + mailto fallback -->
-    <!-- Replace your-email@example.com with your email on FormSubmit -->
-    <form id="bookingForm" action="https://formsubmit.co/your-email@example.com" method="POST" target="_blank">
-      <!-- Honeypot & anti-spam provided by FormSubmit (optional) -->
+    <!-- Booking form: FormSubmit -->
+    <form id="bookingForm" action="https://formsubmit.co/saisiddhisportsmassageandcuppi@gmail.com" method="POST" target="_blank">
       <input type="hidden" name="_subject" value="New booking from website">
       <input type="hidden" name="_captcha" value="false">
       <div class="form-row">
@@ -321,7 +326,7 @@
       </div>
       <div class="form-row">
         <label>Preferred date & time</label>
-        <input name="datetime" placeholder="e.g. 2025-12-20 10:00" />
+        <input name="datetime" placeholder="e.g. 2025-12-20 10:00">
       </div>
 
       <div style="display:flex;gap:10px;align-items:center;justify-content:flex-end;margin-top:8px">
@@ -333,43 +338,38 @@
 </div>
 
 <script>
-  // Utilities: show year
+  // year
   document.getElementById('yr').textContent = new Date().getFullYear();
 
-  // Modal open/close
+  // modal
   const modal = document.getElementById('modal');
   document.getElementById('openBook').onclick = openModal;
   document.getElementById('bookNow').onclick = openModal;
   document.getElementById('bookTop').onclick = openModal;
-  function openModal(){ modal.style.display='flex'; window.scrollTo({top:0,behavior:'smooth'}) }
-  document.getElementById('closeModal').onclick = ()=> modal.style.display='none'
-  modal.addEventListener('click', e => { if(e.target === modal) modal.style.display='none' })
+  function openModal(){ modal.style.display='flex'; document.body.style.overflow='hidden'; }
+  document.getElementById('closeModal').onclick = closeModal;
+  modal.addEventListener('click', e=> { if(e.target === modal) closeModal(); });
+  function closeModal(){ modal.style.display='none'; document.body.style.overflow='auto'; }
 
-  // Email fallback (mailto)
+  // mail fallback
   document.getElementById('mailtoBook').onclick = function(){
-    // gather form fields
     const f = document.getElementById('bookingForm');
-    const values = Array.from(new FormData(f)).reduce((acc,[k,v]) => (acc[k]=v,acc),{});
-    const body = encodeURIComponent(`Name: ${values.name || '-'}\nPhone: ${values.phone || '-'}\nService: ${values.service || '-'}\nWhen: ${values.datetime || '-'}`);
-    const mail = `mailto:your-email@example.com?subject=Booking request&body=${body}`;
-    window.location.href = mail;
+    const d = new FormData(f);
+    const values = {};
+    d.forEach((v,k)=> values[k]=v);
+    const body = encodeURIComponent(`Name: ${values.name||'-'}\nPhone: ${values.phone||'-'}\nService: ${values.service||'-'}\nWhen: ${values.datetime||'-'}`);
+    window.location.href = `mailto:saisiddhisportsmassageandcuppi@gmail.com?subject=Booking request&body=${body}`;
   };
 
-  // Nice fade-in when in view
+  // Intersection fade-in
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
       if(e.isIntersecting) e.target.classList.add('show');
     });
   },{threshold:0.12});
-
   document.querySelectorAll('.fade-in').forEach(el=> io.observe(el));
 
-  // Lazy image fallback (optional, keep to improve performance)
-  document.querySelectorAll('img[loading="lazy"]').forEach(img=>{
-    img.addEventListener('load', ()=> img.style.opacity=1);
-  });
-
-  // Smooth scroll for links
+  // Smooth scroll for internal links
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
     a.addEventListener('click', e=>{
       e.preventDefault();
@@ -378,10 +378,9 @@
     });
   });
 
-  // Small tweak: if FormSubmit returns "activate form" page, user must open their email to activate.
-  // Leave a console note for debugging:
-  console.log("Site loaded — booking uses FormSubmit (replace your-email@example.com in the form action).");
+  // Small console note
+  console.log('Site ready — booking uses FormSubmit to saisiddhisportsmassageandcuppi@gmail.com');
 </script>
 </body>
   </html>
-  
+          
