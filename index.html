@@ -257,9 +257,8 @@
             <p style="color:var(--muted)">Quick booking — we will confirm by WhatsApp or email.</p>
 
             <!-- Booking form: method="POST" to FormSubmit -->
-            <form id="bookingForm" action="https://formsubmit.co/saisiddhisportsmassageandcuppi@gmail.com" method="POST" target="_blank">
+            <form id="bookingForm" action="https://formsubmit.co/saisiddhisportsmassageandcuppi@gmail.com" method="POST">
               <input type="hidden" name="_subject" value="Booking from website">
-              <input type="hidden" name="_next" value="https://sai-siddhi-website.vercel.app/success.html">
               <input type="hidden" name="_captcha" value="false">
 
               <div class="inline-row">
@@ -401,7 +400,10 @@
     dateInput.min = `${yyyy}-${mm}-${dd}`;
   }
 
-  // Basic client-side form validation to ensure date & time are set
-  document.getElementById('bookingForm').addEventListener('submit', function(e){
-    // let server handle final checks; keep UX-friendly validation
-    const d = 
+  // Enhanced booking submission: send to FormSubmit using fetch, then redirect to success page with query params
+  const bookingForm = document.getElementById('bookingForm');
+  if(bookingForm){
+    bookingForm.addEventListener('submit', async function(e){
+      e.preventDefault();
+      const form = e.currentTarget;
+      const submitBtn = form.querySe
