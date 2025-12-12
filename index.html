@@ -3,403 +3,363 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Sai Siddhi — Sports Massage & Cupping Therapy</title>
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-
+<title>Sai Siddhi — Sports Massage & Cupping</title>
+<meta name="description" content="Sai Siddhi — Sports massage, deep tissue & cupping therapy for gym clients. Book 60-minute sessions at ₹1,200.">
+<meta name="theme-color" content="#fbfefc">
 <style>
-  :root{
-    --bg:#fbfbfb;
-    --card:#ffffff;
-    --muted:#6b7280;
-    --accent:#c62828;
-    --accent-dark:#a21a1a;
-    --shadow: 0 14px 30px rgba(8,8,10,0.06);
-    --glass: rgba(255,255,255,0.7);
-    --container:1100px;
-  }
+/* ---------- Spa Teal palette & design tokens ---------- */
+:root{
+  --bg: #fbfefc;
+  --muted: #5e7b76;
+  --accent: #0ea5a4;
+  --accent-2: #34d399;
+  --card: #ffffff;
+  --shadow: 0 14px 30px rgba(7,21,18,0.06);
+  --container: 1100px;
 
-  /* DARK THEME VARIABLES */
-  .dark {
-    --bg: #0b1220;
-    --card: #07101a;
-    --muted: #9aa4b2;
-    --accent: #ff6b6b;
-    --accent-dark: #ff3b3b;
-    color-scheme: dark;
-  }
+  /* animation tokens */
+  --ease: cubic-bezier(.2,.9,.2,1);
+  --fade-dur: 560ms;
+  --fade-step: 80ms;
+  --pop-dur: 240ms;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing:antialiased;
+  background:linear-gradient(180deg,var(--bg),#f7fbfa);
+  color:#0b1220;
+}
 
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
-    font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background:linear-gradient(180deg,var(--bg) 0%, #f7f7f8 100%);
-    color: #0f1724;
-    -webkit-font-smoothing:antialiased;
-    transition:background .25s ease,color .25s ease;
-  }
-  .dark body{ background: linear-gradient(180deg,#07101a 0%, #071422 100%); color: #e6eef6; }
+/* layout */
+.wrap{max-width:var(--container);margin:0 auto;padding:36px 20px}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e9fbf9,#ffffff);box-shadow:var(--shadow);position:relative;overflow:hidden}
+.logo img{width:100%;height:100%;object-fit:cover;display:block}
+.brand h1{font-size:16px;margin:0;font-weight:700}
+.brand p{margin:0;color:var(--muted);font-size:13px}
+nav a{margin-left:18px;color:var(--muted);text-decoration:none;font-weight:600}
 
-  .container{max-width:var(--container);margin:0 auto;padding:20px 28px;}
+/* Buttons */
+.btn{padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+.btn-primary{background:var(--accent);color:white;box-shadow:0 8px 30px rgba(14,165,164,0.12)}
+.btn-ghost{background:transparent;border:1px solid rgba(0,0,0,0.06);color:inherit}
 
-  /* Loader */
-  #pageLoader{
-    position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
-    background:var(--bg); z-index:9999; transition:opacity .35s ease;
-  }
-  #pageLoader.hidden{ opacity:0; pointer-events:none; }
-  .loader-ring{width:64px;height:64px;border-radius:50%;border:6px solid rgba(0,0,0,0.08);border-top-color:var(--accent); animation:spin 0.9s linear infinite}
-  .dark .loader-ring{border-top-color:var(--accent);}
-  @keyframes spin{to{transform:rotate(360deg)}}
+/* hero */
+.hero{display:flex;gap:36px;align-items:center;padding:44px 0}
+.hero-left{flex:1;max-width:720px}
+.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#f3f7f6;color:var(--muted);font-weight:700;font-size:13px}
+.hero-title{font-size:36px;line-height:1.02;margin:12px 0;font-weight:800}
+.lead{color:var(--muted);max-width:64ch}
 
-  /* Header / Navbar */
-  header.site-header{position:sticky;top:0;z-index:40;padding:10px 0;backdrop-filter:blur(4px);transition:background .25s ease,box-shadow .25s ease}
-  header.site-header.scrolled{background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.70)); box-shadow:0 6px 18px rgba(2,6,23,0.06)}
-  .dark header.site-header.scrolled{ background: linear-gradient(180deg, rgba(7,16,26,0.65), rgba(7,16,26,0.6)); }
-  .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
-  .brand{display:flex;align-items:center;gap:12px}
-  .brand img{height:48px;width:48px;object-fit:cover;border-radius:10px;box-shadow:var(--shadow)}
-  nav.navlinks{display:flex;gap:18px;align-items:center}
-  nav.navlinks a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px}
-  .cta{display:flex;gap:8px;align-items:center}
+/* photo card */
+.photo-card{width:420px;min-width:220px;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);background:var(--card);display:flex;align-items:center;justify-content:center;min-height:260px}
+.photo-card img{width:100%;display:block;height:auto}
 
-  /* Dark toggle */
-  .toggle {
-    background:transparent; border:1px solid rgba(0,0,0,0.06); padding:8px; border-radius:10px; cursor:pointer;
-    display:inline-flex; align-items:center; gap:8px;
-  }
-  .dark .toggle{ border-color: rgba(255,255,255,0.08); }
+/* services */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+.service{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 10px 24px rgba(11,11,13,0.04);transition:transform var(--pop-dur) var(--ease),box-shadow var(--pop-dur) var(--ease)}
+.service:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(7,21,18,0.08)}
+.service h3{margin:0 0 6px}
 
-  /* HERO */
-  .hero{
-    min-height:58vh;
-    display:flex; align-items:center; padding:36px 0; position:relative;
-  }
-  @media(min-width:1000px){ .hero{ min-height:78vh } }
-  .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
-  .lead-badge{display:inline-block;background:rgba(255,255,255,0.75);padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:700;font-size:13px}
-  h1.hero-title{font-family:"Playfair Display",serif;font-size:34px;margin:6px 0 6px;line-height:1.02;color:inherit}
-  p.lead{color:var(--muted);max-width:64ch;margin:0}
-  .buttons{display:flex;gap:12px;margin-top:10px}
-  .btn{padding:12px 16px;border-radius:12px;font-weight:700;border:0;cursor:pointer;box-shadow:var(--shadow);display:inline-flex;align-items:center;gap:8px}
-  .btn-primary{background:var(--accent);color:white}
-  .btn-ghost{background:transparent;border:1px solid rgba(0,0,0,0.06);color:inherit}
-  .photo-card{background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.82));border-radius:18px;padding:10px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;min-height:160px}
-  .photo-card img{width:100%;height:420px;object-fit:cover;border-radius:12px}
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.gallery img{width:100%;height:120px;object-fit:cover;border-radius:10px;display:block}
 
-  /* Badge under hero */
-  .benefits{display:flex;gap:18px;margin-top:18px;flex-wrap:wrap}
-  .benefit{background:var(--card);padding:12px;border-radius:12px;min-width:140px;box-shadow:0 10px 24px rgba(11,11,13,0.04);display:flex;gap:12px;align-items:center}
-  .benefit strong{display:block}
+/* contact */
+.contact-grid{display:grid;grid-template-columns:1fr 340px;gap:18px;margin-top:18px}
+.card{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
+input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);margin-bottom:8px}
 
-  /* Sections */
-  section{padding:42px 0;border-bottom:1px solid rgba(17,24,39,0.03)}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:var(--shadow)}
-  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .gallery img{width:100%;height:120px;object-fit:cover;border-radius:10px}
+/* footer */
+footer{margin-top:36px;color:var(--muted);text-align:center}
 
-  /* Contact / map */
-  .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
-  .map-iframe{border:0;width:100%;height:320px;border-radius:12px}
+/* floating whatsapp */
+.whatsapp{position:fixed;right:18px;bottom:18px;width:66px;height:66px;border-radius:999px;background:var(--accent-2);display:flex;align-items:center;justify-content:center;z-index:999;box-shadow:0 18px 40px rgba(37,211,102,0.14)}
+.whatsapp .pulse{position:absolute;width:66px;height:66px;border-radius:50%;background:rgba(52,211,153,0.10);animation:pulse 2.2s infinite}
+@keyframes pulse{0%{transform:scale(.9);opacity:1}70%{transform:scale(1.9);opacity:.06}100%{transform:scale(2.4);opacity:0}}
 
-  /* Footer */
-  footer{padding:28px 0;color:var(--muted);text-align:center}
+/* animations */
+.is-hidden{opacity:0;transform:translateY(12px);will-change:transform,opacity}
+.is-visible{opacity:1;transform:none;transition:opacity var(--fade-dur) var(--ease), transform var(--fade-dur) var(--ease)}
+[data-stagger] > *{opacity:0;transform:translateY(12px);transition:opacity var(--fade-dur) var(--ease),transform var(--fade-dur) var(--ease)}
+[data-stagger].visible > *{opacity:1;transform:none}
+[data-stagger].visible > *{transition-delay: calc(var(--i) * var(--fade-step))}
 
-  /* Floating WhatsApp (pulsing) */
-  .whatsapp{
-    position:fixed; right:18px; bottom:18px; width:66px; height:66px; border-radius:999px;
-    background:#25D366; display:flex; align-items:center; justify-content:center; z-index:999;
-    box-shadow:0 18px 40px rgba(37,211,102,0.15);
-    transition:transform .18s ease;
-  }
-  .whatsapp:active{ transform:scale(.98) }
-  .whatsapp .pulse{ position:absolute; width:66px; height:66px; border-radius:50%; background:rgba(37,211,102,0.12); animation: pulse 1.8s infinite; }
-  @keyframes pulse { 0%{ transform:scale(.9); opacity:1 } 100%{ transform:scale(2.2); opacity:0 } }
+/* button micro */
+.btn{transition:transform 160ms var(--ease),box-shadow 160ms var(--ease)}
+.btn-primary:hover{transform:translateY(-3px) scale(1.01)}
 
-  /* Responsive */
-  @media(max-width:1000px){
-    .hero-grid{grid-template-columns:1fr}
-    .photo-card img{height:360px}
-    .gallery img{height:100px}
-    nav.navlinks{display:none}
-  }
-  @media(max-width:720px){
-    .photo-card img{height:260px}
-    .contact-grid{grid-template-columns:1fr}
-  }
+/* links underline polish */
+a{color:var(--accent);position:relative;text-decoration:none}
+a::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:transform 320ms var(--ease);opacity:.95}
+a:hover::after{transform:scaleX(1)}
+
+/* responsive */
+@media(max-width:1000px){
+  .hero{flex-direction:column-reverse;gap:18px}
+  .services{grid-template-columns:1fr}
+  nav a{display:none}
+  .contact-grid{grid-template-columns:1fr}
+  .photo-card{width:100%}
+}
+
+/* respect reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  .is-hidden,.is-visible,[data-stagger]>*{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
+  <div class="wrap">
 
-<!-- Page loader -->
-<div id="pageLoader" aria-hidden="false">
-  <div class="loader-ring" role="status" aria-label="Loading"></div>
-</div>
+    <!-- Header -->
+    <header role="banner" aria-label="Main header" id="siteHeader">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <!-- will try to load logo.png from root; fallback SVG sits behind -->
+          <img src="logo.png" alt="Sai Siddhi logo" onerror="this.style.display='none'">
+          <svg width="56" height="56" viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;left:0;top:0">
+            <rect x="2" y="2" width="20" height="20" rx="6" fill="#0ea5a4" opacity="0.06"></rect>
+            <path d="M7 12c1.5-3 5-4 7-2 2 2 1 5 0 6-1 1-4 2-6 0-2-2-2-4-1-4z" fill="#0ea5a4"/>
+          </svg>
+        </div>
+        <div>
+          <h1>Sai Siddhi</h1>
+          <p>Sports Massage & Cupping</p>
+        </div>
+      </div>
 
-<header class="site-header" id="siteHeader">
-  <div class="container nav" role="navigation" aria-label="Main navigation">
-    <div class="brand" style="gap:12px;align-items:center">
-      <img src="logo.png" alt="Sai Siddhi logo" />
-      <div>
-        <div style="font-weight:700">Sai Siddhi</div>
-        <div style="font-size:13px;color:var(--muted)">Sports Massage & Cupping</div>
-      </div>
-    </div>
+      <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </nav>
 
-    <nav class="navlinks" aria-hidden="false">
-      <a href="#home">Home</a>
-      <a href="#services">Services</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#contact">Contact</a>
-    </nav>
+      <div class="cta">
+        <button class="btn btn-ghost" id="openBook">Book</button>
+      </div>
+    </header>
 
-    <div class="cta" style="align-items:center">
-      <button class="toggle" id="darkToggle" aria-pressed="false" title="Toggle dark mode">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="#374151" stroke-width="1.2"/></svg>
-        <span style="font-weight:600;font-size:13px;color:var(--muted)">Dark</span>
-      </button>
-      <button class="btn btn-ghost" id="openBook">Book</button>
-    </div>
-  </div>
-</header>
+    <!-- HERO -->
+    <main>
+      <section id="home" class="hero" aria-labelledby="heroTitle">
+        <div class="hero-left">
+          <span class="badge">Winter Special — ₹1,200</span>
+          <h2 id="heroTitle" class="hero-title">Recover faster. Move stronger.</h2>
+          <p class="lead">Professional sports massage, deep tissue & cupping therapy — tailored for gym clients and athletes. Clean, hygienic treatment focused on recovery and performance.</p>
 
-<main>
-  <section id="home" class="hero" aria-labelledby="heroTitle">
-    <div class="container hero-inner">
-      <div class="hero-grid">
-        <div>
-          <span class="lead-badge">Winter Special</span>
-          <h1 class="hero-title" id="heroTitle">Recover faster. Move stronger.</h1>
-          <p class="lead">Professional sports massage, deep tissue & cupping therapy — tailored for athletes and active people.</p>
+          <div style="display:flex;gap:12px;align-items:center;margin-top:12px">
+            <button class="btn btn-primary" id="bookNow">Book ₹1,200</button>
+            <a class="btn btn-ghost" href="#services" style="text-decoration:none;display:inline-flex;align-items:center">See services</a>
+          </div>
 
-          <div class="buttons" aria-hidden="false">
-            <button class="btn btn-primary" id="bookNow">Book ₹1,200</button>
-            <a class="btn btn-ghost" href="#services">See Services</a>
-          </div>
+          <div class="services" data-stagger style="margin-top:20px">
+            <div class="service"><h3>Sports Massage (60m)</h3><div style="color:var(--muted)">Restore mobility & speed up recovery.</div><div style="color:var(--accent);font-weight:800;margin-top:10px">₹1,200</div></div>
+            <div class="service"><h3>Deep Tissue (45m)</h3><div style="color:var(--muted)">Break down adhesions & persistent knots.</div><div style="color:var(--accent);font-weight:800;margin-top:10px">₹1,200</div></div>
+            <div class="service"><h3>Cupping (30m)</h3><div style="color:var(--muted)">Boost circulation & reduce tightness.</div><div style="color:var(--accent);font-weight:800;margin-top:10px">₹900</div></div>
+          </div>
+        </div>
 
-          <div class="benefits" aria-hidden="false">
-            <div class="benefit"><div style="font-size:18px">⏱</div><div style="margin-left:8px"><strong>Fast Recovery</strong><div style="color:var(--muted)">60m sessions</div></div></div>
-            <div class="benefit"><div style="font-size:18px">💆</div><div style="margin-left:8px"><strong>Certified Therapist</strong><div style="color:var(--muted)">Amit Dulgach</div></div></div>
-            <div class="benefit"><div style="font-size:18px">🩺</div><div style="margin-left:8px"><strong>Safe Cupping</strong><div style="color:var(--muted)">Hygienic cups</div></div></div>
-          </div>
+        <aside class="photo-card hero-right" aria-hidden="false">
+          <!-- responsive hero image using your existing muscular.png -->
+          <picture>
+            <source srcset="muscular.png" type="image/jpeg">
+            <img src="muscular.png" alt="Sports massage session" loading="eager" onerror="this.style.display='none'">
+          </picture>
 
-          <p style="margin-top:14px;color:var(--muted)">Call / WhatsApp: <a href="tel:+919762949595" style="color:#0b5cff;text-decoration:underline">+91 97629 49595</a></p>
-        </div>
+          <!-- inline fallback graphic (hidden by default) -->
+          <svg id="heroFallback" width="80%" height="80%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="display:none">
+            <rect width="100%" height="100%" fill="#fff"/>
+            <g transform="translate(80,50)"><rect x="0" y="160" width="640" height="200" rx="18" fill="#eef2ff"></rect><text x="60" y="190" fill="#6b7280" font-size="24" font-weight="700">Sports massage</text></g>
+          </svg>
+        </aside>
+      </section>
 
-        <div class="photo-card" aria-hidden="false">
-          <img src="muscular.png" alt="Hero image — sports massage" />
-        </div>
-      </div>
-    </div>
-  </section>
+      <!-- GALLERY -->
+      <section id="gallery">
+        <h2 style="margin-top:20px">Clinic Gallery</h2>
+        <div class="gallery" aria-hidden="false" data-stagger>
+          <img src="clinic1.png" alt="Clinic image 1" loading="lazy" onerror="this.style.display='none'">
+          <img src="clinic2.png" alt="Clinic image 2" loading="lazy" onerror="this.style.display='none'">
+          <img src="clinic3.png" alt="Clinic image 3" loading="lazy" onerror="this.style.display='none'">
+        </div>
+      </section>
 
-  <!-- Services -->
-  <section id="services">
-    <div class="container">
-      <h2>Services we offer</h2>
-      <div class="grid" style="margin-top:12px">
-        <div class="card"><h3>Sports Massage (60m)</h3><p style="color:var(--muted)">Restore mobility & speed up muscle recovery.</p><div class="price" style="color:var(--accent);font-weight:800">₹1,200</div></div>
-        <div class="card"><h3>Deep Tissue (45m)</h3><p style="color:var(--muted)">Targeted pressure for knots & tight muscles.</p><div class="price" style="font-weight:800">₹1,200</div></div>
-        <div class="card"><h3>Cupping Therapy (30m)</h3><p style="color:var(--muted)">Boost circulation & reduce pain.</p><div class="price" style="font-weight:800">₹900</div></div>
-      </div>
-    </div>
-  </section>
+      <!-- CONTACT & BOOKING -->
+      <section id="contact" style="margin-top:28px">
+        <h2>Book a Session</h2>
 
-  <!-- Reviews -->
-  <section id="reviews">
-    <div class="container">
-      <h2>What clients say</h2>
-      <div class="grid" style="margin-top:12px">
-        <div class="card">⭐⭐⭐⭐⭐<br><strong>Rahul K.</strong><br><em style="color:var(--muted)">“Fixed my back pain in 2 sessions — highly recommend.”</em></div>
-        <div class="card">⭐⭐⭐⭐⭐<br><strong>Neha S.</strong><br><em style="color:var(--muted)">“Very clean, professional and effective cupping.”</em></div>
-        <div class="card">⭐⭐⭐⭐⭐<br><strong>Atharva P.</strong><br><em style="color:var(--muted)">“Great therapist — improved my mobility.”</em></div>
-      </div>
-    </div>
-  </section>
+        <div class="contact-grid">
+          <div class="card" aria-labelledby="bookingTitle">
+            <h3 id="bookingTitle">Quick booking</h3>
 
-  <!-- Gallery -->
-  <section id="gallery">
-    <div class="container">
-      <h2>Clinic Gallery</h2>
-      <div class="gallery" style="margin-top:12px">
-        <img src="clinic1.png" alt="Clinic image 1">
-        <img src="clinic2.png" alt="Clinic image 2">
-        <img src="clinic3.png" alt="Clinic image 3">
-      </div>
-    </div>
-  </section>
+            <form id="bookingForm" action="https://formsubmit.co/saisiddhisportsmassageandcuppi@gmail.com" method="POST" autocomplete="on">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_subject" value="New Booking - Sai Siddhi">
+              <input type="hidden" name="_next" value="https://sai-siddhi-website.vercel.app/success.html">
 
-  <!-- Contact & Booking -->
-  <section id="contact">
-    <div class="container">
-      <h2>Book a Session</h2>
+              <div style="display:flex;gap:8px;margin-bottom:8px">
+                <input name="name" placeholder="Your name" required aria-label="Your name">
+                <input name="phone" placeholder="Phone / WhatsApp" required aria-label="Phone or WhatsApp">
+              </div>
 
-      <div class="contact-grid" style="margin-top:12px">
-        <div>
-          <div class="card">
-            <h3>Quick booking</h3>
-            <form id="bookingForm" action="https://formsubmit.co/saisiddhisportsmassageandcuppi@gmail.com" method="POST">
-              <input type="hidden" name="_captcha" value="false">
-              <input type="hidden" name="_subject" value="New Booking - Sai Siddhi">
-              <input type="hidden" name="_next" value="https://sai-siddhi-website.vercel.app/success.html">
+              <div style="display:flex;gap:8px;margin-bottom:8px;align-items:center">
+                <select name="service" required aria-label="Select service">
+                  <option>Sports Massage (60m)</option>
+                  <option>Deep Tissue (45m)</option>
+                  <option>Cupping Therapy (30m)</option>
+                </select>
 
-              <div style="display:flex;gap:8px;margin-bottom:8px">
-                <input name="name" placeholder="Your name" required style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)">
-                <input name="phone" placeholder="Phone / WhatsApp" required style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)">
-              </div>
+                <input name="date" type="date" required aria-label="Date">
+              </div>
 
-              <div style="display:flex;gap:8px;margin-bottom:8px">
-                <select name="service" required style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)">
-                  <option>Sports Massage (60m)</option>
-                  <option>Deep Tissue (45m)</option>
-                  <option>Cupping Therapy (30m)</option>
-                </select>
+              <div style="display:flex;gap:8px;margin-bottom:8px">
+                <input name="time" type="time" required aria-label="Time">
+              </div>
 
-                <input name="date" type="date" required style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)">
-              </div>
+              <div style="margin-bottom:8px">
+                <textarea name="note" placeholder="Anything we should know?" rows="4" aria-label="Notes"></textarea>
+              </div>
 
-              <div style="display:flex;gap:8px;margin-bottom:8px">
-                <input name="time" type="time" required style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)">
-              </div>
+              <div style="display:flex;gap:8px;justify-content:flex-end">
+                <button class="btn btn-primary" type="submit">Confirm booking</button>
+              </div>
+            </form>
+          </div>
 
-              <div style="margin-bottom:8px">
-                <label for="note" style="display:block;margin-bottom:6px;color:var(--muted)">Anything we should know?</label>
-                <textarea id="note" name="note" placeholder="Add injury details, preferences or anything we should prepare" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);min-height:100px"></textarea>
-              </div>
+          <div class="card" aria-hidden="false">
+            <h4 style="margin:0 0 8px">Location</h4>
+            <p style="margin:0;color:var(--muted)">Squats Fitness, Talegaon - Chakan Hwy, Vatan Nagar, Talegaon Dabhade 410506</p>
 
-              <div style="display:flex;gap:8px;justify-content:flex-end">
-                <button type="submit" class="btn btn-primary">Book Now</button>
-              </div>
-            </form>
-          </div>
-        </div>
+            <div style="margin-top:12px">
+              <div id="mapContainer">
+                <div style="height:200px;border-radius:10px;background:linear-gradient(180deg,#f3f7f6,#fff);display:flex;align-items:center;justify-content:center">
+                  <button id="loadMap" class="btn btn-ghost" aria-label="Load Map">Open Google Map</button>
+                </div>
+              </div>
+            </div>
 
-        <div>
-          <div class="card">
-            <h3>Find us on map</h3>
-            <iframe class="map-iframe" loading="lazy"
-              src="https://www.google.com/maps?q=Squats+Fitness+Talegaon+Chakan+Hwy+Vatan+Nagar+Talegaon+Dabhade+410506&output=embed"
-              referrerpolicy="no-referrer-when-downgrade" title="Clinic location"></iframe>
-            <p style="margin-top:8px;color:var(--muted)">Open in Maps: <a href="https://maps.app.goo.gl/jzpyy7P6p8F1yy3WA?g_st=ac" target="_blank" rel="noopener">Open location</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
+            <p style="margin-top:12px;color:var(--muted)">Call / WhatsApp: <a href="tel:+919762949595">+91 97629 49595</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
 
-<!-- Floating WhatsApp -->
-<a id="waFloat" class="whatsapp" href="https://wa.me/919762949595" target="_blank" rel="noopener" aria-label="WhatsApp — Message Sai Siddhi">
-  <span class="pulse" aria-hidden="true"></span>
-  <svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path fill="#fff" d="M20.5 3.5C18.9 2 16.9 1 14.6 1 8.5 1 3.4 6.1 3.4 12.2c0 2 0.6 3.8 1.7 5.4L3 23l5.5-1.4c1.5 0.8 3.3 1.3 5.1 1.3 6.1 0 11.2-5.1 11.2-11.2 0-2.3-0.8-4.5-2.5-6.1zM13.3 18.5c-1.5 0.1-2.8-0.5-3.9-1.3l-0.3-0.3-3.3 0.9 0.9-3.2-0.2-0.4C7.9 13 9 12 10 11.8c0.8-0.2 1.3-0.2 1.9 0.1 0.5 0.3 1.2 0.8 1.8 1.4 0.6 0.6 1 1.3 1.2 1.8 0.2 0.6 0.2 1 0 1.4-0.2 0.4-0.6 0.9-1.4 1z"/>
-  </svg>
-</a>
+    <footer>
+      <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap">
+        <img src="logo.png" alt="logo" style="height:44px;width:44px;border-radius:10px;object-fit:cover" onerror="this.style.display='none'">
+        <div style="text-align:center">
+          <div style="font-weight:700">Sai Siddhi</div>
+          <div style="color:var(--muted)">© <span id="yr"></span> Sai Siddhi</div>
+        </div>
+      </div>
+    </footer>
 
-<footer>
-  <div class="container" style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap">
-    <img src="logo.png" alt="logo" style="height:40px;width:40px;border-radius:8px;object-fit:cover">
-    <div style="text-align:center">
-      <div style="font-weight:700">Sai Siddhi</div>
-      <div style="font-size:13px;color:var(--muted)">© <span id="yr"></span> Sai Siddhi • All rights reserved</div>
-    </div>
-  </div>
-</footer>
+  </div>
+
+  <!-- Floating WhatsApp -->
+  <a id="waFloat" class="whatsapp" href="https://wa.me/919762949595" target="_blank" rel="noopener" aria-label="WhatsApp — Message Sai Siddhi">
+    <span class="pulse" aria-hidden="true"></span>
+    <svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#fff" d="M20.5 3.5C18.9 2 16.9 1 14.6 1 8.5 1 3.4 6.1 3.4 12.2c0 2 0.6 3.8 1.7 5.4L3 23l5.5-1.4c1.5 0.8 3.3 1.3 5.1 1.3 6.1 0 11.2-5.1 11.2-11.2 0-2.3-0.8-4.5-2.5-6.1zM13.3 18.5c-1.5 0.1-2.8-0.5-3.9-1.3l-0.3-0.3-3.3 0.9 0.9-3.2-0.2-0.4C7.9 13 9 12 10 11.8c0.8-0.2 1.3-0.2 1.9 0.1 0.5 0.3 1.2 0.8 1.8 1.4 0.6 0.6 1 1.3 1.2 1.8 0.2 0.6 0.2 1 0 1.4-0.2 0.4-0.6 0.9-1.4 1z"/>
+    </svg>
+  </a>
 
 <script>
-  // Hide loader when ready
-  window.addEventListener('load', () => {
-    const loader = document.getElementById('pageLoader');
-    if(loader){ loader.classList.add('hidden'); setTimeout(()=>loader.style.display='none',450); }
-  });
+/* small utilities */
+document.getElementById('yr').textContent = new Date().getFullYear();
+document.getElementById('bookNow').addEventListener('click', ()=> { location.href = '#contact'; setTimeout(()=> document.querySelector('[name="name"]')?.focus(), 220); });
+document.getElementById('openBook').addEventListener('click', ()=> { location.href = '#contact'; setTimeout(()=> document.querySelector('[name="name"]')?.focus(), 220); });
 
-  // Year
-  document.getElementById('yr').textContent = new Date().getFullYear();
+/* lazy-load map iframe when user clicks */
+document.getElementById('loadMap').addEventListener('click', function(){
+  const container = document.getElementById('mapContainer');
+  if(container.dataset.loaded) return;
+  const iframe = document.createElement('iframe');
+  iframe.src = "https://www.google.com/maps?q=Squats+Fitness+Talegaon+Chakan+Hwy+Vatan+Nagar+Talegaon+Dabhade+410506&output=embed";
+  iframe.width = "100%";
+  iframe.height = "220";
+  iframe.style.border = "0";
+  iframe.loading = "lazy";
+  iframe.referrerPolicy = "no-referrer-when-downgrade";
+  iframe.title = "Clinic location";
+  container.innerHTML = ''; container.appendChild(iframe);
+  container.dataset.loaded = "1";
+});
 
-  // Navbar scroll effects
-  const header = document.getElementById('siteHeader');
-  window.addEventListener('scroll', () => {
-    if(window.scrollY > 18) header.classList.add('scrolled'); else header.classList.remove('scrolled');
-  });
+/* show hero fallback if image fails */
+(function(){
+  const heroImg = document.querySelector('.photo-card img');
+  const fallback = document.getElementById('heroFallback');
+  if(!heroImg) { if(fallback) fallback.style.display='block'; return; }
+  heroImg.addEventListener('error', ()=> { if(fallback) fallback.style.display='block'; });
+  // small timeout to show fallback if image hasn't loaded
+  setTimeout(()=>{ if(heroImg.naturalWidth === 0 && fallback) fallback.style.display='block'; }, 1200);
+})();
 
-  // Dark mode toggle (persist)
-  const darkToggle = document.getElementById('darkToggle');
-  const root = document.documentElement;
-  function applyTheme(isDark){
-    if(isDark) root.classList.add('dark'); else root.classList.remove('dark');
-    localStorage.setItem('sai_theme_dark', isDark ? '1' : '0');
-    if(darkToggle) darkToggle.setAttribute('aria-pressed', !!isDark);
-  }
-  // load stored preference or system
-  (function(){
-    const stored = localStorage.getItem('sai_theme_dark');
-    if(stored === '1') applyTheme(true);
-    else if(stored === '0') applyTheme(false);
-    else {
-      const prefers = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      applyTheme(prefers);
-    }
-  })();
-  darkToggle.addEventListener('click', () => applyTheme(!document.documentElement.classList.contains('dark')));
+/* reveal animations (hero + stagger) */
+(function(){
+  const hl = document.querySelector('.hero-left');
+  const hr = document.querySelector('.hero-right');
+  if(hl) hl.classList.add('is-hidden');
+  if(hr) hr.classList.add('is-hidden');
+  window.addEventListener('load', ()=> {
+    setTimeout(()=>{ if(hl){ hl.classList.remove('is-hidden'); hl.classList.add('is-visible'); } }, 120);
+    setTimeout(()=>{ if(hr){ hr.classList.remove('is-hidden'); hr.classList.add('is-visible'); } }, 300);
+  });
 
-  // Book button scroll to contact
-  document.getElementById('bookNow').addEventListener('click', ()=> {
-    window.location.hash = '#contact';
-    setTimeout(()=> document.querySelector('[name="name"]')?.focus(), 300);
-  });
-  document.getElementById('openBook').addEventListener('click', ()=> {
-    window.location.hash = '#contact';
-    setTimeout(()=> document.querySelector('[name="name"]')?.focus(), 300);
-  });
+  // stagger setup for any [data-stagger] groups
+  document.querySelectorAll('[data-stagger]').forEach(wrap => {
+    Array.from(wrap.children).forEach((c,i) => c.style.setProperty('--i', i));
+    const io = new IntersectionObserver((entries, ob) => {
+      entries.forEach(en => {
+        if(en.isIntersecting){ en.target.classList.add('visible'); ob.unobserve(en.target); }
+      });
+    }, {threshold: 0.18});
+    io.observe(wrap);
+  });
 
-  // Booking form: no changes (FormSubmit via _next) — ensure success.html reads params
-  // But we will append name/phone/service/date/time/note to the _next query so success page auto-populates
-  (function(){
-    const form = document.getElementById('bookingForm');
-    if(!form) return;
-    form.addEventListener('submit', function(e){
-      // let default submit happen to FormSubmit (it will redirect to _next)
-      // but we want to include query params in _next so success.html can read them
-      const name = encodeURIComponent((form.querySelector('[name="name"]')||{}).value || '');
-      const phone = encodeURIComponent((form.querySelector('[name="phone"]')||{}).value || '');
-      const service = encodeURIComponent((form.querySelector('[name="service"]')||{}).value || '');
-      const date = encodeURIComponent((form.querySelector('[name="date"]')||{}).value || '');
-      const time = encodeURIComponent((form.querySelector('[name="time"]')||{}).value || '');
-      const note = encodeURIComponent((form.querySelector('[name="note"]')||{}).value || '');
+  // smooth-scrolling for anchor nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e){
+      const id = this.getAttribute('href').slice(1);
+      if(!id) return;
+      const el = document.getElementById(id);
+      if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); history.replaceState(null,'', '#'+id); }
+    });
+  });
+})();
 
-      // build the redirect URL with params
-      const base = form.querySelector('[name="_next"]').value || '/success.html';
-      const q = `?name=${name}&phone=${phone}&service=${service}&date=${date}&time=${time}&note=${note}`;
-      form.querySelector('[name="_next"]').value = base + q;
-      // allow form to submit normally
-    });
-  })();
+/* booking form: append params to _next so success page can read them */
+(function(){
+  const form = document.getElementById('bookingForm');
+  if(!form) return;
+  form.addEventListener('submit', function(){
+    const keys = ['name','phone','service','date','time','note'];
+    const qs = keys.map(k => { const el = form.querySelector('[name="'+k+'"]'); return k+'='+encodeURIComponent(el?el.value:''); }).join('&');
+    const next = form.querySelector('[name="_next"]');
+    if(next) next.value = (next.value.split('?')[0]||next.value) + '?' + qs;
+  });
+})();
 
-  // Floating WhatsApp: attach dynamic message optional (opens default chat)
-  document.getElementById('waFloat').addEventListener('click', (e)=>{
-    // if user has filled some form fields, prefer to open a prefilled message including name/service
-    const name = (document.querySelector('[name="name"]')||{}).value || '';
-    const service = (document.querySelector('[name="service"]')||{}).value || '';
-    let msg = 'Hello Sai Siddhi, I would like to enquire about booking.';
-    if(name || service) {
-      msg += '\\n';
-      if(name) msg += `Name: ${name}\\n`;
-      if(service) msg += `Service: ${service}\\n`;
-    }
-    const url = 'https://wa.me/919762949595?text=' + encodeURIComponent(msg);
-    // allow default anchor href to work, but override to include text
-    e.currentTarget.setAttribute('href', url);
-  });
-
-  // Accessibility: keyboard focus visible for toggles
-  window.addEventListener('keydown', (e)=> {
-    if(e.key === 'Tab') document.documentElement.classList.add('show-focus');
-  });
+/* prefill WhatsApp message if user filled form */
+(function(){
+  const wa = document.getElementById('waFloat');
+  if(!wa) return;
+  wa.addEventListener('click', function(e){
+    const name = (document.querySelector('[name="name"]')||{}).value || '';
+    const service = (document.querySelector('[name="service"]')||{}).value || '';
+    let msg = 'Hello Sai Siddhi, I would like to enquire about booking.';
+    if(name || service){ msg += '\\n'; if(name) msg += 'Name: '+name+'\\n'; if(service) msg += 'Service: '+service+'\\n'; }
+    wa.href = 'https://wa.me/919762949595?text=' + encodeURIComponent(msg);
+  });
+})();
 </script>
-
 </body>
-  </html>
-        
+</html>
