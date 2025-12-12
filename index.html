@@ -4,115 +4,84 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Sai Siddhi — Sports Massage & Cupping Therapy</title>
-
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
+<!-- Basic SEO + Favicon placeholder -->
+<meta name="description" content="Sai Siddhi — Sports massage, deep tissue and cupping therapy in Talegaon Dabhade. Book online for fast recovery and improved mobility." />
+<link rel="icon" href="/favicon.ico">
+
 <style>
-  :root{
-    --bg:#fbfbfb;
-    --card:#ffffff;
-    --muted:#6b7280;
-    --accent:#c62828;
-    --accent-dark:#a21a1a;
-    --glass: rgba(255,255,255,0.7);
-    --shadow: 0 14px 30px rgba(8,8,10,0.06);
-    --radius:14px;
-    --container:1100px;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
-    font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background:linear-gradient(180deg,#ffffff 0%, #f7f7f8 100%);
-    color:#0f1724;
-    -webkit-font-smoothing:antialiased;
-    line-height:1.5;
-    -webkit-font-feature-settings: "kern";
-  }
-  .container{max-width:var(--container);margin:0 auto;padding:28px;}
-  /* Header */
-  header.site-header{position:sticky;top:0;z-index:40;background:transparent;padding:14px 0;backdrop-filter:blur(6px)}
-  .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
-  .brand{display:flex;align-items:center;gap:12px}
-  .brand img{height:52px;width:52px;object-fit:cover;border-radius:10px;box-shadow:var(--shadow)}
-  .brand .title{font-weight:700;font-size:16px}
-  nav.navlinks{display:flex;gap:18px;align-items:center}
-  nav.navlinks a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px}
-  .cta{display:flex;gap:10px;align-items:center}
-
-  /* HERO */
-  .hero{
-    min-height:78vh;
-    display:grid;
-    grid-template-columns:1fr;
-    gap:24px;
-    align-items:center;
-    padding:48px 0;
-    position:relative;
-  }
-  .hero-inner{display:flex;flex-direction:column;gap:20px}
-  .lead-badge{display:inline-block;background:rgba(255,255,255,0.75);padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:700;font-size:13px}
-  h1.hero-title{font-family:"Playfair Display",serif;font-size:34px;margin:6px 0 6px;line-height:1.02;color:#0b1220}
-  p.lead{color:var(--muted);max-width:64ch;margin:0}
-
-  .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
-  .buttons{display:flex;gap:12px;margin-top:10px}
-  .btn{padding:13px 18px;border-radius:12px;font-weight:700;border:0;cursor:pointer;box-shadow:var(--shadow);transition:transform .18s ease,box-shadow .18s ease}
-  .btn-primary{background:var(--accent);color:white}
-  .btn-ghost{background:transparent;border:1.5px solid rgba(10,10,10,0.06);color:#111827}
-  .photo-card{background:linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,255,255,0.82));border-radius:18px;padding:10px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center}
-  .photo-card img{width:100%;height:420px;object-fit:cover;border-radius:12px}
-
-  /* Badge under hero */
-  .benefits{display:flex;gap:18px;margin-top:18px;flex-wrap:wrap}
-  .benefit{background:var(--card);padding:14px;border-radius:12px;min-width:160px;box-shadow:0 10px 24px rgba(11,11,13,0.04);display:flex;gap:12px;align-items:center}
-  .benefit strong{display:block}
-
-  /* Services */
-  section{padding:46px 0;border-bottom:1px solid rgba(17,24,39,0.03)}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:var(--shadow);transition:transform .18s}
-  .card h3{margin:0 0 8px}
-  .price{font-weight:800;color:var(--accent);font-size:18px}
-
-  /* Reviews */
-  .reviews{display:flex;gap:12px;flex-wrap:wrap}
-  .review{flex:1;min-width:220px;background:linear-gradient(180deg,#fff,#fbfbfb);padding:14px;border-radius:12px;box-shadow:0 10px 24px rgba(10,10,10,0.03)}
-
-  /* Gallery */
-  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .gallery img{width:100%;height:180px;object-fit:cover;border-radius:10px}
-
-  /* Contact / map */
-  .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
-  .map-iframe{border:0;width:100%;height:260px;border-radius:12px}
-
-  /* Footer */
-  footer{padding:28px 0;color:var(--muted);text-align:center}
-
-  /* Floating WhatsApp */
-  .whatsapp{position:fixed;right:18px;bottom:18px;background:#25D366;width:62px;height:62px;border-radius:999px;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(10,10,10,0.12);z-index:70}
-  .whatsapp svg{width:28px;height:28px;filter:drop-shadow(0 1px 0 rgba(0,0,0,0.12))}
-
-  /* Modal */
-  .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:75;padding:20px}
-  .modal{background:var(--card);padding:20px;border-radius:12px;width:min(540px,96vw);box-shadow:0 30px 60px rgba(2,6,23,0.35)}
-
-  /* Animations */
-  .fade{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease}
-  .fade.show{opacity:1;transform:none}
-
-  /* Responsive */
-  @media(max-width:1000px){.hero-grid{grid-template-columns:1fr} .photo-card img{height:360px}}
-  @media(max-width:720px){
-    .grid{grid-template-columns:1fr}
-    .gallery{grid-template-columns:1fr}
-    nav.navlinks{display:none}
-    .photo-card img{height:260px}
-    .contact-grid{grid-template-columns:1fr}
-  }
+ :root{
+   --bg:#fbfbfb;
+   --card:#ffffff;
+   --muted:#6b7280;
+   --accent:#c62828;
+   --accent-dark:#a21a1a;
+   --glass: rgba(255,255,255,0.7);
+   --shadow: 0 14px 30px rgba(8,8,10,0.06);
+   --radius:14px;
+   --container:1100px;
+ }
+ *{box-sizing:border-box}
+ html,body{height:100%}
+ body{
+   margin:0;
+   font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+   background:linear-gradient(180deg,#ffffff 0%, #f7f7f8 100%);
+   color:#0f1724;
+   -webkit-font-smoothing:antialiased;
+   line-height:1.5;
+ }
+ .container{max-width:var(--container);margin:0 auto;padding:28px;}
+ header.site-header{position:sticky;top:0;z-index:40;background:transparent;padding:14px 0;backdrop-filter:blur(6px)}
+ .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+ .brand{display:flex;align-items:center;gap:12px}
+ .brand img{height:52px;width:52px;object-fit:cover;border-radius:10px;box-shadow:var(--shadow)}
+ .brand .title{font-weight:700;font-size:16px}
+ nav.navlinks{display:flex;gap:18px;align-items:center}
+ nav.navlinks a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px}
+ .cta{display:flex;gap:10px;align-items:center}
+ .hero{min-height:78vh;display:grid;grid-template-columns:1fr;gap:24px;align-items:center;padding:48px 0;position:relative}
+ .hero-inner{display:flex;flex-direction:column;gap:20px}
+ .lead-badge{display:inline-block;background:rgba(255,255,255,0.75);padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:700;font-size:13px}
+ h1.hero-title{font-family:"Playfair Display",serif;font-size:34px;margin:6px 0 6px;line-height:1.02;color:#0b1220}
+ p.lead{color:var(--muted);max-width:64ch;margin:0}
+ .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+ .buttons{display:flex;gap:12px;margin-top:10px}
+ .btn{padding:13px 18px;border-radius:12px;font-weight:700;border:0;cursor:pointer;box-shadow:var(--shadow);transition:transform .18s ease,box-shadow .18s ease}
+ .btn-primary{background:var(--accent);color:white}
+ .btn-ghost{background:transparent;border:1.5px solid rgba(10,10,10,0.06);color:#111827}
+ .photo-card{background:linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,255,255,0.82));border-radius:18px;padding:10px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center}
+ .photo-card img{width:100%;height:420px;object-fit:cover;border-radius:12px}
+ .benefits{display:flex;gap:18px;margin-top:18px;flex-wrap:wrap}
+ .benefit{background:var(--card);padding:14px;border-radius:12px;min-width:160px;box-shadow:0 10px 24px rgba(11,11,13,0.04);display:flex;gap:12px;align-items:center}
+ .benefit strong{display:block}
+ section{padding:46px 0;border-bottom:1px solid rgba(17,24,39,0.03)}
+ .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+ .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:var(--shadow);transition:transform .18s}
+ .card h3{margin:0 0 8px}
+ .price{font-weight:800;color:var(--accent);font-size:18px}
+ .reviews{display:flex;gap:12px;flex-wrap:wrap}
+ .review{flex:1;min-width:220px;background:linear-gradient(180deg,#fff,#fbfbfb);padding:14px;border-radius:12px;box-shadow:0 10px 24px rgba(10,10,10,0.03)}
+ .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+ .gallery img{width:100%;height:180px;object-fit:cover;border-radius:10px}
+ .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+ .map-iframe{border:0;width:100%;height:320px;border-radius:12px}
+ footer{padding:28px 0;color:var(--muted);text-align:center}
+ .whatsapp{position:fixed;right:18px;bottom:18px;background:#25D366;width:62px;height:62px;border-radius:999px;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(10,10,10,0.12);z-index:70}
+ .whatsapp svg{width:28px;height:28px;filter:drop-shadow(0 1px 0 rgba(0,0,0,0.12))}
+ .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:75;padding:20px}
+ .modal{background:var(--card);padding:20px;border-radius:12px;width:min(540px,96vw);box-shadow:0 30px 60px rgba(2,6,23,0.35)}
+ .fade{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease}
+ .fade.show{opacity:1;transform:none}
+ @media(max-width:1000px){.hero-grid{grid-template-columns:1fr} .photo-card img{height:360px}}
+ @media(max-width:720px){.grid{grid-template-columns:1fr} .gallery{grid-template-columns:1fr} nav.navlinks{display:none} .photo-card img{height:260px} .contact-grid{grid-template-columns:1fr}}
+ /* small form tweaks */
+ .field{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
+ .field input,.field select{padding:12px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);font-size:15px}
+ .inline-row{display:flex;gap:8px}
+ .inline-row .field{flex:1}
 </style>
 </head>
 <body>
@@ -135,10 +104,7 @@
     "addressCountry": "IN"
   },
   "url": "https://sai-siddhi-website.vercel.app/",
-  "priceRange": "₹900 - ₹1,600",
-  "sameAs": [
-    "https://www.google.com/maps/place/?q=place_id:ChIJ..." 
-  ]
+  "priceRange": "₹900 - ₹1,600"
 }
 </script>
 
@@ -290,39 +256,66 @@
             <h4>Book a session</h4>
             <p style="color:var(--muted)">Quick booking — we will confirm by WhatsApp or email.</p>
 
-            <!-- Booking form: make sure method="POST" and action uses your FormSubmit email -->
+            <!-- Booking form: method="POST" to FormSubmit -->
             <form id="bookingForm" action="https://formsubmit.co/saisiddhisportsmassageandcuppi@gmail.com" method="POST" target="_blank">
               <input type="hidden" name="_subject" value="Booking from website">
               <input type="hidden" name="_next" value="https://sai-siddhi-website.vercel.app/success.html">
               <input type="hidden" name="_captcha" value="false">
 
-              <div style="display:flex;gap:8px;margin-bottom:8px">
-                <input name="name" placeholder="Your name" required style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)">
-                <input name="phone" placeholder="Phone / WhatsApp" required style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)">
+              <div class="inline-row">
+                <div class="field">
+                  <label for="name">Your name</label>
+                  <input id="name" name="name" placeholder="Your name" required>
+                </div>
+                <div class="field">
+                  <label for="phone">Phone / WhatsApp</label>
+                  <input id="phone" name="phone" placeholder="Phone / WhatsApp" required inputmode="tel" pattern="[0-9+\-() ]{7,}" title="Enter a valid phone number">
+                </div>
               </div>
 
-              <div style="display:flex;gap:8px;margin-bottom:8px">
-                <select name="service" required style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)">
-                  <option>Full Sports Massage (60m)</option>
-                  <option>Deep Tissue (45m)</option>
-                  <option>Cupping (30m)</option>
-                </select>
-                <input name="datetime" placeholder="Preferred date & time" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)">
+              <div class="inline-row">
+                <div class="field">
+                  <label for="service">Service</label>
+                  <select id="service" name="service" required>
+                    <option value="Full Sports Massage (60m)">Full Sports Massage (60m)</option>
+                    <option value="Deep Tissue (45m)">Deep Tissue (45m)</option>
+                    <option value="Cupping (30m)">Cupping (30m)</option>
+                  </select>
+                </div>
+
+                <!-- Separate date + time controls (calendar + clock) -->
+                <div style="display:flex;gap:8px">
+                  <div class="field">
+                    <label for="date">Preferred date</label>
+                    <input id="date" name="date" type="date" required>
+                  </div>
+                  <div class="field">
+                    <label for="time">Preferred time</label>
+                    <input id="time" name="time" type="time" required>
+                  </div>
+                </div>
               </div>
 
-              <div style="display:flex;gap:8px;justify-content:flex-end">
+              <div class="field">
+                <label for="note">Note (optional)</label>
+                <input id="note" name="note" placeholder="Anything we should know? (injury, preference)">
+              </div>
+
+              <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:6px">
                 <button type="submit" class="btn btn-primary">Book Now</button>
               </div>
             </form>
+
+            <p style="color:var(--muted);font-size:13px;margin-top:8px">We will confirm your booking on WhatsApp. If you need immediate help, call <a href="tel:+919762949595">+91 97629 49595</a>.</p>
           </div>
         </div>
 
         <div>
           <div class="card">
             <h4>Find us on map</h4>
-            <!-- Use your Google Maps short link or the embed form — below uses a simple query embed -->
-            <iframe class="map-iframe" src="https://www.google.com/maps?q=6y6Asj6kG2fXHHXr8&output=embed"></iframe>
-            <p style="margin-top:8px;color:var(--muted)">Or open in Maps: <a href="https://maps.app.goo.gl/6y6Asj6kG2fXHHXr8?g_st=ac" target="_blank">Open location</a></p>
+            <!-- Embedded map using address (works in most cases) -->
+            <iframe class="map-iframe" loading="lazy" src="https://www.google.com/maps?q=Squats+Fitness+Talegaon+Chakan+Hwy+Vatan+Nagar+Talegaon+Dabhade+410506&output=embed" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <p style="margin-top:8px;color:var(--muted)">Open in Maps: <a href="https://maps.app.goo.gl/jzpyy7P6p8F1yy3WA?g_st=ac" target="_blank" rel="noopener">Open location (short link)</a></p>
           </div>
         </div>
       </div>
@@ -331,7 +324,7 @@
 </main>
 
 <!-- Floating WhatsApp button -->
-<a class="whatsapp" href="https://wa.me/919762949595" target="_blank" aria-label="WhatsApp">
+<a class="whatsapp" href="https://wa.me/919762949595" target="_blank" aria-label="WhatsApp" rel="noopener">
   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path fill="#fff" d="M20.5 3.5C18.9 2 16.9 1 14.6 1 8.5 1 3.4 6.1 3.4 12.2c0 2 0.6 3.8 1.7 5.4L3 23l5.5-1.4c1.5 0.8 3.3 1.3 5.1 1.3 6.1 0 11.2-5.1 11.2-11.2 0-2.3-0.8-4.5-2.5-6.1zM13.3 18.5c-1.5 0.1-2.8-0.5-3.9-1.3l-0.3-0.3-3.3 0.9 0.9-3.2-0.2-0.4C7.9 13 9 12 10 11.8c0.8-0.2 1.3-0.2 1.9 0.1 0.5 0.3 1.2 0.8 1.8 1.4 0.6 0.6 1 1.3 1.2 1.8 0.2 0.6 0.2 1 0 1.4-0.2 0.4-0.6 0.9-1.4 1z"/>
   </svg>
@@ -349,7 +342,7 @@
   </div>
 </footer>
 
-<!-- Booking modal (not used but available) -->
+<!-- Booking modal (optional) -->
 <div class="modal-backdrop" id="modal">
   <div class="modal">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
@@ -372,11 +365,8 @@
 
   // fade-in animation when in view
   const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if(e.isIntersecting) e.target.classList.add('show');
-    });
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); });
   }, { threshold: 0.12 });
-
   document.querySelectorAll('.fade').forEach(el => io.observe(el));
 
   // smooth scroll for internal links
@@ -388,20 +378,30 @@
     });
   });
 
-  // small micro-interaction for hero buttons
+  // micro-interactions for buttons
   document.querySelectorAll('.btn').forEach(b => {
     b.addEventListener('mousedown', () => b.style.transform='translateY(2px)');
     b.addEventListener('mouseup', () => b.style.transform='none');
     b.addEventListener('mouseleave', () => b.style.transform='none');
   });
 
-  // open modal (book) from CTA button
+  // Book now -> focus booking form
   document.getElementById('bookNow').addEventListener('click', () => {
     window.location.hash = '#contact';
-    document.querySelector('input[name="name"]').focus();
+    setTimeout(() => document.getElementById('name').focus(), 350);
   });
-</script>
 
-</body>
-            </html>
-          
+  // Prevent selecting past dates: set min date to today
+  const dateInput = document.getElementById('date');
+  if(dateInput){
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth()+1).padStart(2,'0');
+    const dd = String(today.getDate()).padStart(2,'0');
+    dateInput.min = `${yyyy}-${mm}-${dd}`;
+  }
+
+  // Basic client-side form validation to ensure date & time are set
+  document.getElementById('bookingForm').addEventListener('submit', function(e){
+    // let server handle final checks; keep UX-friendly validation
+    const d = 
