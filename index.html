@@ -3,174 +3,379 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Sai Siddhi — Sports Massage & Cupping</title>
-<meta name="description" content="Sai Siddhi — Sports massage, deep tissue & cupping therapy in Talegaon. Book 60-minute sessions at ₹1,200.">
+<title>Sai Siddhi — Sports Massage & Cupping Therapy</title>
+<meta name="description" content="Sai Siddhi — Sports massage, deep tissue & cupping therapy in Talegaon. Book 60-minute sessions at ₹1,200. Call/WhatsApp +91 97629 49595.">
 <link rel="canonical" href="https://sai-siddhi-website.vercel.app/">
 <meta name="robots" content="index,follow">
+<meta name="theme-color" content="#ffffff">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Sai Siddhi — Sports Massage & Cupping Therapy">
+<meta property="og:description" content="Sports massage, deep tissue & cupping therapy for athletes. Book 60m sessions at ₹1,200.">
+<meta property="og:image" content="https://sai-siddhi-website.vercel.app/hero-1200.webp">
+<meta property="og:url" content="https://sai-siddhi-website.vercel.app/">
+<meta property="og:type" content="website">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sai Siddhi — Sports Massage & Cupping Therapy">
+<meta name="twitter:description" content="Professional sports massage, deep tissue and cupping therapy in Talegaon. Book 60m sessions at ₹1,200.">
+<meta name="twitter:image" content="https://sai-siddhi-website.vercel.app/hero-1200.webp">
+
+<!-- Structured Data: Local Business -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"HealthAndBeautyBusiness",
+  "name":"Sai Siddhi",
+  "url":"https://sai-siddhi-website.vercel.app/",
+  "telephone":"+919762949595",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"Squats Fitness, Talegaon - Chakan Hwy, opposite Rambhau Parulekar School, Vatan Nagar",
+    "addressLocality":"Talegaon Dabhade",
+    "addressRegion":"Maharashtra",
+    "postalCode":"410506",
+    "addressCountry":"IN"
+  },
+  "image":"https://sai-siddhi-website.vercel.app/hero-1200.webp",
+  "priceRange":"₹",
+  "service":[
+    {"@type":"Service","name":"Sports Massage (60m)"},
+    {"@type":"Service","name":"Deep Tissue (45m)"},
+    {"@type":"Service","name":"Cupping Therapy (30m)"}
+  ]
+}
+</script>
+
 <style>
-  :root{--bg:#fff;--muted:#6b7280;--accent:#0b5cff;--green:#25D366;--shadow:0 14px 30px rgba(8,8,10,0.06);--container:1100px}
-  *{box-sizing:border-box} html,body{height:100%}
-  body{margin:0;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;color:#0b1220;background:linear-gradient(180deg,#fff,#fbfbfd)}
+  :root{
+    --bg:#ffffff; --muted:#6b7280; --accent:#0b5cff; --wh:#25D366;
+    --card:#ffffff; --shadow: 0 14px 30px rgba(8,8,10,0.06); --container:1100px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,system-ui;
+    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    background:linear-gradient(180deg,var(--bg),#fbfbfd); color:#0b1220;
+  }
   .wrap{max-width:var(--container);margin:0 auto;padding:36px 20px}
-  header{display:flex;align-items:center;justify-content:space-between}
-  .brand{display:flex;gap:12px;align-items:center}
-  .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#f7f8fb,#eef2ff);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow)}
-  .logo svg{width:34px;height:34px}
-  h1{font-size:16px;margin:0;font-weight:700}
-  nav a{margin-left:16px;color:var(--muted);text-decoration:none;font-weight:600}
-  .cta a{padding:10px 14px;border-radius:12px;background:transparent;border:1px solid rgba(0,0,0,0.06);text-decoration:none;color:inherit;font-weight:700}
-
-  .hero{display:flex;gap:36px;align-items:center;padding:40px 0}
-  .hero-left{flex:1}
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand .logo{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#eef3ff,#fff);box-shadow:var(--shadow)}
+  .brand h1{font-size:16px;margin:0;font-weight:700}
+  .brand p{margin:0;color:var(--muted);font-size:13px}
+  nav a{margin-left:18px;color:var(--muted);text-decoration:none;font-weight:600}
+  .cta{display:flex;gap:10px;align-items:center}
+  .btn{padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+  .btn-primary{background:var(--accent);color:white;box-shadow:0 8px 30px rgba(11,84,255,0.12)}
+  .btn-ghost{background:transparent;border:1px solid rgba(0,0,0,0.06);color:inherit}
+  /* Hero */
+  .hero{display:flex;gap:44px;align-items:center;padding:48px 0}
+  .hero-left{flex:1;max-width:720px}
   .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#f3f4f6;color:var(--muted);font-weight:700;font-size:13px}
-  .title{font-size:32px;margin:12px 0 10px;font-weight:800}
-  .subtitle{color:var(--muted);max-width:60ch}
-  .buttons{display:flex;gap:12px;margin-top:16px}
-  .btn{padding:12px 16px;border-radius:12px;border:0;cursor:pointer;font-weight:700}
-  .btn-primary{background:var(--accent);color:#fff}
-  .photo{width:420px;min-width:220px;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);background:linear-gradient(180deg,#fff,#f8fafc);display:flex;align-items:center;justify-content:center;height:320px}
-
-  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
-  .service{padding:16px;border-radius:12px;background:#fff;box-shadow:0 8px 20px rgba(12,18,28,0.04)}
+  .title{font-size:36px;line-height:1.02;margin:12px 0 12px;font-weight:800}
+  .subtitle{color:var(--muted);max-width:64ch}
+  .hero-right{width:420px;min-width:260px}
+  .photo-card{border-radius:16px;overflow:hidden;box-shadow:var(--shadow);background:#fff;display:flex;align-items:center;justify-content:center;min-height:260px}
+  .photo-card img{width:100%;height:auto;display:block}
+  /* Services */
+  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+  .service{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 8px 20px rgba(12,18,28,0.04)}
+  .service h3{margin:0 0 6px}
+  .price{color:var(--accent);font-weight:800;margin-top:10px}
+  /* Gallery */
   .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
-  .gallery .tile{height:100px;border-radius:8px;background:linear-gradient(180deg,#f3f4f6,#fff);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700}
-
-  .contact-grid{display:flex;gap:16px;flex-wrap:wrap;margin-top:18px}
-  .form-card{flex:1;min-width:280px;padding:16px;border-radius:12px;background:#fff;box-shadow:var(--shadow)}
-  .map-card{width:300px;min-width:220px;padding:16px;border-radius:12px;background:#fff;box-shadow:var(--shadow)}
+  .gallery img{width:100%;height:120px;object-fit:cover;border-radius:10px;display:block}
+  /* Contact */
+  .contact-grid{display:grid;grid-template-columns:1fr 320px;gap:18px;margin-top:12px}
+  .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
   input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);margin-bottom:8px}
   footer{text-align:center;color:var(--muted);margin-top:36px}
-
-  .whatsapp{position:fixed;right:18px;bottom:18px;width:64px;height:64px;border-radius:999px;background:var(--green);display:flex;align-items:center;justify-content:center;box-shadow:0 18px 40px rgba(37,211,102,0.12)}
-  @media(max-width:1000px){.hero{flex-direction:column-reverse}.services{grid-template-columns:1fr}.photo{width:100%;height:220px}}
+  .whatsapp{position:fixed;right:18px;bottom:18px;width:64px;height:64px;border-radius:999px;background:var(--wh);display:flex;align-items:center;justify-content:center;box-shadow:0 18px 40px rgba(37,211,102,0.12);z-index:1000}
+  /* Map placeholder */
+  .map-placeholder{height:200px;border-radius:10px;background:linear-gradient(180deg,#f3f4f6,#fff);display:flex;align-items:center;justify-content:center;color:var(--muted)}
+  @media(max-width:1000px){
+    .hero{flex-direction:column-reverse;gap:18px}
+    .services{grid-template-columns:1fr}
+    nav a{display:none}
+    .contact-grid{grid-template-columns:1fr}
+    .hero-right{width:100%}
+  }
 </style>
 </head>
 <body>
   <div class="wrap">
-    <header>
+
+    <!-- Header -->
+    <header role="banner" aria-label="Main header">
       <div class="brand">
+        <!-- Inline SVG logo fallback + optional external file -->
         <div class="logo" aria-hidden="true">
-          <!-- simple inline svg icon as logo -->
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect x="3" y="3" width="18" height="18" rx="4" fill="#0b5cff" opacity="0.08"></rect>
+          <!-- If logo.png exists, it will load; otherwise inline SVG is visible -->
+          <picture>
+            <source srcset="logo.webp" type="image/webp">
+            <img src="logo.png" alt="Sai Siddhi logo" style="width:44px;height:44px;border-radius:8px;object-fit:cover" onerror="this.style.display='none'">
+          </picture>
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="6" fill="#0b5cff" opacity="0.08"></rect>
             <path d="M7 12c1.5-3 5-4 7-2 2 2 1 5 0 6-1 1-4 2-6 0-2-2-2-4-1-4z" fill="#0b5cff"/>
           </svg>
         </div>
         <div>
           <h1>Sai Siddhi</h1>
-          <div style="color:var(--muted);font-size:13px">Sports Massage & Cupping</div>
+          <p>Sports Massage & Cupping</p>
         </div>
       </div>
 
-      <nav aria-label="Main">
-        <a href="#home">Home</a><a href="#services">Services</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a>
+      <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
       </nav>
 
-      <div class="cta"><a href="#contact">Book</a></div>
+      <div class="cta" role="navigation" aria-label="Quick actions">
+        <button class="btn btn-ghost" id="openBook">Book</button>
+      </div>
     </header>
 
+    <!-- Hero -->
     <main>
-      <section id="home" class="hero">
+      <section id="home" class="hero" aria-labelledby="heroTitle">
         <div class="hero-left">
-          <div class="badge">Winter Special — ₹1,200</div>
-          <h2 class="title">Recover faster. Move stronger.</h2>
+          <span class="badge">Winter Special — ₹1,200</span>
+          <h2 id="heroTitle" class="title">Recover faster. Move stronger.</h2>
           <p class="subtitle">Professional sports massage, deep tissue & cupping therapy tailored for athletes and active people. Safe, hygienic treatments focused on recovery and performance.</p>
-          <div class="buttons">
+
+          <div style="display:flex;gap:12px;align-items:center;margin-top:12px">
             <button class="btn btn-primary" id="bookNow">Book ₹1,200</button>
-            <a class="btn" href="#services">See services</a>
+            <a class="btn btn-ghost" href="#services">See services</a>
           </div>
 
-          <div class="services" aria-hidden="false">
-            <div class="service"><strong>Sports Massage (60m)</strong><div style="color:var(--muted)">Restore mobility & speed up recovery.</div><div style="margin-top:6px;font-weight:800;color:var(--accent)">₹1,200</div></div>
-            <div class="service"><strong>Deep Tissue (45m)</strong><div style="color:var(--muted)">Target knots & tightness.</div><div style="margin-top:6px;font-weight:800;color:var(--accent)">₹1,200</div></div>
-            <div class="service"><strong>Cupping (30m)</strong><div style="color:var(--muted)">Improve circulation & reduce pain.</div><div style="margin-top:6px;font-weight:800;color:var(--accent)">₹900</div></div>
+          <div class="services" aria-hidden="false" style="margin-top:20px">
+            <div class="service"><h3>Sports Massage (60m)</h3><div style="color:var(--muted)">Restore mobility & speed up recovery.</div><div class="price">₹1,200</div></div>
+            <div class="service"><h3>Deep Tissue (45m)</h3><div style="color:var(--muted)">Target knots & tightness.</div><div class="price">₹1,200</div></div>
+            <div class="service"><h3>Cupping (30m)</h3><div style="color:var(--muted)">Improve circulation & reduce pain.</div><div class="price">₹900</div></div>
           </div>
         </div>
 
-        <div class="photo" aria-hidden="false">
-          <!-- simple hero illustration (fast) -->
-          <svg width="80%" height="80%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="therapy illustration">
-            <rect width="100%" height="100%" fill="#fff"/>
-            <g transform="translate(80,50)">
-              <rect x="0" y="160" width="640" height="200" rx="18" fill="#eef2ff"></rect>
-              <rect x="40" y="120" width="290" height="80" rx="12" fill="#fff"/>
-              <circle cx="420" cy="220" r="80" fill="#f3f4f6"></circle>
-              <text x="60" y="190" fill="#6b7280" font-size="24" font-weight="700">Sports massage</text>
-            </g>
-          </svg>
+        <aside class="hero-right" aria-hidden="false">
+          <div class="photo-card" role="img" aria-label="Hero image — sports massage">
+            <!-- Responsive hero: provide these files in site root or keep inline fallback -->
+            <picture>
+              <source type="image/webp" srcset="hero-1200.webp 1200w, hero-800.webp 800w, hero-480.webp 480w">
+              <img src="hero-800.jpg" alt="Sports massage session" loading="eager" width="420" height="420" onerror="this.style.display='none'">
+            </picture>
+
+            <!-- Inline SVG fallback (shows if images missing) -->
+            <svg id="heroFallback" width="80%" height="80%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" style="display:none">
+              <rect width="100%" height="100%" fill="#fff"/>
+              <g transform="translate(80,50)">
+                <rect x="0" y="160" width="640" height="200" rx="18" fill="#eef2ff"></rect>
+                <rect x="40" y="120" width="290" height="80" rx="12" fill="#fff"/>
+                <circle cx="420" cy="220" r="80" fill="#f3f4f6"></circle>
+                <text x="60" y="190" fill="#6b7280" font-size="24" font-weight="700">Sports massage</text>
+              </g>
+            </svg>
+          </div>
+        </aside>
+      </section>
+
+      <!-- Gallery -->
+      <section id="gallery" aria-labelledby="galleryTitle">
+        <h2 id="galleryTitle" style="margin-top:20px">Clinic Gallery</h2>
+        <div class="gallery" style="margin-top:12px">
+          <!-- lazy images: use clinic1-800.webp etc. If missing placeholders will show (JS fallback) -->
+          <img data-src="clinic1-800.webp" alt="Clinic image 1" loading="lazy" class="lazy" onerror="this.style.display='none'">
+          <img data-src="clinic2-800.webp" alt="Clinic image 2" loading="lazy" class="lazy" onerror="this.style.display='none'">
+          <img data-src="clinic3-800.webp" alt="Clinic image 3" loading="lazy" class="lazy" onerror="this.style.display='none'">
         </div>
       </section>
 
-      <section id="gallery">
-        <h3 style="margin-top:6px">Clinic Gallery</h3>
-        <div class="gallery">
-          <div class="tile">Clinic 1</div>
-          <div class="tile">Clinic 2</div>
-          <div class="tile">Clinic 3</div>
-        </div>
-      </section>
+      <!-- Contact & Booking -->
+      <section id="contact" style="margin-top:28px">
+        <h2>Book a Session</h2>
 
-      <section id="contact">
-        <h3 style="margin-top:18px">Book a Session</h3>
         <div class="contact-grid">
-          <div class="form-card">
-            <form id="bookingForm" method="POST" action="https://formsubmit.co/saisiddhisportsmassageandcuppi@gmail.com">
+          <div class="card" aria-labelledby="bookingTitle">
+            <h3 id="bookingTitle">Quick booking</h3>
+
+            <form id="bookingForm" action="https://formsubmit.co/saisiddhisportsmassageandcuppi@gmail.com" method="POST" autocomplete="on">
               <input type="hidden" name="_captcha" value="false">
               <input type="hidden" name="_subject" value="New Booking - Sai Siddhi">
               <input type="hidden" name="_next" value="https://sai-siddhi-website.vercel.app/success.html">
-              <input name="name" placeholder="Your name" required>
-              <input name="phone" placeholder="Phone / WhatsApp" required>
-              <select name="service" required>
-                <option>Sports Massage (60m)</option>
-                <option>Deep Tissue (45m)</option>
-                <option>Cupping Therapy (30m)</option>
-              </select>
-              <input name="date" type="date" required>
-              <input name="time" type="time" required>
-              <textarea name="note" placeholder="Anything we should know?"></textarea>
-              <div style="display:flex;justify-content:flex-end">
+
+              <div style="display:flex;gap:8px;margin-bottom:8px">
+                <input name="name" placeholder="Your name" required aria-label="Your name">
+                <input name="phone" placeholder="Phone / WhatsApp" required aria-label="Phone or WhatsApp">
+              </div>
+
+              <div style="display:flex;gap:8px;margin-bottom:8px;align-items:center">
+                <select name="service" required aria-label="Select service">
+                  <option>Sports Massage (60m)</option>
+                  <option>Deep Tissue (45m)</option>
+                  <option>Cupping Therapy (30m)</option>
+                </select>
+
+                <input name="date" type="date" required aria-label="Date">
+              </div>
+
+              <div style="display:flex;gap:8px;margin-bottom:8px">
+                <input name="time" type="time" required aria-label="Time">
+              </div>
+
+              <div style="margin-bottom:8px">
+                <textarea name="note" placeholder="Anything we should know?" rows="4" aria-label="Notes"></textarea>
+              </div>
+
+              <div style="display:flex;gap:8px;justify-content:flex-end">
                 <button class="btn btn-primary" type="submit">Confirm booking</button>
               </div>
             </form>
           </div>
 
-          <div class="map-card">
-            <strong>Location</strong>
-            <div style="color:var(--muted);margin-top:8px">Squats Fitness, Talegaon - Chakan Hwy, Vatan Nagar, Talegaon Dabhade 410506</div>
-            <p style="margin-top:10px"><a href="https://maps.app.goo.gl/jzpyy7P6p8F1yy3WA?g_st=ac" target="_blank" rel="noopener">Open in Maps</a></p>
+          <div class="card" aria-hidden="false">
+            <h4 style="margin:0 0 8px">Location</h4>
+            <p style="margin:0;color:var(--muted)">Squats Fitness, Talegaon - Chakan Hwy, Vatan Nagar, Talegaon Dabhade 410506</p>
+            <div style="margin-top:12px">
+              <!-- Lazy-load map iframe only when user clicks -->
+              <div id="mapContainer">
+                <div class="map-placeholder" id="mapPlaceholder">
+                  <button id="loadMap" class="btn btn-ghost" aria-label="Load map">Open Google Map</button>
+                </div>
+              </div>
+            </div>
+
             <p style="margin-top:12px;color:var(--muted)">Call / WhatsApp: <a href="tel:+919762949595">+91 97629 49595</a></p>
           </div>
         </div>
       </section>
-
     </main>
 
-    <footer>
-      <div style="margin-top:24px;color:var(--muted)">© <span id="yr"></span> Sai Siddhi</div>
+    <footer style="margin-top:36px">
+      <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap">
+        <img src="logo.png" alt="logo" style="height:44px;width:44px;border-radius:10px;object-fit:cover" onerror="this.style.display='none'">
+        <div style="text-align:center">
+          <div style="font-weight:700">Sai Siddhi</div>
+          <div style="color:var(--muted)">© <span id="yr"></span> Sai Siddhi</div>
+        </div>
+      </div>
     </footer>
+
   </div>
 
-  <a class="whatsapp" href="https://wa.me/919762949595" aria-label="WhatsApp">
+  <!-- Floating WhatsApp -->
+  <a class="whatsapp" id="waFloat" href="https://wa.me/919762949595" aria-label="WhatsApp — Message Sai Siddhi" target="_blank" rel="noopener">
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill="#fff" d="M20.5 3.5C18.9 2 16.9 1 14.6 1 8.5 1 3.4 6.1 3.4 12.2c0 2 0.6 3.8 1.7 5.4L3 23l5.5-1.4c1.5 0.8 3.3 1.3 5.1 1.3 6.1 0 11.2-5.1 11.2-11.2 0-2.3-0.8-4.5-2.5-6.1zM13.3 18.5c-1.5 0.1-2.8-0.5-3.9-1.3l-0.3-0.3-3.3 0.9 0.9-3.2-0.2-0.4C7.9 13 9 12 10 11.8c0.8-0.2 1.3-0.2 1.9 0.1 0.5 0.3 1.2 0.8 1.8 1.4 0.6 0.6 1 1.3 1.2 1.8 0.2 0.6 0.2 1 0 1.4-0.2 0.4-0.6 0.9-1.4 1z"/></svg>
   </a>
 
 <script>
+  // Year
   document.getElementById('yr').textContent = new Date().getFullYear();
-  document.getElementById('bookNow').addEventListener('click', ()=>{ location.href='#contact'; setTimeout(()=>document.querySelector('[name="name"]').focus(),220) });
 
-  // Append query params to success redirect for success.html
+  // Scroll to contact on book click
+  document.getElementById('bookNow').addEventListener('click', ()=> {
+    location.href = '#contact';
+    setTimeout(()=>document.querySelector('[name="name"]')?.focus(), 220);
+  });
+  document.getElementById('openBook').addEventListener('click', ()=> {
+    location.href = '#contact';
+    setTimeout(()=>document.querySelector('[name="name"]')?.focus(), 220);
+  });
+
+  // Lazy-load gallery images
   (function(){
-    const form = document.getElementById('bookingForm'); if(!form) return;
+    const lazy = [].slice.call(document.querySelectorAll('img.lazy'));
+    if('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries, observer) => {
+        entries.forEach(e=>{
+          if(e.isIntersecting) {
+            const img = e.target;
+            const src = img.getAttribute('data-src');
+            if(src) img.src = src;
+            img.classList.remove('lazy');
+            observer.unobserve(img);
+          }
+        });
+      },{rootMargin:'200px'});
+      lazy.forEach(i=>obs.observe(i));
+    } else {
+      lazy.forEach(i=>i.src = i.getAttribute('data-src'));
+    }
+  })();
+
+  // If hero image failed to load, show inline SVG fallback
+  (function(){
+    const heroImg = document.querySelector('.photo-card img');
+    if(heroImg) {
+      heroImg.addEventListener('error', ()=> {
+        const fallback = document.getElementById('heroFallback');
+        if(fallback) fallback.style.display = 'block';
+      });
+      // if no image element (not present), show fallback
+      if(!heroImg || !heroImg.complete) {
+        // nothing: handler above will show fallback if needed
+      }
+    }
+  })();
+
+  // Lazy-load map iframe on demand (click)
+  document.getElementById('loadMap').addEventListener('click', function(){
+    const container = document.getElementById('mapContainer');
+    // Guard: avoid loading repeatedly
+    if(container.dataset.loaded) return;
+    const iframe = document.createElement('iframe');
+    iframe.src = "https://www.google.com/maps?q=Squats+Fitness+Talegaon+Chakan+Hwy+Vatan+Nagar+Talegaon+Dabhade+410506&output=embed";
+    iframe.width = "100%";
+    iframe.height = "220";
+    iframe.style.border = "0";
+    iframe.loading = "lazy";
+    iframe.referrerPolicy = "no-referrer-when-downgrade";
+    iframe.title = "Clinic location";
+    container.innerHTML = '';
+    container.appendChild(iframe);
+    container.dataset.loaded = "1";
+  });
+
+  // Booking form: append query params to _next so success page can read them
+  (function(){
+    const form = document.getElementById('bookingForm');
+    if(!form) return;
     form.addEventListener('submit', function(){
-      const names = ['name','phone','service','date','time','note'];
-      const qs = names.map(n=>{
-        const el = form.querySelector('[name="'+n+'"]'); return n + '=' + encodeURIComponent(el ? el.value : '');
+      const keys = ['name','phone','service','date','time','note'];
+      const qs = keys.map(k=>{
+        const el = form.querySelector('[name="'+k+'"]');
+        return k + '=' + encodeURIComponent(el ? el.value : '');
       }).join('&');
       const next = form.querySelector('[name="_next"]');
       if(next) next.value = (next.value.split('?')[0] || next.value) + '?' + qs;
     });
   })();
+
+  // WhatsApp button: if form has values, prefill message
+  (function(){
+    const wa = document.getElementById('waFloat');
+    if(!wa) return;
+    wa.addEventListener('click', function(e){
+      const name = (document.querySelector('[name="name"]')||{}).value || '';
+      const service = (document.querySelector('[name="service"]')||{}).value || '';
+      let msg = 'Hello Sai Siddhi, I would like to enquire about booking.';
+      if(name || service) {
+        msg += '\\n';
+        if(name) msg += `Name: ${name}\\n`;
+        if(service) msg += `Service: ${service}\\n`;
+      }
+      const url = 'https://wa.me/919762949595?text=' + encodeURIComponent(msg);
+      wa.href = url;
+    });
+  })();
+
+  // Small accessibility: focus outlines when using keyboard
+  window.addEventListener('keydown', (e)=> { if(e.key === 'Tab') document.documentElement.classList.add('show-focus'); });
 </script>
+
 </body>
   </html>
-  
+                  
