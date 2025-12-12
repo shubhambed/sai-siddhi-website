@@ -10,90 +10,187 @@
 
 <style>
   :root{
-    --bg:#fbfbfb; --card:#fff; --muted:#6b7280; --accent:#c62828;
-    --shadow: 0 14px 30px rgba(8,8,10,0.06); --container:1100px;
+    --bg:#fbfbfb;
+    --card:#ffffff;
+    --muted:#6b7280;
+    --accent:#c62828;
+    --accent-dark:#a21a1a;
+    --shadow: 0 14px 30px rgba(8,8,10,0.06);
+    --glass: rgba(255,255,255,0.7);
+    --container:1100px;
   }
+
+  /* DARK THEME VARIABLES */
+  .dark {
+    --bg: #0b1220;
+    --card: #07101a;
+    --muted: #9aa4b2;
+    --accent: #ff6b6b;
+    --accent-dark: #ff3b3b;
+    color-scheme: dark;
+  }
+
   *{box-sizing:border-box}
-  body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:linear-gradient(180deg,#fff,#f7f7f8);color:#0f1724}
-  .container{max-width:var(--container);margin:0 auto;padding:28px}
-  header.site-header{position:sticky;top:0;background:transparent;z-index:40;padding:14px 0;backdrop-filter:blur(6px)}
-  .nav{display:flex;align-items:center;justify-content:space-between}
-  .brand{display:flex;align-items:center;gap:12px}.brand img{height:52px;width:52px;border-radius:10px;object-fit:cover;box-shadow:var(--shadow)}
-  nav.navlinks a{color:var(--muted);text-decoration:none;font-weight:600;margin-left:16px}
-  .btn{padding:12px 16px;border-radius:12px;font-weight:700;border:0;cursor:pointer;box-shadow:var(--shadow);display:inline-flex;align-items:center;gap:10px}
-  .btn-primary{background:var(--accent);color:#fff}
-  .btn-ghost{background:#fff;border:1px solid rgba(10,10,10,0.06)}
-  /* spinner inside button */
-  .spinner{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,0.4);border-top-color:rgba(255,255,255,0.95);animation:spin .8s linear infinite;display:inline-block}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background:linear-gradient(180deg,var(--bg) 0%, #f7f7f8 100%);
+    color: #0f1724;
+    -webkit-font-smoothing:antialiased;
+    transition:background .25s ease,color .25s ease;
+  }
+  .dark body{ background: linear-gradient(180deg,#07101a 0%, #071422 100%); color: #e6eef6; }
+
+  .container{max-width:var(--container);margin:0 auto;padding:20px 28px;}
+
+  /* Loader */
+  #pageLoader{
+    position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+    background:var(--bg); z-index:9999; transition:opacity .35s ease;
+  }
+  #pageLoader.hidden{ opacity:0; pointer-events:none; }
+  .loader-ring{width:64px;height:64px;border-radius:50%;border:6px solid rgba(0,0,0,0.08);border-top-color:var(--accent); animation:spin 0.9s linear infinite}
+  .dark .loader-ring{border-top-color:var(--accent);}
   @keyframes spin{to{transform:rotate(360deg)}}
 
-  /* hero */
-  .hero{min-height:48vh;padding:48px 0;display:grid;align-items:center}
-  @media(min-width:1000px){.hero{min-height:78vh}}
-  .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
-  .photo-card{background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(255,255,255,0.82));border-radius:18px;padding:10px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;min-height:160px}
-  .photo-card img{width:100%;height:420px;object-fit:cover;border-radius:12px;display:block}
-  @media(max-width:1000px){.hero-grid{grid-template-columns:1fr}.photo-card img{height:360px}}
-  @media(max-width:720px){.photo-card img{height:260px}; nav.navlinks{display:none}}
+  /* Header / Navbar */
+  header.site-header{position:sticky;top:0;z-index:40;padding:10px 0;backdrop-filter:blur(4px);transition:background .25s ease,box-shadow .25s ease}
+  header.site-header.scrolled{background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.70)); box-shadow:0 6px 18px rgba(2,6,23,0.06)}
+  .dark header.site-header.scrolled{ background: linear-gradient(180deg, rgba(7,16,26,0.65), rgba(7,16,26,0.6)); }
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand img{height:48px;width:48px;object-fit:cover;border-radius:10px;box-shadow:var(--shadow)}
+  nav.navlinks{display:flex;gap:18px;align-items:center}
+  nav.navlinks a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px}
+  .cta{display:flex;gap:8px;align-items:center}
 
-  /* layout */
-  section{padding:46px 0;border-bottom:1px solid rgba(17,24,39,0.03)}
+  /* Dark toggle */
+  .toggle {
+    background:transparent; border:1px solid rgba(0,0,0,0.06); padding:8px; border-radius:10px; cursor:pointer;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .dark .toggle{ border-color: rgba(255,255,255,0.08); }
+
+  /* HERO */
+  .hero{
+    min-height:58vh;
+    display:flex; align-items:center; padding:36px 0; position:relative;
+  }
+  @media(min-width:1000px){ .hero{ min-height:78vh } }
+  .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+  .lead-badge{display:inline-block;background:rgba(255,255,255,0.75);padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:700;font-size:13px}
+  h1.hero-title{font-family:"Playfair Display",serif;font-size:34px;margin:6px 0 6px;line-height:1.02;color:inherit}
+  p.lead{color:var(--muted);max-width:64ch;margin:0}
+  .buttons{display:flex;gap:12px;margin-top:10px}
+  .btn{padding:12px 16px;border-radius:12px;font-weight:700;border:0;cursor:pointer;box-shadow:var(--shadow);display:inline-flex;align-items:center;gap:8px}
+  .btn-primary{background:var(--accent);color:white}
+  .btn-ghost{background:transparent;border:1px solid rgba(0,0,0,0.06);color:inherit}
+  .photo-card{background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.82));border-radius:18px;padding:10px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;min-height:160px}
+  .photo-card img{width:100%;height:420px;object-fit:cover;border-radius:12px}
+
+  /* Badge under hero */
+  .benefits{display:flex;gap:18px;margin-top:18px;flex-wrap:wrap}
+  .benefit{background:var(--card);padding:12px;border-radius:12px;min-width:140px;box-shadow:0 10px 24px rgba(11,11,13,0.04);display:flex;gap:12px;align-items:center}
+  .benefit strong{display:block}
+
+  /* Sections */
+  section{padding:42px 0;border-bottom:1px solid rgba(17,24,39,0.03)}
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
   .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:var(--shadow)}
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .gallery img{width:100%;height:120px;object-fit:cover;border-radius:10px}
+
+  /* Contact / map */
   .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
   .map-iframe{border:0;width:100%;height:320px;border-radius:12px}
-  .whatsapp{position:fixed;right:18px;bottom:18px;background:#25D366;width:62px;height:62px;border-radius:999px;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(10,10,10,0.12);z-index:70}
-  .fade{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease}
-  .fade.show{opacity:1;transform:none}
 
-  /* small form */
-  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
-  .field input,.field select{padding:12px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);font-size:15px}
-  .inline-row{display:flex;gap:8px}
-  .inline-row .field{flex:1}
+  /* Footer */
+  footer{padding:28px 0;color:var(--muted);text-align:center}
+
+  /* Floating WhatsApp (pulsing) */
+  .whatsapp{
+    position:fixed; right:18px; bottom:18px; width:66px; height:66px; border-radius:999px;
+    background:#25D366; display:flex; align-items:center; justify-content:center; z-index:999;
+    box-shadow:0 18px 40px rgba(37,211,102,0.15);
+    transition:transform .18s ease;
+  }
+  .whatsapp:active{ transform:scale(.98) }
+  .whatsapp .pulse{ position:absolute; width:66px; height:66px; border-radius:50%; background:rgba(37,211,102,0.12); animation: pulse 1.8s infinite; }
+  @keyframes pulse { 0%{ transform:scale(.9); opacity:1 } 100%{ transform:scale(2.2); opacity:0 } }
+
+  /* Responsive */
+  @media(max-width:1000px){
+    .hero-grid{grid-template-columns:1fr}
+    .photo-card img{height:360px}
+    .gallery img{height:100px}
+    nav.navlinks{display:none}
+  }
+  @media(max-width:720px){
+    .photo-card img{height:260px}
+    .contact-grid{grid-template-columns:1fr}
+  }
 </style>
 </head>
 <body>
-<header class="site-header">
-  <div class="container nav">
-    <div class="brand">
-      <img src="logo.png" alt="logo">
+
+<!-- Page loader -->
+<div id="pageLoader" aria-hidden="false">
+  <div class="loader-ring" role="status" aria-label="Loading"></div>
+</div>
+
+<header class="site-header" id="siteHeader">
+  <div class="container nav" role="navigation" aria-label="Main navigation">
+    <div class="brand" style="gap:12px;align-items:center">
+      <img src="logo.png" alt="Sai Siddhi logo" />
       <div>
         <div style="font-weight:700">Sai Siddhi</div>
-        <div style="font-size:13px;color:#6b7280">Sports Massage & Cupping</div>
+        <div style="font-size:13px;color:var(--muted)">Sports Massage & Cupping</div>
       </div>
     </div>
-    <div>
+
+    <nav class="navlinks" aria-hidden="false">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="cta" style="align-items:center">
+      <button class="toggle" id="darkToggle" aria-pressed="false" title="Toggle dark mode">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="#374151" stroke-width="1.2"/></svg>
+        <span style="font-weight:600;font-size:13px;color:var(--muted)">Dark</span>
+      </button>
       <button class="btn btn-ghost" id="openBook">Book</button>
     </div>
   </div>
 </header>
 
 <main>
-  <section class="hero" id="home">
-    <div class="container">
+  <section id="home" class="hero" aria-labelledby="heroTitle">
+    <div class="container hero-inner">
       <div class="hero-grid">
         <div>
-          <span style="background:rgba(255,255,255,0.75);padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:700">Winter Special</span>
-          <h1 style="font-family:Playfair Display,serif;margin:12px 0 6px">Recover faster. Move stronger.</h1>
-          <p style="color:#6b7280;max-width:64ch">Professional sports massage, deep tissue & cupping therapy — tailored for athletes and active people.</p>
-          <div style="margin-top:10px">
-            <button class="btn btn-primary" id="bookNow">
-              <span class="btn-label">Book ₹1,200</span>
-              <!-- spinner placeholder (hidden until sending) -->
-            </button>
-            <a class="btn btn-ghost" href="#services" style="margin-left:10px">See Services</a>
+          <span class="lead-badge">Winter Special</span>
+          <h1 class="hero-title" id="heroTitle">Recover faster. Move stronger.</h1>
+          <p class="lead">Professional sports massage, deep tissue & cupping therapy — tailored for athletes and active people.</p>
+
+          <div class="buttons" aria-hidden="false">
+            <button class="btn btn-primary" id="bookNow">Book ₹1,200</button>
+            <a class="btn btn-ghost" href="#services">See Services</a>
           </div>
-          <div style="display:flex;gap:12px;margin-top:18px;flex-wrap:wrap">
-            <div style="background:#fff;padding:12px;border-radius:10px;box-shadow:var(--shadow)"><strong>Fast Recovery</strong><div style="color:#6b7280">60m sessions</div></div>
-            <div style="background:#fff;padding:12px;border-radius:10px;box-shadow:var(--shadow)"><strong>Certified Therapist</strong><div style="color:#6b7280">Experienced care</div></div>
-            <div style="background:#fff;padding:12px;border-radius:10px;box-shadow:var(--shadow)"><strong>Safe Cupping</strong><div style="color:#6b7280">Hygienic cups</div></div>
+
+          <div class="benefits" aria-hidden="false">
+            <div class="benefit"><div style="font-size:18px">⏱</div><div style="margin-left:8px"><strong>Fast Recovery</strong><div style="color:var(--muted)">60m sessions</div></div></div>
+            <div class="benefit"><div style="font-size:18px">💆</div><div style="margin-left:8px"><strong>Certified Therapist</strong><div style="color:var(--muted)">Amit Dulgach</div></div></div>
+            <div class="benefit"><div style="font-size:18px">🩺</div><div style="margin-left:8px"><strong>Safe Cupping</strong><div style="color:var(--muted)">Hygienic cups</div></div></div>
           </div>
-          <p style="color:#6b7280;margin-top:12px">Call / WhatsApp: <a href="tel:+919762949595" style="color:#0b5cff">+91 97629 49595</a></p>
+
+          <p style="margin-top:14px;color:var(--muted)">Call / WhatsApp: <a href="tel:+919762949595" style="color:#0b5cff;text-decoration:underline">+91 97629 49595</a></p>
         </div>
 
-        <div class="photo-card">
-          <img src="muscular.png" alt="Hero image">
+        <div class="photo-card" aria-hidden="false">
+          <img src="muscular.png" alt="Hero image — sports massage" />
         </div>
       </div>
     </div>
@@ -104,137 +201,205 @@
     <div class="container">
       <h2>Services we offer</h2>
       <div class="grid" style="margin-top:12px">
-        <div class="card"><h3>Full Sports Massage (60m)</h3><p style="color:#6b7280">Performance-focused therapy</p><div style="font-weight:800;color:var(--accent)">₹1,200</div></div>
-        <div class="card"><h3>Deep Tissue (45m)</h3><p style="color:#6b7280">Targeted deep pressure</p><div style="font-weight:800;color:var(--accent)">₹1,200</div></div>
-        <div class="card"><h3>Cupping Therapy (30m)</h3><p style="color:#6b7280">Improve circulation</p><div style="font-weight:800;color:var(--accent)">₹900</div></div>
+        <div class="card"><h3>Sports Massage (60m)</h3><p style="color:var(--muted)">Restore mobility & speed up muscle recovery.</p><div class="price" style="color:var(--accent);font-weight:800">₹1,200</div></div>
+        <div class="card"><h3>Deep Tissue (45m)</h3><p style="color:var(--muted)">Targeted pressure for knots & tight muscles.</p><div class="price" style="font-weight:800">₹1,200</div></div>
+        <div class="card"><h3>Cupping Therapy (30m)</h3><p style="color:var(--muted)">Boost circulation & reduce pain.</p><div class="price" style="font-weight:800">₹900</div></div>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
+  <!-- Reviews -->
+  <section id="reviews">
+    <div class="container">
+      <h2>What clients say</h2>
+      <div class="grid" style="margin-top:12px">
+        <div class="card">⭐⭐⭐⭐⭐<br><strong>Rahul K.</strong><br><em style="color:var(--muted)">“Fixed my back pain in 2 sessions — highly recommend.”</em></div>
+        <div class="card">⭐⭐⭐⭐⭐<br><strong>Neha S.</strong><br><em style="color:var(--muted)">“Very clean, professional and effective cupping.”</em></div>
+        <div class="card">⭐⭐⭐⭐⭐<br><strong>Atharva P.</strong><br><em style="color:var(--muted)">“Great therapist — improved my mobility.”</em></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <div class="container">
+      <h2>Clinic Gallery</h2>
+      <div class="gallery" style="margin-top:12px">
+        <img src="clinic1.png" alt="Clinic image 1">
+        <img src="clinic2.png" alt="Clinic image 2">
+        <img src="clinic3.png" alt="Clinic image 3">
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Booking -->
   <section id="contact">
     <div class="container">
-      <h3>Contact & Location</h3>
+      <h2>Book a Session</h2>
+
       <div class="contact-grid" style="margin-top:12px">
         <div>
           <div class="card">
-            <h4>Book a session</h4>
+            <h3>Quick booking</h3>
             <form id="bookingForm" action="https://formsubmit.co/saisiddhisportsmassageandcuppi@gmail.com" method="POST">
-              <input type="hidden" name="_subject" value="Booking from website">
               <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_subject" value="New Booking - Sai Siddhi">
+              <input type="hidden" name="_next" value="https://sai-siddhi-website.vercel.app/success.html">
 
-              <div class="inline-row">
-                <div class="field"><label for="name">Name</label><input id="name" name="name" required></div>
-                <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" required inputmode="tel"></div>
+              <div style="display:flex;gap:8px;margin-bottom:8px">
+                <input name="name" placeholder="Your name" required style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)">
+                <input name="phone" placeholder="Phone / WhatsApp" required style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)">
               </div>
 
-              <div class="inline-row">
-                <div class="field"><label for="service">Service</label>
-                  <select id="service" name="service" required>
-                    <option>Full Sports Massage (60m)</option>
-                    <option>Deep Tissue (45m)</option>
-                    <option>Cupping (30m)</option>
-                  </select>
-                </div>
+              <div style="display:flex;gap:8px;margin-bottom:8px">
+                <select name="service" required style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)">
+                  <option>Sports Massage (60m)</option>
+                  <option>Deep Tissue (45m)</option>
+                  <option>Cupping Therapy (30m)</option>
+                </select>
 
-                <div style="display:flex;gap:8px">
-                  <div class="field"><label for="date">Preferred date</label><input id="date" name="date" type="date" required></div>
-                  <div class="field"><label for="time">Preferred time</label><input id="time" name="time" type="time" required></div>
-                </div>
+                <input name="date" type="date" required style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)">
               </div>
 
-              <div class="field"><label for="note">Note (optional)</label><input id="note" name="note"></div>
+              <div style="display:flex;gap:8px;margin-bottom:8px">
+                <input name="time" type="time" required style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)">
+              </div>
 
-              <div style="display:flex;justify-content:flex-end">
-                <button type="submit" class="btn btn-primary" id="submitBtn">
-                  <span class="btn-label">Book Now</span>
-                  <span id="btnSpinner" style="display:none;margin-left:6px"><span class="spinner"></span></span>
-                </button>
+              <div style="margin-bottom:8px">
+                <label for="note" style="display:block;margin-bottom:6px;color:var(--muted)">Anything we should know?</label>
+                <textarea id="note" name="note" placeholder="Add injury details, preferences or anything we should prepare" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);min-height:100px"></textarea>
+              </div>
+
+              <div style="display:flex;gap:8px;justify-content:flex-end">
+                <button type="submit" class="btn btn-primary">Book Now</button>
               </div>
             </form>
-            <p style="color:#6b7280;margin-top:8px">We will confirm on WhatsApp. For urgent help call <a href="tel:+919762949595">+91 97629 49595</a></p>
           </div>
         </div>
 
         <div>
           <div class="card">
-            <h4>Find us on map</h4>
-
-            <!-- Address-based embed (works without Place ID). If you get the Google Place ID later,
-                 replace src with a Place-ID embed for more accuracy. -->
+            <h3>Find us on map</h3>
             <iframe class="map-iframe" loading="lazy"
-              src="https://www.google.com/maps?q=Squats+Fitness+Talegaon+Chakan+Hwy+Vatan+Nagar+Talegaon+Dabhade+410506&output=embed"></iframe>
-
-            <p style="margin-top:8px;color:#6b7280">Open in Maps: <a href="https://maps.app.goo.gl/jzpyy7P6p8F1yy3WA?g_st=ac" target="_blank" rel="noopener">Open location</a></p>
+              src="https://www.google.com/maps?q=Squats+Fitness+Talegaon+Chakan+Hwy+Vatan+Nagar+Talegaon+Dabhade+410506&output=embed"
+              referrerpolicy="no-referrer-when-downgrade" title="Clinic location"></iframe>
+            <p style="margin-top:8px;color:var(--muted)">Open in Maps: <a href="https://maps.app.goo.gl/jzpyy7P6p8F1yy3WA?g_st=ac" target="_blank" rel="noopener">Open location</a></p>
           </div>
         </div>
       </div>
     </div>
   </section>
-
 </main>
 
 <!-- Floating WhatsApp -->
-<a class="whatsapp" href="https://wa.me/919762949595" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:28px;height:28px">
+<a id="waFloat" class="whatsapp" href="https://wa.me/919762949595" target="_blank" rel="noopener" aria-label="WhatsApp — Message Sai Siddhi">
+  <span class="pulse" aria-hidden="true"></span>
+  <svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path fill="#fff" d="M20.5 3.5C18.9 2 16.9 1 14.6 1 8.5 1 3.4 6.1 3.4 12.2c0 2 0.6 3.8 1.7 5.4L3 23l5.5-1.4c1.5 0.8 3.3 1.3 5.1 1.3 6.1 0 11.2-5.1 11.2-11.2 0-2.3-0.8-4.5-2.5-6.1zM13.3 18.5c-1.5 0.1-2.8-0.5-3.9-1.3l-0.3-0.3-3.3 0.9 0.9-3.2-0.2-0.4C7.9 13 9 12 10 11.8c0.8-0.2 1.3-0.2 1.9 0.1 0.5 0.3 1.2 0.8 1.8 1.4 0.6 0.6 1 1.3 1.2 1.8 0.2 0.6 0.2 1 0 1.4-0.2 0.4-0.6 0.9-1.4 1z"/>
   </svg>
 </a>
 
+<footer>
+  <div class="container" style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap">
+    <img src="logo.png" alt="logo" style="height:40px;width:40px;border-radius:8px;object-fit:cover">
+    <div style="text-align:center">
+      <div style="font-weight:700">Sai Siddhi</div>
+      <div style="font-size:13px;color:var(--muted)">© <span id="yr"></span> Sai Siddhi • All rights reserved</div>
+    </div>
+  </div>
+</footer>
+
 <script>
-  // year
-  document.addEventListener('DOMContentLoaded', () => {
-    // fade-in observer
-    const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show') }) }, {threshold:0.12});
-    document.querySelectorAll('.fade').forEach(el=>io.observe(el));
-    document.getElementById('yr')?.textContent = new Date().getFullYear();
+  // Hide loader when ready
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('pageLoader');
+    if(loader){ loader.classList.add('hidden'); setTimeout(()=>loader.style.display='none',450); }
   });
 
-  // book now scroll
-  document.getElementById('bookNow')?.addEventListener('click', ()=>{ location.hash='#contact'; setTimeout(()=>document.getElementById('name')?.focus(),350); });
+  // Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
 
-  // Booking handler — show spinner, POST then redirect
+  // Navbar scroll effects
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 18) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+  });
+
+  // Dark mode toggle (persist)
+  const darkToggle = document.getElementById('darkToggle');
+  const root = document.documentElement;
+  function applyTheme(isDark){
+    if(isDark) root.classList.add('dark'); else root.classList.remove('dark');
+    localStorage.setItem('sai_theme_dark', isDark ? '1' : '0');
+    if(darkToggle) darkToggle.setAttribute('aria-pressed', !!isDark);
+  }
+  // load stored preference or system
+  (function(){
+    const stored = localStorage.getItem('sai_theme_dark');
+    if(stored === '1') applyTheme(true);
+    else if(stored === '0') applyTheme(false);
+    else {
+      const prefers = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(prefers);
+    }
+  })();
+  darkToggle.addEventListener('click', () => applyTheme(!document.documentElement.classList.contains('dark')));
+
+  // Book button scroll to contact
+  document.getElementById('bookNow').addEventListener('click', ()=> {
+    window.location.hash = '#contact';
+    setTimeout(()=> document.querySelector('[name="name"]')?.focus(), 300);
+  });
+  document.getElementById('openBook').addEventListener('click', ()=> {
+    window.location.hash = '#contact';
+    setTimeout(()=> document.querySelector('[name="name"]')?.focus(), 300);
+  });
+
+  // Booking form: no changes (FormSubmit via _next) — ensure success.html reads params
+  // But we will append name/phone/service/date/time/note to the _next query so success page auto-populates
   (function(){
     const form = document.getElementById('bookingForm');
     if(!form) return;
-    const submitBtn = document.getElementById('submitBtn');
-    const btnSpinner = document.getElementById('btnSpinner');
-    const btnLabel = submitBtn?.querySelector('.btn-label');
+    form.addEventListener('submit', function(e){
+      // let default submit happen to FormSubmit (it will redirect to _next)
+      // but we want to include query params in _next so success.html can read them
+      const name = encodeURIComponent((form.querySelector('[name="name"]')||{}).value || '');
+      const phone = encodeURIComponent((form.querySelector('[name="phone"]')||{}).value || '');
+      const service = encodeURIComponent((form.querySelector('[name="service"]')||{}).value || '');
+      const date = encodeURIComponent((form.querySelector('[name="date"]')||{}).value || '');
+      const time = encodeURIComponent((form.querySelector('[name="time"]')||{}).value || '');
+      const note = encodeURIComponent((form.querySelector('[name="note"]')||{}).value || '');
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if(submitBtn) { submitBtn.disabled = true; if(btnSpinner) btnSpinner.style.display='inline-block'; if(btnLabel) btnLabel.style.opacity='0.4'; }
-
-      // collect values
-      const name = (form.querySelector('[name="name"]')||{}).value || '';
-      const phone = (form.querySelector('[name="phone"]')||{}).value || '';
-      const service = (form.querySelector('[name="service"]')||{}).value || '';
-      const date = (form.querySelector('[name="date"]')||{}).value || '';
-      const time = (form.querySelector('[name="time"]')||{}).value || '';
-      const note = (form.querySelector('[name="note"]')||{}).value || '';
-
-      // FormSubmit expects form data — we still try to POST so you get email notifications
-      const fd = new FormData(form);
-      fd.append('_next','/success.html');
-
-      try {
-        await fetch(form.action, {method:'POST', body:fd, headers:{'Accept':'application/json'}});
-      } catch (err) {
-        console.warn('FormSubmit fetch failed or blocked (CORS). Proceeding to redirect anyway.', err);
-      }
-
-      // prepare redirect with query params
-      const params = new URLSearchParams();
-      if(name) params.set('name', name);
-      if(phone) params.set('phone', phone);
-      if(service) params.set('service', service);
-      if(date) params.set('date', date);
-      if(time) params.set('time', time);
-      if(note) params.set('note', note);
-
-      window.location.href = window.location.origin + '/success.html?' + params.toString();
+      // build the redirect URL with params
+      const base = form.querySelector('[name="_next"]').value || '/success.html';
+      const q = `?name=${name}&phone=${phone}&service=${service}&date=${date}&time=${time}&note=${note}`;
+      form.querySelector('[name="_next"]').value = base + q;
+      // allow form to submit normally
     });
   })();
+
+  // Floating WhatsApp: attach dynamic message optional (opens default chat)
+  document.getElementById('waFloat').addEventListener('click', (e)=>{
+    // if user has filled some form fields, prefer to open a prefilled message including name/service
+    const name = (document.querySelector('[name="name"]')||{}).value || '';
+    const service = (document.querySelector('[name="service"]')||{}).value || '';
+    let msg = 'Hello Sai Siddhi, I would like to enquire about booking.';
+    if(name || service) {
+      msg += '\\n';
+      if(name) msg += `Name: ${name}\\n`;
+      if(service) msg += `Service: ${service}\\n`;
+    }
+    const url = 'https://wa.me/919762949595?text=' + encodeURIComponent(msg);
+    // allow default anchor href to work, but override to include text
+    e.currentTarget.setAttribute('href', url);
+  });
+
+  // Accessibility: keyboard focus visible for toggles
+  window.addEventListener('keydown', (e)=> {
+    if(e.key === 'Tab') document.documentElement.classList.add('show-focus');
+  });
 </script>
+
 </body>
-</html>
+  </html>
+        
