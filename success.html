@@ -2,84 +2,160 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Thanks — Booking Received | Sai Siddhi</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<meta name="description" content="Thank you — your booking request has been received. We'll confirm via WhatsApp shortly." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Booking Confirmed — Sai Siddhi</title>
+
 <style>
-  :root{--accent:#0ea5a4;--bg:#f7faf9;--card:#ffffff;--muted:#6b7280}
-  *{box-sizing:border-box}
-  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#ffffff,#f3f7f6);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#0f1724;padding:28px}
-  .card{background:var(--card);max-width:720px;width:100%;padding:36px;border-radius:18px;box-shadow:0 20px 50px rgba(6,10,15,0.08);text-align:center}
-  .kicker{display:inline-block;padding:8px 14px;border-radius:999px;background:rgba(14,165,164,0.08);color:var(--accent);font-weight:700;margin-bottom:12px}
-  h1{font-size:28px;margin:8px 0 6px}
-  p.lead{color:var(--muted);margin:0 0 18px}
-  .check{width:120px;height:120px;margin:18px auto 6px;display:block}
-  /* animated circle + check */
-  .circle{stroke:var(--accent);stroke-width:6;stroke-linecap:round;fill:none;stroke-dasharray:380;stroke-dashoffset:380;animation:dash 0.9s ease-out forwards}
-  .tick{stroke:var(--accent);stroke-width:6;stroke-linecap:round;stroke-linejoin:round;fill:none;stroke-dasharray:50;stroke-dashoffset:50;animation:tick 0.6s 0.9s ease-out forwards}
-  @keyframes dash{to{stroke-dashoffset:0}}
-  @keyframes tick{to{stroke-dashoffset:0}}
-  .details{background:#fbfeff;border-radius:12px;padding:14px;margin-top:16px;text-align:left;box-shadow:0 8px 20px rgba(6,10,15,0.03)}
-  .details b{display:block;color:#0b1220;margin-bottom:6px}
-  .actions{display:flex;gap:10px;justify-content:center;margin-top:18px}
-  .btn{padding:12px 16px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
-  .btn-primary{background:var(--accent);color:white}
-  .btn-ghost{background:transparent;border:1px solid rgba(6,10,15,0.06)}
-  .small{font-size:13px;color:var(--muted);margin-top:10px}
-  @media(max-width:520px){.card{padding:20px}.check{width:92px;height:92px}}
+    body{
+        margin:0;
+        font-family:Inter, system-ui, sans-serif;
+        background:#f9f9f9;
+        color:#111;
+        padding:30px;
+        text-align:center;
+    }
+    .card{
+        background:#fff;
+        padding:24px;
+        border-radius:14px;
+        max-width:480px;
+        margin:0 auto;
+        box-shadow:0 12px 30px rgba(0,0,0,0.08);
+    }
+    .tick{
+        width:90px;
+        height:90px;
+        border-radius:50%;
+        background:#25D366;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        margin:0 auto 18px;
+        animation:pop 0.6s ease forwards;
+    }
+    .tick svg{
+        width:48px;
+        height:48px;
+        stroke:white;
+        stroke-width:3;
+        fill:none;
+        stroke-linecap:round;
+        stroke-linejoin:round;
+    }
+    @keyframes pop {
+        0% { transform:scale(0.4); opacity:0; }
+        100% { transform:scale(1); opacity:1; }
+    }
+    h2{
+        font-size:26px;
+        margin:0 0 8px;
+        font-weight:700;
+    }
+    p{margin:6px 0; color:#444;}
+    .summary{
+        text-align:left;
+        margin-top:20px;
+    }
+    .summary div{
+        margin-bottom:8px;
+        padding:8px;
+        background:#f3f3f3;
+        border-radius:8px;
+        font-size:15px;
+    }
+    .gallery{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:10px;
+        margin-top:22px;
+    }
+    .gallery img{
+        width:100%;
+        height:110px;
+        object-fit:cover;
+        border-radius:8px;
+    }
+    .btn{
+        display:inline-block;
+        margin-top:16px;
+        padding:12px 16px;
+        background:#25D366;
+        color:white;
+        border-radius:12px;
+        text-decoration:none;
+        font-weight:700;
+        box-shadow:0 10px 20px rgba(0,0,0,0.15);
+    }
 </style>
 </head>
+
 <body>
-  <div class="card" role="status" aria-live="polite">
-    <span class="kicker">Booking received</span>
 
-    <!-- Animated checkmark SVG -->
-    <svg class="check" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <circle cx="60" cy="60" r="56" class="circle" />
-      <path class="tick" d="M36 62 L52 78 L86 44" />
-    </svg>
-
-    <h1>Thanks — we’ve got your request!</h1>
-    <p class="lead">Your booking request has been received. We'll confirm your slot shortly on WhatsApp or email.</p>
-
-    <!-- Booking details (populated from query string if available) -->
-    <div id="bookingDetails" class="details" style="display:none">
-      <b>Booking details</b>
-      <div id="bdName">Name: —</div>
-      <div id="bdPhone">Phone: —</div>
-      <div id="bdService">Service: —</div>
-      <div id="bdDateTime">Preferred: —</div>
+<div class="card">
+    <div class="tick">
+        <svg viewBox="0 0 24 24">
+            <path d="M5 13l4 4L19 7"/>
+        </svg>
     </div>
 
-    <div class="actions">
-      <a class="btn btn-primary" id="whatsappBtn" href="https://wa.me/919762949595" target="_blank" rel="noopener">Message us on WhatsApp</a>
-      <a class="btn btn-ghost" href="/" id="homeBtn">Back to home</a>
+    <h2>Your booking is confirmed!</h2>
+    <p>Thank you for choosing Sai Siddhi. We look forward to helping you recover & feel amazing.</p>
+
+    <div class="summary" id="summary"></div>
+
+    <a id="waBtn" class="btn" target="_blank">Message us on WhatsApp</a>
+
+    <h3 style="margin-top:25px; font-size:18px;">Clinic Gallery</h3>
+    <div class="gallery">
+        <img src="clinic1.png" />
+        <img src="clinic2.png" />
+        <img src="clinic3.png" />
     </div>
 
-    <div class="small">If you don't receive a confirmation within 6 hours, please call us at <a href="tel:+919762949595">+91 97629 49595</a>.</div>
-  </div>
+    <p style="margin-top:26px; color:#777; font-size:14px;">
+        We appreciate your trust. If you have any questions, feel free to contact us anytime.
+    </p>
+</div>
 
 <script>
-  // Try to read booking info from query params (FormSubmit can append ?name=... if configured)
-  function decode(q){try{return decodeURIComponent(q.replace(/\+/g,' '));}catch(e){return q}}
-  const params = new URLSearchParams(location.search);
-  const name = params.get('name') || params.get('fullName') || params.get('customer');
-  const phone = params.get('phone') || params.get('tel');
-  const service = params.get('service');
-  const date = params.get('date');
-  const time = params.get('time');
+function get(param){
+    return new URLSearchParams(window.location.search).get(param) || "";
+}
 
-  if(name||phone||service||date||time){
-    document.getElementById('bookingDetails').style.display='block';
-    if(name) document.getElementById('bdName').textContent = 'Name: ' + decode(name);
-    if(phone) document.getElementById('bdPhone').textContent = 'Phone: ' + decode(phone);
-    if(service) document.getElementById('bdService').textContent = 'Service: ' + decode(service);
-    if(date||time) document.getElementById('bdDateTime').textContent = 'Preferred: ' + (date? decode(date):'') + (time? (' at ' + decode(time)):'');
-  }
+let name  = get("name");
+let phone = get("phone");
+let service = get("service");
+let date = get("date");
+let time = get("time");
+let note = get("note");
 
-  // Small focus for accessibility
-  document.querySelector('h1').focus = true;
+document.getElementById("summary").innerHTML = `
+    <div><strong>Name:</strong> ${name}</div>
+    <div><strong>Phone:</strong> ${phone}</div>
+    <div><strong>Service:</strong> ${service}</div>
+    <div><strong>Date:</strong> ${date}</div>
+    <div><strong>Time:</strong> ${time}</div>
+    <div><strong>Note:</strong> ${note ? note : "No note added"}</div>
+    <div><strong>Therapist:</strong> Amit Dulgach — Certified Sports Massage Therapist</div>
+    <div><strong>Clinic Address:</strong><br>
+    Squats Fitness, Talegaon - Chakan Hwy,<br>
+    Opp. Rambhau Parulekar School, Vatan Nagar,<br>
+    Talegaon Dabhade, Pune 410506</div>
+`;
+
+let waMsg =
+`New Booking:
+Name: ${name}
+Phone: ${phone}
+Service: ${service}
+Date: ${date}
+Time: ${time}
+Note: ${note}
+Therapist: Amit Dulgach`;
+
+document.getElementById("waBtn").href =
+    "https://wa.me/919762949595?text=" + encodeURIComponent(waMsg);
 </script>
+
 </body>
 </html>
