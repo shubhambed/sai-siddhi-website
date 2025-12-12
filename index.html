@@ -5,8 +5,66 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Sai Siddhi — Sports Massage & Cupping Therapy</title>
 
+<!-- SEO / Social -->
+<link rel="canonical" href="https://sai-siddhi-website.vercel.app/">
+<meta name="description" content="Sai Siddhi — Professional sports massage, deep tissue and cupping therapy in Talegaon. Fast recovery for athletes and active people. Book 60m sessions at ₹1,200. Call/WhatsApp +91 97629 49595.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#fbfbfb">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Sai Siddhi — Sports Massage & Cupping Therapy">
+<meta property="og:description" content="Professional sports massage, deep tissue and cupping therapy in Talegaon. Fast recovery for athletes and active people. Book 60m sessions at ₹1,200.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sai-siddhi-website.vercel.app/">
+<meta property="og:image" content="https://sai-siddhi-website.vercel.app/muscular.png">
+<meta property="og:site_name" content="Sai Siddhi">
+<meta property="og:locale" content="en_IN">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sai Siddhi — Sports Massage & Cupping Therapy">
+<meta name="twitter:description" content="Professional sports massage, deep tissue and cupping therapy in Talegaon. Fast recovery for athletes and active people. Book 60m sessions at ₹1,200.">
+<meta name="twitter:image" content="https://sai-siddhi-website.vercel.app/muscular.png">
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<!-- Structured Data: Local Business -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HealthAndBeautyBusiness",
+  "name": "Sai Siddhi",
+  "url": "https://sai-siddhi-website.vercel.app/",
+  "telephone": "+919762949595",
+  "description": "Professional sports massage, deep tissue and cupping therapy for athletes and active people. 60 minute sessions available.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Squats Fitness, Talegaon - Chakan Hwy, opposite Rambhau Parulekar School, Vatan Nagar",
+    "addressLocality": "Talegaon Dabhade",
+    "addressRegion": "Maharashtra",
+    "postalCode": "410506",
+    "addressCountry": "IN"
+  },
+  "image": "https://sai-siddhi-website.vercel.app/muscular.png",
+  "priceRange": "₹₹",
+  "service": [
+    {
+      "@type": "Service",
+      "name": "Sports Massage (60m)"
+    },
+    {
+      "@type": "Service",
+      "name": "Deep Tissue (45m)"
+    },
+    {
+      "@type": "Service",
+      "name": "Cupping Therapy (30m)"
+    }
+  ]
+}
+</script>
 
 <style>
   :root{
@@ -363,43 +421,4 @@
     form.addEventListener('submit', function(e){
       // let default submit happen to FormSubmit (it will redirect to _next)
       // but we want to include query params in _next so success.html can read them
-      const name = encodeURIComponent((form.querySelector('[name="name"]')||{}).value || '');
-      const phone = encodeURIComponent((form.querySelector('[name="phone"]')||{}).value || '');
-      const service = encodeURIComponent((form.querySelector('[name="service"]')||{}).value || '');
-      const date = encodeURIComponent((form.querySelector('[name="date"]')||{}).value || '');
-      const time = encodeURIComponent((form.querySelector('[name="time"]')||{}).value || '');
-      const note = encodeURIComponent((form.querySelector('[name="note"]')||{}).value || '');
-
-      // build the redirect URL with params
-      const base = form.querySelector('[name="_next"]').value || '/success.html';
-      const q = `?name=${name}&phone=${phone}&service=${service}&date=${date}&time=${time}&note=${note}`;
-      form.querySelector('[name="_next"]').value = base + q;
-      // allow form to submit normally
-    });
-  })();
-
-  // Floating WhatsApp: attach dynamic message optional (opens default chat)
-  document.getElementById('waFloat').addEventListener('click', (e)=>{
-    // if user has filled some form fields, prefer to open a prefilled message including name/service
-    const name = (document.querySelector('[name="name"]')||{}).value || '';
-    const service = (document.querySelector('[name="service"]')||{}).value || '';
-    let msg = 'Hello Sai Siddhi, I would like to enquire about booking.';
-    if(name || service) {
-      msg += '\\n';
-      if(name) msg += `Name: ${name}\\n`;
-      if(service) msg += `Service: ${service}\\n`;
-    }
-    const url = 'https://wa.me/919762949595?text=' + encodeURIComponent(msg);
-    // allow default anchor href to work, but override to include text
-    e.currentTarget.setAttribute('href', url);
-  });
-
-  // Accessibility: keyboard focus visible for toggles
-  window.addEventListener('keydown', (e)=> {
-    if(e.key === 'Tab') document.documentElement.classList.add('show-focus');
-  });
-</script>
-
-</body>
-  </html>
-        
+      const name = encodeURIComponent((form.querySelector('[name=
