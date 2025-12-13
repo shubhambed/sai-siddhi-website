@@ -4,25 +4,19 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-<!-- ===== SEO START ===== -->
+<!-- ===== SEO ===== -->
 <title>Sports Massage & Cupping Therapy in Talegaon | Sai Siddhi</title>
-
-<meta name="description" content="Professional sports massage and cupping therapy in Talegaon for gym recovery, muscle pain relief, injury prevention and faster recovery. Book your session at Sai Siddhi.">
-
-<meta name="keywords" content="sports massage Talegaon, cupping therapy Talegaon, gym massage Talegaon, muscle recovery massage Pune, athlete massage Talegaon, bodybuilder massage, post workout massage">
-
+<meta name="description" content="Professional sports massage and cupping therapy in Talegaon for gym recovery, muscle pain relief and injury prevention. Book your session at Sai Siddhi.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://sai-siddhi-website.vercel.app/">
 <meta name="theme-color" content="#fbfefc">
-<!-- ===== SEO END ===== -->
 
 <style>
-/* ---------- Spa Teal palette & design tokens ---------- */
 :root{
   --bg:#fbfefc;
   --muted:#5e7b76;
-  --accent:#0ea5a4;
-  --accent-2:#34d399;
+  --accent:#c62828; /* RED */
+  --wa:#25D366;
   --card:#ffffff;
   --shadow:0 14px 30px rgba(7,21,18,0.06);
   --container:1100px;
@@ -35,22 +29,102 @@ body{
   color:#0b1220;
 }
 .wrap{max-width:var(--container);margin:auto;padding:36px 20px}
-header{display:flex;justify-content:space-between;align-items:center}
+
+/* HEADER */
+header{display:flex;align-items:center;justify-content:space-between}
 .brand{display:flex;gap:12px;align-items:center}
-.logo{width:56px;height:56px;border-radius:12px;background:#e9fbf9;display:flex;align-items:center;justify-content:center}
+.logo{width:56px;height:56px;border-radius:12px;overflow:hidden}
 nav a{margin-left:18px;color:var(--muted);text-decoration:none;font-weight:600}
+
+/* BUTTONS */
+.btn{padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+.btn-primary{
+  background:var(--accent);
+  color:#fff;
+  box-shadow:0 10px 26px rgba(198,40,40,.35);
+}
+.btn-primary:hover{opacity:.9}
+.btn-ghost{background:transparent;border:1px solid rgba(0,0,0,.08)}
+
+/* HERO */
 .hero{display:flex;gap:36px;align-items:center;padding:44px 0}
 .hero-left{flex:1}
-.hero-title{font-size:36px;font-weight:800}
-.lead{color:var(--muted)}
+.hero-title{font-size:36px;font-weight:800;line-height:1.1}
+.lead{color:var(--muted);max-width:65ch}
+
+/* SERVICES */
 .services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}
 .service{background:#fff;padding:16px;border-radius:12px;box-shadow:var(--shadow)}
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
-.gallery img{width:100%;border-radius:10px;height:120px;object-fit:cover}
-.card{background:#fff;padding:18px;border-radius:12px;box-shadow:var(--shadow)}
+
+/* SEO BLOCK */
+.seo-block{max-width:820px;margin:40px auto;color:var(--muted)}
+.seo-block ul{padding-left:18px}
+
+/* GALLERY */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.gallery img{width:100%;height:120px;object-fit:cover;border-radius:10px}
+
+/* CONTACT */
 .contact-grid{display:grid;grid-template-columns:1fr 340px;gap:18px}
+.card{background:#fff;padding:18px;border-radius:12px;box-shadow:var(--shadow)}
+input,select,textarea{
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid rgba(0,0,0,.1);
+  margin-bottom:8px;
+}
+
 footer{text-align:center;margin-top:36px;color:var(--muted)}
-.whatsapp{position:fixed;right:18px;bottom:18px;width:66px;height:66px;border-radius:50%;background:#34d399;display:flex;align-items:center;justify-content:center}
+
+/* ===== PREMIUM WHATSAPP ===== */
+.wa-float{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  width:56px;
+  height:56px;
+  background:var(--wa);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 12px 30px rgba(37,211,102,.35);
+  z-index:999;
+  transition:.2s ease;
+}
+.wa-float:hover{transform:translateY(-4px) scale(1.05)}
+.wa-float svg{width:26px;height:26px}
+.wa-float::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:rgba(37,211,102,.35);
+  animation:pulse 2.2s infinite;
+  z-index:-1;
+}
+@keyframes pulse{
+  0%{transform:scale(1);opacity:.6}
+  70%{transform:scale(1.8);opacity:0}
+  100%{opacity:0}
+}
+.wa-tooltip{
+  position:absolute;
+  right:70px;
+  background:#111;
+  color:#fff;
+  padding:6px 10px;
+  border-radius:6px;
+  font-size:12px;
+  opacity:0;
+  transform:translateY(4px);
+  transition:.2s ease;
+  white-space:nowrap;
+}
+.wa-float:hover .wa-tooltip{opacity:1;transform:none}
+
+/* RESPONSIVE */
 @media(max-width:900px){
   .hero{flex-direction:column}
   .services{grid-template-columns:1fr}
@@ -66,59 +140,49 @@ footer{text-align:center;margin-top:36px;color:var(--muted)}
 <header>
   <div class="brand">
     <div class="logo">
-      <img src="logo.png" alt="Sai Siddhi sports massage clinic logo" style="width:100%;border-radius:12px">
+      <img src="logo.png" alt="Sai Siddhi sports massage clinic logo" style="width:100%">
     </div>
     <div>
       <div style="font-weight:700">Sai Siddhi</div>
       <div style="color:var(--muted)">Sports Massage & Cupping</div>
     </div>
   </div>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#contact">Contact</a>
-  </nav>
+
+  <button class="btn btn-primary" onclick="location.href='#contact'">Book Now</button>
 </header>
 
 <main>
 
-<!-- ===== HERO / H1 ===== -->
-<section id="home" class="hero">
+<section class="hero" id="home">
   <div class="hero-left">
     <h1 class="hero-title">
       Sports Massage & Cupping Therapy in Talegaon for Gym Recovery
     </h1>
     <p class="lead">
-      Professional sports massage, deep tissue and cupping therapy designed for gym athletes, bodybuilders and fitness enthusiasts to recover faster and perform better.
+      Professional sports massage, deep tissue and cupping therapy for gym athletes and fitness enthusiasts. Faster recovery. Less pain. Better performance.
     </p>
+    <button class="btn btn-primary" onclick="location.href='#contact'">Book ₹1,200</button>
   </div>
 </section>
 
-<!-- ===== SEO CONTENT ===== -->
-<section style="max-width:820px;margin:40px auto;color:#4b635f">
+<section class="seo-block">
   <p>
-    Sai Siddhi provides professional <strong>sports massage and cupping therapy in Talegaon</strong> to help gym clients recover from muscle pain, stiffness and workout fatigue. Our therapy improves blood circulation, flexibility and muscle recovery.
+    Sai Siddhi offers professional <strong>sports massage and cupping therapy in Talegaon</strong> for muscle pain relief, workout recovery and injury prevention. Our treatments improve blood circulation, flexibility and performance.
   </p>
 
-  <h2>Why Choose Our Sports Massage in Talegaon?</h2>
+  <h2>Why Gym Athletes Choose Us</h2>
   <ul>
-    <li>Faster muscle recovery after gym workouts</li>
-    <li>Relief from muscle pain and stiffness</li>
-    <li>Improved flexibility and performance</li>
-    <li>Clean, hygienic and professional environment</li>
+    <li>Faster post-workout recovery</li>
+    <li>Relief from muscle pain & stiffness</li>
+    <li>Improved mobility & flexibility</li>
+    <li>Clean, hygienic professional clinic</li>
   </ul>
 
   <h2>Frequently Asked Questions</h2>
-
-  <h3>Is sports massage good for gym recovery?</h3>
-  <p>Yes, sports massage reduces soreness, improves blood flow and speeds up post-workout recovery.</p>
-
-  <h3>Is cupping therapy safe?</h3>
-  <p>Yes, cupping therapy is safe when performed by trained professionals.</p>
+  <p><strong>Is sports massage good for gym recovery?</strong><br>Yes, it reduces soreness and speeds up recovery.</p>
+  <p><strong>Is cupping therapy safe?</strong><br>Yes, when done by trained professionals.</p>
 </section>
 
-<!-- ===== SERVICES ===== -->
 <section id="services">
   <h2>Our Services</h2>
   <div class="services">
@@ -128,7 +192,6 @@ footer{text-align:center;margin-top:36px;color:var(--muted)}
   </div>
 </section>
 
-<!-- ===== GALLERY ===== -->
 <section id="gallery">
   <h2>Clinic Gallery</h2>
   <div class="gallery">
@@ -138,12 +201,32 @@ footer{text-align:center;margin-top:36px;color:var(--muted)}
   </div>
 </section>
 
-<!-- ===== CONTACT ===== -->
 <section id="contact">
   <h2>Book a Session</h2>
   <div class="contact-grid">
     <div class="card">
-      <p>📍 Squats Fitness, Talegaon – Chakan Hwy, Pune</p>
+      <form action="https://formsubmit.co/saisiddhisportsmassageandcuppi@gmail.com" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="success.html">
+        <input name="name" placeholder="Your name" required>
+        <input name="phone" placeholder="Phone / WhatsApp" required>
+        <select name="service" required>
+          <option>Sports Massage</option>
+          <option>Deep Tissue Massage</option>
+          <option>Cupping Therapy</option>
+        </select>
+        <input type="date" name="date" required>
+        <input type="time" name="time" required>
+        <button class="btn btn-primary" type="submit">Confirm Booking</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <p><strong>Location</strong></p>
+      <p>Squats Fitness, Talegaon – Chakan Hwy, Pune 410506</p>
+      <iframe
+        src="https://www.google.com/maps?q=Squats+Fitness+Talegaon+Chakan+Hwy+410506&output=embed"
+        width="100%" height="220" style="border:0;border-radius:10px" loading="lazy"></iframe>
       <p>📞 <a href="tel:+919762949595">+91 97629 49595</a></p>
     </div>
   </div>
@@ -152,13 +235,17 @@ footer{text-align:center;margin-top:36px;color:var(--muted)}
 </main>
 
 <footer>
-  © <span id="yr"></span> Sai Siddhi – Sports Massage & Cupping Therapy
+  © <span id="yr"></span> Sai Siddhi
 </footer>
 
 </div>
 
-<a class="whatsapp" href="https://wa.me/919762949595" aria-label="WhatsApp">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="#fff"><path d="M20.5 3.5C18.9 2 16.9 1 14.6 1 8.5 1 3.4 6.1 3.4 12.2c0 2 .6 3.8 1.7 5.4L3 23l5.5-1.4c1.5.8 3.3 1.3 5.1 1.3 6.1 0 11.2-5.1 11.2-11.2 0-2.3-.8-4.5-2.5-6.1z"/></svg>
+<!-- WhatsApp -->
+<a class="wa-float" href="https://wa.me/919762949595" target="_blank" aria-label="Chat on WhatsApp">
+  <span class="wa-tooltip">Chat on WhatsApp</span>
+  <svg viewBox="0 0 24 24" fill="#fff">
+    <path d="M20.5 3.5C18.9 2 16.9 1 14.6 1 8.5 1 3.4 6.1 3.4 12.2c0 2 .6 3.8 1.7 5.4L3 23l5.5-1.4c1.5.8 3.3 1.3 5.1 1.3 6.1 0 11.2-5.1 11.2-11.2 0-2.3-.8-4.5-2.5-6.1z"/>
+  </svg>
 </a>
 
 <script>
@@ -166,5 +253,5 @@ document.getElementById("yr").textContent=new Date().getFullYear();
 </script>
 
 </body>
-</html>
+  </html>
 
