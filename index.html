@@ -6,12 +6,12 @@
 
 <title>Sai Siddhi — Sports Massage & Cupping Therapy | Talegaon</title>
 
-<meta name="description" content="Sai Siddhi offers professional sports massage, deep tissue and cupping therapy for gym clients in Talegaon & Chakan. Book sessions at ₹1,200.">
+<meta name="description" content="Sai Siddhi offers professional sports massage, deep tissue massage and cupping therapy for gym clients in Talegaon and Chakan. Book sessions at ₹1,200.">
 
 <meta name="theme-color" content="#fbfefc">
 
-<!-- SEO ADDITIONS (ONLY) -->
-<meta name="keywords" content="sports massage Talegaon, cupping therapy Talegaon, deep tissue massage Pune, gym recovery massage, massage near me Talegaon">
+<!-- ✅ SEO (ONLY ADDITION IN HEAD) -->
+<meta name="keywords" content="sports massage Talegaon, cupping therapy Talegaon, deep tissue massage Talegaon, gym recovery massage Pune, massage near me Talegaon">
 <meta name="author" content="Sai Siddhi Sports Massage & Cupping Therapy">
 
 <meta property="og:title" content="Sai Siddhi Sports Massage & Cupping Therapy">
@@ -24,7 +24,6 @@
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Sai Siddhi Sports Massage & Cupping Therapy",
-  "image": "https://sai-siddhi-website.vercel.app/logo.png",
   "telephone": "+919762949595",
   "priceRange": "₹₹",
   "address": {
@@ -62,7 +61,7 @@ body{
   color:#0b1220;
 }
 .wrap{max-width:var(--container);margin:0 auto;padding:36px 20px}
-header{display:flex;justify-content:space-between;align-items:center}
+header{display:flex;align-items:center;justify-content:space-between}
 .brand{display:flex;gap:12px;align-items:center}
 .logo{width:56px;height:56px;border-radius:12px;background:#fff;box-shadow:var(--shadow)}
 nav a{margin-left:18px;color:var(--muted);text-decoration:none;font-weight:600}
@@ -77,7 +76,8 @@ nav a{margin-left:18px;color:var(--muted);text-decoration:none;font-weight:600}
 .contact-grid{display:grid;grid-template-columns:1fr 340px;gap:18px}
 .card{background:#fff;padding:18px;border-radius:12px;box-shadow:var(--shadow)}
 input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;margin-bottom:8px}
-.whatsapp{position:fixed;right:18px;bottom:18px;width:66px;height:66px;border-radius:50%;background:#34d399;display:flex;align-items:center;justify-content:center}
+label{font-size:13px;color:var(--muted);font-weight:600}
+.whatsapp{position:fixed;right:18px;bottom:18px;width:66px;height:66px;border-radius:50%;background:#34d399;display:flex;align-items:center;justify-content:center;z-index:999}
 </style>
 </head>
 
@@ -101,65 +101,87 @@ input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid
 </header>
 
 <main id="home">
-  <section class="hero">
-    <div>
-      <span>Winter Special — ₹1,200</span>
-      <h1 class="hero-title">Recover faster. Move stronger.</h1>
-      <p>Professional sports massage, deep tissue & cupping therapy for gym clients.</p>
-      <button class="btn btn-primary" onclick="location.href='#contact'">Book ₹1,200</button>
-    </div>
-    <div class="photo-card">
-      <img src="muscular.png" alt="Sports massage" style="width:100%">
-    </div>
-  </section>
 
-  <!-- ⭐⭐⭐⭐⭐ CLIENT RATING (ONLY ADDITION IN BODY) -->
-  <section style="margin:28px 0">
-    <div class="card" style="text-align:center">
-      <h2>Trusted by Our Clients</h2>
-      <div style="font-size:22px;color:#f59e0b">★★★★★</div>
-      <p style="color:var(--muted)">Rated 5.0 by gym clients for recovery & pain relief</p>
-    </div>
-  </section>
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <span>Winter Special — ₹1,200</span>
+    <h1 class="hero-title">Recover faster. Move stronger.</h1>
+    <p>Professional sports massage, deep tissue & cupping therapy for gym clients.</p>
+    <button class="btn btn-primary" onclick="location.href='#contact'">Book ₹1,200</button>
+  </div>
+  <div class="photo-card">
+    <img src="muscular.png" alt="Sports massage session" style="width:100%">
+  </div>
+</section>
 
-  <section id="services" class="services">
-    <div class="service">Sports Massage (60m) — ₹1,200</div>
-    <div class="service">Deep Tissue (45m) — ₹1,200</div>
-    <div class="service">Cupping Therapy (30m) — ₹900</div>
-  </section>
+<!-- ⭐ 5-STAR RATING (ONLY ADDITION IN BODY) -->
+<section style="margin:28px 0">
+  <div class="card" style="text-align:center">
+    <h2>Trusted by Our Clients</h2>
+    <div style="font-size:22px;color:#f59e0b">★★★★★</div>
+    <p style="color:var(--muted)">
+      Rated 5.0 by gym clients for recovery & pain relief
+    </p>
+  </div>
+</section>
 
-  <section id="gallery" class="gallery">
-    <img src="clinic1.png">
-    <img src="clinic2.png">
-    <img src="clinic3.png">
-  </section>
+<!-- SERVICES -->
+<section id="services" class="services">
+  <div class="service">Sports Massage (60m) — ₹1,200</div>
+  <div class="service">Deep Tissue (45m) — ₹1,200</div>
+  <div class="service">Cupping Therapy (30m) — ₹900</div>
+</section>
 
-  <section id="contact">
-    <h2>Book a Session</h2>
-    <div class="contact-grid">
-      <div class="card">
-        <form action="https://formsubmit.co/saisiddhisportsmassageandcuppi@gmail.com" method="POST">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="success.html">
-          <input name="name" placeholder="Your Name" required>
-          <input name="phone" placeholder="Phone" required>
-          <select name="service">
-            <option>Sports Massage</option>
-            <option>Deep Tissue</option>
-            <option>Cupping Therapy</option>
-          </select>
-          <input type="date" name="date" required>
-          <input type="time" name="time" required>
-          <button class="btn btn-primary" type="submit">Confirm Booking</button>
-        </form>
-      </div>
-      <div class="card">
-        <p>📍 Squats Fitness, Talegaon–Chakan Highway</p>
-      </div>
-    </div>
-  </section>
+<!-- GALLERY -->
+<section id="gallery" class="gallery">
+  <img src="clinic1.png">
+  <img src="clinic2.png">
+  <img src="clinic3.png">
+</section>
+
+<!-- BOOKING -->
+<section id="contact">
+<h2>Book a Session</h2>
+
+<div class="contact-grid">
+<div class="card">
+<form action="https://formsubmit.co/saisiddhisportsmassageandcuppi@gmail.com" method="POST">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_next" value="success.html">
+
+<label>Your Name</label>
+<input name="name" required>
+
+<label>Phone / WhatsApp</label>
+<input name="phone" required>
+
+<label>Select Service</label>
+<select name="service">
+<option>Sports Massage</option>
+<option>Deep Tissue Massage</option>
+<option>Cupping Therapy</option>
+</select>
+
+<label>Select Date</label>
+<input type="date" name="date" required>
+
+<label>Select Time</label>
+<input type="time" name="time" required>
+
+<button class="btn btn-primary" type="submit">Confirm Booking</button>
+</form>
+</div>
+
+<div class="card">
+<p>📍 Squats Fitness, Talegaon–Chakan Highway</p>
+</div>
+</div>
+</section>
+
 </main>
 
+<!-- WHATSAPP FLOAT -->
 <a class="whatsapp" href="https://wa.me/919762949595" target="_blank">💬</a>
 
 </div>
