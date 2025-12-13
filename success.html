@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>Thank You | Sai Siddhi Sports Massage & Cupping Therapy</title>
-<meta name="description" content="Thank you for choosing Sai Siddhi Sports Massage & Cupping Therapy. Your booking request has been received.">
+<title>Booking Successful | Sai Siddhi Sports Massage & Cupping Therapy</title>
+<meta name="description" content="Your booking has been received successfully at Sai Siddhi Sports Massage & Cupping Therapy.">
 
 <style>
 :root{
   --bg:#f7faf9;
   --card:#ffffff;
   --accent:#c62828;
-  --wa:#25D366;
+  --success:#16a34a;
   --muted:#6b7280;
   --shadow:0 18px 40px rgba(0,0,0,.08);
 }
@@ -24,21 +24,22 @@ body{
   color:#0b1220;
 }
 .wrap{
-  max-width:720px;
-  margin:40px auto;
+  max-width:700px;
+  margin:50px auto;
   padding:16px;
 }
 .card{
   background:var(--card);
-  padding:26px;
+  padding:28px;
   border-radius:18px;
   box-shadow:var(--shadow);
 }
-.check{
-  width:70px;height:70px;
+.icon{
+  width:72px;
+  height:72px;
   margin:0 auto 16px;
   border-radius:50%;
-  background:#22c55e;
+  background:var(--success);
   display:flex;
   align-items:center;
   justify-content:center;
@@ -46,41 +47,29 @@ body{
   font-size:34px;
   font-weight:800;
 }
-h1{text-align:center;margin:10px 0}
+h1{
+  text-align:center;
+  margin:10px 0;
+}
 .center{text-align:center}
-p{color:#374151}
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  padding:12px 16px;
-  border-radius:12px;
-  font-weight:700;
-  text-decoration:none;
-  margin:6px 4px;
-}
-.btn-wa{
-  background:var(--wa);
-  color:#fff;
-}
-.btn-home{
-  border:1px solid #e5e7eb;
-  color:#111;
+p{color:#374151;line-height:1.6}
+.divider{
+  height:1px;
+  background:#e5e7eb;
+  margin:24px 0;
 }
 .note{
   background:#fff7ed;
   border-left:4px solid var(--accent);
-  padding:14px;
-  border-radius:10px;
-  margin-top:18px;
+  padding:16px;
+  border-radius:12px;
   color:#7c2d12;
 }
 .gallery{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin-top:18px;
+  gap:12px;
+  margin-top:16px;
 }
 .gallery img{
   width:100%;
@@ -88,10 +77,11 @@ p{color:#374151}
   object-fit:cover;
   border-radius:10px;
 }
-.footer-note{
+.footer{
+  text-align:center;
   font-size:13px;
   color:var(--muted);
-  margin-top:14px;
+  margin-top:18px;
 }
 @media(max-width:600px){
   .gallery{grid-template-columns:1fr 1fr}
@@ -104,9 +94,9 @@ p{color:#374151}
 
   <div class="card">
 
-    <div class="check">✓</div>
+    <div class="icon">✓</div>
 
-    <h1>Thank You!</h1>
+    <h1>Booking Successful</h1>
 
     <p class="center">
       Thank you for choosing  
@@ -114,44 +104,38 @@ p{color:#374151}
     </p>
 
     <p class="center">
-      Your booking request has been received successfully.  
-      Our team will contact you shortly to confirm your session.
+      Your booking request has been received successfully.
+      Our team will review the details and contact you shortly
+      to confirm your appointment.
     </p>
 
-    <div class="center" style="margin-top:16px">
-      <a
-        href="https://wa.me/919762949595"
-        class="btn btn-wa"
-        target="_blank"
-      >
-        💬 Chat on WhatsApp
-      </a>
+    <div class="divider"></div>
 
-      <a href="/" class="btn btn-home">
-        ⬅ Back to Home
-      </a>
-    </div>
+    <h3>What Happens Next?</h3>
+    <p>
+      • Our team will verify your booking details<br>
+      • You will receive a confirmation call/message<br>
+      • Please be available on the phone number you provided
+    </p>
 
-    <!-- IMPORTANT NOTE -->
     <div class="note">
-      <strong>Important Note:</strong><br>
-      Please arrive <strong>10 minutes early</strong> for your session.  
-      Avoid heavy meals at least <strong>1 hour before</strong> therapy.  
-      Inform us in advance if you have any injury or medical condition.
+      <strong>Please Note:</strong><br>
+      • Arrive <strong>10 minutes early</strong> for your session<br>
+      • Avoid heavy meals at least <strong>1 hour before</strong> therapy<br>
+      • Inform us if you have any injury or medical condition
     </div>
 
-    <!-- GALLERY -->
-    <h3 style="margin-top:24px">Our Clinic & Therapy</h3>
+    <h3 style="margin-top:26px">Our Clinic</h3>
     <div class="gallery">
       <img src="clinic1.png" alt="Sai Siddhi sports massage clinic">
-      <img src="clinic2.png" alt="Cupping therapy session at Sai Siddhi">
-      <img src="clinic3.png" alt="Gym recovery massage therapy">
+      <img src="clinic2.png" alt="Cupping therapy session">
+      <img src="clinic3.png" alt="Professional massage setup">
     </div>
 
-    <p class="footer-note center">
+    <div class="footer">
       📍 Located inside Squats Fitness, Talegaon–Chakan Highway<br>
-      📞 Call / WhatsApp: <strong>+91 97629 49595</strong>
-    </p>
+      We look forward to helping you recover better.
+    </div>
 
   </div>
 
