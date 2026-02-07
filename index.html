@@ -4,20 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>Sai Siddhi Sports Massage & Cupping | Talegaon</title>
+<title>Cupping Therapy & Sports Massage | Sai Siddhi</title>
 
 <style>
 :root{
- --accent:#c62828;
- --bg:#f6faf9;
+ --accent:#8b0000;
+ --bg:#faf6f6;
  --card:#fff;
- --shadow:0 14px 30px rgba(0,0,0,.08);
- --muted:#5e7b76;
+ --shadow:0 16px 35px rgba(0,0,0,.1);
 }
 *{box-sizing:border-box;scroll-behavior:smooth}
 body{margin:0;font-family:system-ui;background:var(--bg)}
 
 .wrap{max-width:1100px;margin:auto;padding:20px}
+
 header{display:flex;justify-content:space-between;align-items:center}
 .btn{
  background:var(--accent);
@@ -29,11 +29,18 @@ header{display:flex;justify-content:space-between;align-items:center}
  cursor:pointer;
 }
 
-.hero{display:flex;gap:30px;align-items:center;margin:40px 0}
-.hero img{width:420px;border-radius:14px;box-shadow:var(--shadow)}
+.hero{
+ display:flex;gap:30px;align-items:center;margin:40px 0
+}
+.hero img{
+ width:420px;border-radius:14px;box-shadow:var(--shadow)
+}
+
 .section{margin:60px 0}
 
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.cards{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:18px
+}
 .card{
  background:var(--card);
  padding:18px;
@@ -43,107 +50,72 @@ header{display:flex;justify-content:space-between;align-items:center}
 }
 .card:hover{transform:translateY(-8px)}
 
-table{width:100%;background:#fff;border-collapse:collapse}
-th,td{padding:12px;border-bottom:1px solid #eee}
-
-.testimonial{
- background:#fff;
- padding:14px;
- border-radius:10px;
- box-shadow:var(--shadow);
- margin-bottom:12px
-}
-
-.faq div{margin-bottom:14px}
-
-input,select{
- width:100%;
- padding:10px;
- margin-bottom:8px;
- border-radius:8px;
- border:1px solid #ccc
-}
-
-footer{text-align:center;color:var(--muted);margin-top:40px}
-
-/* ANIMATIONS */
-.fade{opacity:0;transform:translateY(30px);transition:1s}
+.fade{opacity:0;transform:translateY(40px);transition:1s}
 .show{opacity:1;transform:translateY(0)}
 
-@media(max-width:900px){
-.hero{flex-direction:column}
-.cards{grid-template-columns:1fr}
-}
+footer{text-align:center;margin-top:40px}
 
-/* SPINNER POPUP */
-#spinBox{
- position:fixed;inset:0;background:rgba(0,0,0,.6);
- display:none;align-items:center;justify-content:center;z-index:9999
+/* SPINNER */
+#wheelWrap{
+ text-align:center;
+ margin:40px auto;
 }
-#spinInner{
- background:#fff;padding:24px;border-radius:12px;text-align:center;width:300px
+#wheel{
+ width:260px;height:260px;
+ border-radius:50%;
+ border:10px solid #fff;
+ box-shadow:var(--shadow);
+ transition:transform 3s cubic-bezier(.2,.8,.2,1);
 }
 </style>
 </head>
 
 <body>
-
 <div class="wrap">
 
 <header>
 <h2>Sai Siddhi Therapy</h2>
-<button class="btn" onclick="location.href='#contact'">Book Now</button>
+<button class="btn" onclick="location.href='#contact'">Book</button>
 </header>
 
 <section class="hero fade">
 <div>
-<h1>Sports Massage & Cupping Therapy</h1>
-<p>Faster recovery. Less pain. Better performance.</p>
-<button class="btn" onclick="location.href='#contact'">Book Session</button>
+<h1>Cupping Therapy Recovery</h1>
+<p>Improve circulation, release tension, accelerate healing.</p>
+<button class="btn" onclick="location.href='#contact'">Book Now</button>
 </div>
-<img src="muscular.png">
+<img src="clinic1.png">
 </section>
 
 <section class="section fade">
 <h2>Services</h2>
 <div class="cards">
+<div class="card"><h3>Cupping Therapy</h3><p>₹900 / 30 min</p></div>
 <div class="card"><h3>Sports Massage</h3><p>₹1200 / 60 min</p></div>
 <div class="card"><h3>Deep Tissue</h3><p>₹1200 / 45 min</p></div>
-<div class="card"><h3>Cupping Therapy</h3><p>₹900 / 30 min</p></div>
 </div>
 </section>
 
+<!-- SPINNER CENTER -->
 <section class="section fade">
-<h2>Compare</h2>
-<table>
-<tr><th>Service</th><th>Best For</th><th>Duration</th><th>Price</th></tr>
-<tr><td>Sports Massage</td><td>Recovery</td><td>60 min</td><td>₹1200</td></tr>
-<tr><td>Deep Tissue</td><td>Tight muscles</td><td>45 min</td><td>₹1200</td></tr>
-<tr><td>Cupping</td><td>Pain relief</td><td>30 min</td><td>₹900</td></tr>
-</table>
+<h2 style="text-align:center">Tap To Spin & Win Discount</h2>
+
+<div id="wheelWrap">
+<canvas id="wheel" width="260" height="260"></canvas><br><br>
+<button class="btn" onclick="spinWheel()">SPIN</button>
+<p id="result"></p>
+</div>
+
 </section>
 
 <section class="section fade">
-<h2>Therapist</h2>
+<h2>Why Cupping?</h2>
 <div class="card">
-<strong>Amit Dulgach</strong>
-<p>Certified Gym Trainer & Recovery Specialist</p>
-<p>✔ Trusted Local Service<br>✔ Performance Focus</p>
+✔ Boosts blood flow<br>
+✔ Speeds muscle recovery<br>
+✔ Reduces pain<br>
+✔ Used by athletes worldwide
 </div>
-</section>
-
-<section class="section fade">
-<h2>Testimonials</h2>
-<div class="testimonial">Back pain reduced after first session.</div>
-<div class="testimonial">Best massage around Talegaon.</div>
-<div class="testimonial">Professional treatment.</div>
-</section>
-
-<section class="section fade faq">
-<h2>FAQ</h2>
-<div><strong>Is cupping painful?</strong><br>Mild discomfort only.</div>
-<div><strong>Gym after session?</strong><br>Light activity recommended.</div>
-<div><strong>How often?</strong><br>Weekly for athletes.</div>
 </section>
 
 <section id="contact" class="section fade">
@@ -156,9 +128,9 @@ footer{text-align:center;color:var(--muted);margin-top:40px}
 <input name="phone" placeholder="Phone" required>
 
 <select name="service">
+<option>Cupping Therapy</option>
 <option>Sports Massage</option>
 <option>Deep Tissue</option>
-<option>Cupping Therapy</option>
 </select>
 
 <input type="date" name="date" required>
@@ -169,39 +141,43 @@ footer{text-align:center;color:var(--muted);margin-top:40px}
 </section>
 
 <footer>© <span id="yr"></span> Sai Siddhi</footer>
+
 </div>
 
-<!-- WHATSAPP -->
 <a href="https://wa.me/919762949595"
 style="position:fixed;bottom:18px;right:18px;background:#25D366;color:#fff;padding:14px;border-radius:50%">WA</a>
-
-<!-- SPINNER -->
-<div id="spinBox">
-<div id="spinInner">
-<h3>Spin & Win 🎁</h3>
-<button onclick="spin()">SPIN</button>
-<p id="spinResult"></p>
-</div>
-</div>
 
 <script>
 document.getElementById("yr").textContent=new Date().getFullYear()
 
-/* Scroll animation */
-const observer=new IntersectionObserver(entries=>{
- entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")})
+/* Scroll reveal */
+const obs=new IntersectionObserver(e=>{
+e.forEach(x=>{if(x.isIntersecting)x.target.classList.add("show")})
 })
-document.querySelectorAll(".fade").forEach(el=>observer.observe(el))
+document.querySelectorAll(".fade").forEach(el=>obs.observe(el))
 
-/* Spinner */
-setTimeout(()=>{spinBox.style.display="flex"},5000)
-function spin(){
- const rewards=["₹0","₹50 OFF","₹100 OFF","₹200 OFF"]
- let win=rewards[Math.floor(Math.random()*rewards.length)]
- spinResult.innerText="You got "+win
+/* Wheel Draw */
+const prizes=["₹0","₹50 OFF","₹100 OFF","₹200 OFF","Try Again"]
+let ctx=document.getElementById("wheel").getContext("2d")
+let arc=2*Math.PI/prizes.length
+for(let i=0;i<prizes.length;i++){
+ ctx.beginPath()
+ ctx.fillStyle=i%2?"#8b0000":"#cc4444"
+ ctx.moveTo(130,130)
+ ctx.arc(130,130,120,arc*i,arc*(i+1))
+ ctx.fill()
+ ctx.fillStyle="#fff"
+ ctx.fillText(prizes[i],90,130)
+}
+
+let angle=0
+function spinWheel(){
+ angle+=Math.floor(Math.random()*2000)
+ document.getElementById("wheel").style.transform="rotate("+angle+"deg)"
+ let win=prizes[Math.floor(Math.random()*prizes.length)]
+ setTimeout(()=>result.innerText="You got "+win,2000)
 }
 </script>
 
 </body>
 </html>
-
