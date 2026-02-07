@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>Sai Siddhi Sports Massage & Cupping Therapy</title>
-<meta name="description" content="Sports massage & cupping therapy in Talegaon for recovery, pain relief and performance.">
 
 <style>
 :root{
@@ -28,156 +27,61 @@ var(--bg);
 color:#0b1220;
 }
 
-/* Layout */
 .wrap{max-width:var(--container);margin:auto;padding:34px 18px}
 header{display:flex;justify-content:space-between;align-items:center}
 .brand{display:flex;gap:12px;align-items:center}
 .logo{width:56px;height:56px;border-radius:12px;overflow:hidden}
 .btn{
-padding:12px 16px;
-border-radius:10px;
-border:0;
-font-weight:700;
-cursor:pointer;
-transition:.25s;
+padding:12px 16px;border-radius:10px;border:0;font-weight:700;cursor:pointer;transition:.25s;
 }
-.btn-primary{
-background:var(--accent);
-color:#fff;
-box-shadow:0 10px 20px rgba(183,28,28,.3);
-}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 10px 20px rgba(183,28,28,.3);}
 .btn-primary:hover{transform:translateY(-2px)}
 
-.hero{
-display:flex;
-gap:36px;
-align-items:center;
-padding:48px 0;
-}
+.hero{display:flex;gap:36px;align-items:center;padding:48px 0}
 .hero-title{font-size:36px;font-weight:900}
 .lead{color:var(--muted)}
-.hero-img{
-width:420px;border-radius:18px;
-box-shadow:var(--shadow);
-animation:float 4s ease-in-out infinite;
-}
-@keyframes float{
-0%,100%{transform:translateY(0)}
-50%{transform:translateY(-10px)}
-}
+.hero-img{width:420px;border-radius:18px;box-shadow:var(--shadow)}
 
-/* Services */
 .section{margin:40px auto}
 .services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.service{
-background:#fff;
-padding:18px;
-border-radius:var(--radius);
-box-shadow:var(--shadow);
-transition:.25s;
-position:relative;
-}
-.service:before{
-content:"";
-position:absolute;
-width:70px;height:70px;
-background:rgba(139,0,0,.15);
-border-radius:50%;
-right:-20px;top:-20px;
-}
-.service:hover{transform:translateY(-6px)}
-
-/* Gallery */
+.service{background:#fff;padding:18px;border-radius:var(--radius);box-shadow:var(--shadow)}
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.gallery img{
-width:100%;
-height:120px;
-object-fit:cover;
-border-radius:10px;
-transition:.3s
-}
-.gallery img:hover{transform:scale(1.05)}
+.gallery img{width:100%;height:120px;object-fit:cover;border-radius:10px}
 
-/* Contact */
 .contact-grid{display:grid;grid-template-columns:1fr 340px;gap:18px}
 .card{background:#fff;padding:18px;border-radius:12px;box-shadow:var(--shadow)}
-input,select{
-width:100%;
-padding:10px;
-border-radius:8px;
-border:1px solid rgba(0,0,0,.1);
-margin-bottom:8px
-}
+input,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,.1);margin-bottom:8px}
 
-/* Spinner */
 .spinner-wrap{text-align:center;margin:40px 0}
-.pointer{
-width:0;height:0;
-border-left:12px solid transparent;
-border-right:12px solid transparent;
-border-bottom:18px solid var(--accent);
-margin:0 auto 8px auto;
-}
+.pointer{width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-bottom:18px solid var(--accent);margin:0 auto 8px}
 #wheel{
-width:260px;height:260px;border-radius:50%;
-margin:auto;
-position:relative;
-box-shadow:var(--shadow);
-background:conic-gradient(
-#ffd7d7 0 40deg,
-#ffcaca 40deg 80deg,
-#ffe3c2 80deg 120deg,
-#ffd0d0 120deg 160deg,
-#ffe8cc 160deg 200deg,
-#ffd0d0 200deg 240deg,
-#ffe3c2 240deg 280deg,
-#ffcaca 280deg 320deg,
-#ffd7d7 320deg 360deg
-);
+width:260px;height:260px;border-radius:50%;margin:auto;
+background:conic-gradient(#ffd7d7 0 40deg,#ffcaca 40deg 80deg,#ffe3c2 80deg 120deg,#ffd0d0 120deg 160deg,#ffe8cc 160deg 200deg,#ffd0d0 200deg 240deg,#ffe3c2 240deg 280deg,#ffcaca 280deg 320deg,#ffd7d7 320deg 360deg);
 transition:transform 4s cubic-bezier(.2,.8,.2,1);
 }
-.slice-label{
-position:absolute;
-top:50%;left:50%;
-transform-origin:0 0;
-font-weight:900;
-color:#5a0000;
-}
+.slice-label{position:absolute}
 
-/* Popup */
-#popup{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.6);
-display:none;
-align-items:center;
-justify-content:center;
-z-index:9999;
-}
-.popup-card{
-background:#fff;
-padding:26px;
-border-radius:16px;
-text-align:center;
-animation:pop .35s ease;
-box-shadow:0 20px 50px rgba(0,0,0,.2);
-}
-@keyframes pop{
-from{transform:scale(.6);opacity:0}
-to{transform:scale(1);opacity:1}
-}
+#popup{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:9999}
+.popup-card{background:#fff;padding:26px;border-radius:16px;text-align:center}
 
 footer{text-align:center;color:var(--muted);margin-top:40px}
 
+/* WhatsApp Button */
 .wa-float{
 position:fixed;
-right:18px;bottom:18px;
-width:56px;height:56px;border-radius:50%;
+right:18px;
+bottom:18px;
+width:60px;
+height:60px;
+border-radius:50%;
 background:#25D366;
-display:flex;align-items:center;justify-content:center;
-box-shadow:0 12px 30px rgba(37,211,102,.35);
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 12px 30px rgba(0,0,0,.3);
 z-index:999;
 }
+.wa-float img{width:34px;height:34px}
 
 @media(max-width:900px){
 .hero{flex-direction:column}
@@ -203,7 +107,7 @@ z-index:999;
 <section class="hero">
 <div>
 <h1 class="hero-title">Recover Faster. Move Stronger.</h1>
-<p class="lead">Targeted sports massage & cupping therapy for serious gym recovery.</p>
+<p class="lead">Professional recovery therapy for athletes & gym training.</p>
 <button class="btn btn-primary" onclick="location.href='#spin'">Unlock Discount</button>
 </div>
 <img src="muscular.png" class="hero-img">
@@ -212,31 +116,9 @@ z-index:999;
 <section id="spin" class="spinner-wrap">
 <h2>Spin for Discount</h2>
 <div class="pointer"></div>
-
-<div id="wheel">
-<div class="slice-label" style="transform:rotate(0deg) translate(90px)">₹100</div>
-<div class="slice-label" style="transform:rotate(40deg) translate(90px)">₹120</div>
-<div class="slice-label" style="transform:rotate(80deg) translate(90px)">₹150</div>
-<div class="slice-label" style="transform:rotate(120deg) translate(90px)">₹180</div>
-<div class="slice-label" style="transform:rotate(160deg) translate(90px)">₹200</div>
-<div class="slice-label" style="transform:rotate(200deg) translate(90px)">₹220</div>
-<div class="slice-label" style="transform:rotate(240deg) translate(90px)">₹250</div>
-<div class="slice-label" style="transform:rotate(280deg) translate(90px)">₹300</div>
-<div class="slice-label" style="transform:rotate(320deg) translate(90px)">₹500</div>
-</div>
-
-<br>
+<div id="wheel"></div>
 <button class="btn btn-primary" onclick="spin()">SPIN</button>
 <p id="spinInfo"></p>
-</section>
-
-<section class="section">
-<h2>Services</h2>
-<div class="services">
-<div class="service"><h3>Sports Massage</h3><p>60 min – ₹1,200</p></div>
-<div class="service"><h3>Deep Tissue</h3><p>45 min – ₹1,200</p></div>
-<div class="service"><h3>Cupping Therapy</h3><p>30 min – ₹900</p></div>
-</div>
 </section>
 
 <section id="contact" class="section">
@@ -247,31 +129,34 @@ z-index:999;
 <form action="https://formsubmit.co/saisiddhisportsmassageandcuppi@gmail.com" method="POST">
 <input type="hidden" name="_captcha" value="false">
 <input type="hidden" name="_next" value="https://sai-siddhi-website.vercel.app/success.html">
-
 <input name="name" placeholder="Name" required>
 <input name="phone" placeholder="Phone" required>
-
-<select name="service" required>
+<select name="service">
 <option>Sports Massage</option>
 <option>Deep Tissue</option>
 <option>Cupping Therapy</option>
 </select>
-
-<input type="date" name="date" required>
-<input type="time" name="time" required>
-
+<input type="date" name="date">
+<input type="time" name="time">
 <input id="discountField" name="discount" placeholder="Discount Applied" readonly>
-
 <button class="btn btn-primary">Confirm Booking</button>
-
 </form>
 </div>
 
 <div class="card">
 <p><strong>Location</strong></p>
 <p>Squats Fitness, Talegaon–Chakan Hwy</p>
-<iframe src="https://www.google.com/maps?q=Squats+Fitness+Talegaon+Chakan+Hwy+410506&output=embed"
+
+<iframe
+src="https://maps.google.com/maps?q=Squats%20Fitness&t=&z=15&ie=UTF8&iwloc=&output=embed"
 width="100%" height="220" style="border:0;border-radius:10px"></iframe>
+
+<br><br>
+
+<a href="https://maps.app.goo.gl/AeYmSJxbgSfFrP2Z9" target="_blank">
+<button class="btn btn-primary">Open in Google Maps</button>
+</a>
+
 </div>
 
 </div>
@@ -290,15 +175,14 @@ width="100%" height="220" style="border:0;border-radius:10px"></iframe>
 </div>
 </div>
 
-<a class="wa-float" href="https://wa.me/919762949595" target="_blank">
-<svg viewBox="0 0 24 24" fill="#fff"><path d="M20.5 3.5C18.9 2 16.9 1 14.6 1 8.5 1 3.4 6.1 3.4 12.2c0 2 .6 3.8 1.7 5.4L3 23l5.5-1.4c1.5.8 3.3 1.3 5.1 1.3 6.1 0 11.2-5.1 11.2-11.2z"/></svg>
-</a>
+<a class="wa-float"
+href="https://wa.me/919762949595?text=Hello%20Sai%20Siddhi%20Massage,%20I%20want%20to%20book%20a%20session"
+target="_blank"> <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"> </a>
 
 <script>
 document.getElementById("yr").textContent=new Date().getFullYear();
 
 const rewards=[100,120,150,180,200,220,250,300,500];
-
 function weighted(){
 let r=Math.random()*50;
 if(r<1)return 500;
@@ -311,28 +195,12 @@ if(r<38)return 150;
 if(r<45)return 120;
 return 100;
 }
-
 function spin(){
-let today=new Date().toDateString();
-let data=JSON.parse(localStorage.getItem("spinData")||"{}");
-if(data.date!==today){data={date:today,count:0}}
-if(data.count>=5){
-document.getElementById("spinInfo").textContent="Spin limit reached today";
-return;
-}
 let reward=weighted();
-let index=rewards.indexOf(reward);
-let angle=(360/rewards.length)*index + 1440 + Math.random()*25;
-document.getElementById("wheel").style.transform="rotate("+angle+"deg)";
-setTimeout(()=>{
 document.getElementById("discountField").value="₹"+reward;
 document.getElementById("popText").textContent="🎉 Congratulations! You won ₹"+reward+" OFF";
 document.getElementById("popup").style.display="flex";
-},3500);
-data.count++;
-localStorage.setItem("spinData",JSON.stringify(data));
 }
-
 function closePop(){
 document.getElementById("popup").style.display="none";
 location.href="#contact";
