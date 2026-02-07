@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>Cupping Therapy & Sports Massage | Sai Siddhi</title>
+<title>Sai Siddhi Cupping Therapy</title>
 
 <style>
 :root{
@@ -15,7 +15,6 @@
 }
 *{box-sizing:border-box;scroll-behavior:smooth}
 body{margin:0;font-family:system-ui;background:var(--bg)}
-
 .wrap{max-width:1100px;margin:auto;padding:20px}
 
 header{display:flex;justify-content:space-between;align-items:center}
@@ -29,18 +28,12 @@ header{display:flex;justify-content:space-between;align-items:center}
  cursor:pointer;
 }
 
-.hero{
- display:flex;gap:30px;align-items:center;margin:40px 0
-}
-.hero img{
- width:420px;border-radius:14px;box-shadow:var(--shadow)
-}
+.hero{display:flex;gap:30px;align-items:center;margin:40px 0}
+.hero img{width:420px;border-radius:14px;box-shadow:var(--shadow)}
 
 .section{margin:60px 0}
 
-.cards{
- display:grid;grid-template-columns:repeat(3,1fr);gap:18px
-}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .card{
  background:var(--card);
  padding:18px;
@@ -53,24 +46,27 @@ header{display:flex;justify-content:space-between;align-items:center}
 .fade{opacity:0;transform:translateY(40px);transition:1s}
 .show{opacity:1;transform:translateY(0)}
 
+#wheel{border-radius:50%;box-shadow:var(--shadow);transition:transform 3s}
+
+input,select{
+ width:100%;
+ padding:10px;
+ margin-bottom:8px;
+ border-radius:8px;
+ border:1px solid #ccc
+}
+
 footer{text-align:center;margin-top:40px}
 
-/* SPINNER */
-#wheelWrap{
- text-align:center;
- margin:40px auto;
-}
-#wheel{
- width:260px;height:260px;
- border-radius:50%;
- border:10px solid #fff;
- box-shadow:var(--shadow);
- transition:transform 3s cubic-bezier(.2,.8,.2,1);
+@media(max-width:900px){
+.hero{flex-direction:column}
+.cards{grid-template-columns:1fr}
 }
 </style>
 </head>
 
 <body>
+
 <div class="wrap">
 
 <header>
@@ -80,9 +76,9 @@ footer{text-align:center;margin-top:40px}
 
 <section class="hero fade">
 <div>
-<h1>Cupping Therapy Recovery</h1>
-<p>Improve circulation, release tension, accelerate healing.</p>
-<button class="btn" onclick="location.href='#contact'">Book Now</button>
+<h1>Cupping Therapy & Recovery</h1>
+<p>Boost circulation. Relieve pain. Recover faster.</p>
+<button class="btn" onclick="location.href='#contact'">Book Session</button>
 </div>
 <img src="clinic1.png">
 </section>
@@ -96,26 +92,12 @@ footer{text-align:center;margin-top:40px}
 </div>
 </section>
 
-<!-- SPINNER CENTER -->
-<section class="section fade">
-<h2 style="text-align:center">Tap To Spin & Win Discount</h2>
-
-<div id="wheelWrap">
+<!-- SPINNER -->
+<section class="section fade" style="text-align:center">
+<h2>Spin & Win Discount</h2>
 <canvas id="wheel" width="260" height="260"></canvas><br><br>
 <button class="btn" onclick="spinWheel()">SPIN</button>
 <p id="result"></p>
-</div>
-
-</section>
-
-<section class="section fade">
-<h2>Why Cupping?</h2>
-<div class="card">
-✔ Boosts blood flow<br>
-✔ Speeds muscle recovery<br>
-✔ Reduces pain<br>
-✔ Used by athletes worldwide
-</div>
 </section>
 
 <section id="contact" class="section fade">
@@ -141,7 +123,6 @@ footer{text-align:center;margin-top:40px}
 </section>
 
 <footer>© <span id="yr"></span> Sai Siddhi</footer>
-
 </div>
 
 <a href="https://wa.me/919762949595"
@@ -152,30 +133,68 @@ document.getElementById("yr").textContent=new Date().getFullYear()
 
 /* Scroll reveal */
 const obs=new IntersectionObserver(e=>{
-e.forEach(x=>{if(x.isIntersecting)x.target.classList.add("show")})
+ e.forEach(x=>{if(x.isIntersecting)x.target.classList.add("show")})
 })
 document.querySelectorAll(".fade").forEach(el=>obs.observe(el))
 
-/* Wheel Draw */
-const prizes=["₹0","₹50 OFF","₹100 OFF","₹200 OFF","Try Again"]
+
+/* DRAW WHEEL */
+const display=["₹100","₹150","₹200","₹300","₹500"]
 let ctx=document.getElementById("wheel").getContext("2d")
-let arc=2*Math.PI/prizes.length
-for(let i=0;i<prizes.length;i++){
+let arc=2*Math.PI/display.length
+
+for(let i=0;i<display.length;i++){
  ctx.beginPath()
  ctx.fillStyle=i%2?"#8b0000":"#cc4444"
  ctx.moveTo(130,130)
  ctx.arc(130,130,120,arc*i,arc*(i+1))
  ctx.fill()
  ctx.fillStyle="#fff"
- ctx.fillText(prizes[i],90,130)
+ ctx.font="14px Arial"
+ ctx.fillText(display[i],90,135)
+}
+
+/* DAILY LIMIT */
+let today=new Date().toDateString()
+let storedDate=localStorage.getItem("spinDate")
+let spins=localStorage.getItem("spinCount")
+
+if(storedDate!==today){
+ localStorage.setItem("spinDate",today)
+ localStorage.setItem("spinCount",0)
+ spins=0
 }
 
 let angle=0
+
+function weighted(){
+ let r=Math.random()*100
+ if(r<2) return "₹500"
+ if(r<22) return "₹300"
+ if(r<47) return "₹200"
+ if(r<72) return "₹150"
+ return "₹100"
+}
+
 function spinWheel(){
+ spins=parseInt(localStorage.getItem("spinCount"))
+
+ if(spins>=5){
+   result.innerText="Daily spin limit reached"
+   return
+ }
+
+ spins++
+ localStorage.setItem("spinCount",spins)
+
  angle+=Math.floor(Math.random()*2000)
- document.getElementById("wheel").style.transform="rotate("+angle+"deg)"
- let win=prizes[Math.floor(Math.random()*prizes.length)]
- setTimeout(()=>result.innerText="You got "+win,2000)
+ wheel.style.transform="rotate("+angle+"deg)"
+
+ let win=weighted()
+
+ setTimeout(()=>{
+  result.innerText="You won "+win+" | Spins left: "+(5-spins)
+ },2000)
 }
 </script>
 
